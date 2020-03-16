@@ -961,7 +961,7 @@ def buildio(parent):
 		if outputText == 'Coolant Flood':
 			ioContents.append('net flood-output iocontrol.0.coolant-flood => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Coolant Mist':
-			ioContents.append('net mist-output iocontrol.0.coolant-mist => hm2_7i76e.0.7i76.0.0.output-0{0:02}\n'.format(index))
+			ioContents.append('net mist-output iocontrol.0.coolant-mist => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Spindle On':
 			ioContents.append('net spindle-on motion.spindle-on => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Spindle CW':
@@ -975,7 +975,7 @@ def buildio(parent):
 		if outputText == 'Digital Out 0':
 			ioContents.append('net digital-out-0 motion.digital-out-00 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Digital Out 1':
-			ioContents.append('net digital-out-2 motion.digital-out-01 => hm2_7i76e.0.7i76.0.0.output-0{0:02}\n'.format(index))
+			ioContents.append('net digital-out-2 motion.digital-out-01 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Digital Out 2':
 			ioContents.append('net digital-out-2 motion.digital-out-02 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Digital Out 3':
