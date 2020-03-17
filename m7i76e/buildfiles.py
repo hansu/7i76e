@@ -975,7 +975,7 @@ def buildio(parent):
 		if outputText == 'Digital Out 0':
 			ioContents.append('net digital-out-0 motion.digital-out-00 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Digital Out 1':
-			ioContents.append('net digital-out-2 motion.digital-out-01 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
+			ioContents.append('net digital-out-1 motion.digital-out-01 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Digital Out 2':
 			ioContents.append('net digital-out-2 motion.digital-out-02 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
 		if outputText == 'Digital Out 3':
