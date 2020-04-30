@@ -17,8 +17,8 @@ from m7i76e.dialog import Ui_Dialog as errorDialog
 from m7i76e.help import Ui_Dialog as helpDialog
 from m7i76e.about import Ui_about as aboutDialog
 
-UI_FILE = os.path.join(os.path.dirname(__file__), "7i76e.ui")
-VERSION = '0.0.4'
+UI_FILE = os.path.join(os.path.dirname(__file__), "m7i76e.ui")
+VERSION = '0.0.5'
 
 class MainWindow(QMainWindow):
 	def __init__(self):
@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
 		self.config = configparser.ConfigParser(strict=False)
 		self.cwd = os.getcwd()
 		self.setWindowTitle('7i76e Configuration Tool Version {}'.format(VERSION))
+		self.versionLE.setText(VERSION)
 		self.configNameUnderscored = ''
 		self.checkConfig = checkit.config
 		self.builddirs = buildfiles.builddirs

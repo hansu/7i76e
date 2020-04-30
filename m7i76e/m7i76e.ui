@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>788</width>
-    <height>743</height>
+    <width>800</width>
+    <height>910</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,7 +50,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>1.1</string>
+         <string/>
         </property>
        </widget>
        <widget class="QGroupBox" name="gridGroupBox">
@@ -9241,8 +9241,8 @@ QGroupBox::title {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>788</width>
-     <height>24</height>
+     <width>800</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
