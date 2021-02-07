@@ -221,28 +221,7 @@ QGroupBox::title {
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QLabel" name="outputLB">
-            <property name="font">
-             <font>
-              <family>Courier 10 Pitch</family>
-              <pointsize>10</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Box</enum>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-            </property>
-           </widget>
+           <widget class="QPlainTextEdit" name="outputPTE"/>
           </item>
          </layout>
         </widget>
@@ -275,14 +254,14 @@ QGroupBox::title {
         </property>
         <layout class="QGridLayout" name="gridLayout_29">
          <item row="1" column="2">
-          <widget class="QPushButton" name="reloadPB">
+          <widget class="QPushButton" name="reloadCardPB">
            <property name="text">
             <string>Reload</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QPushButton" name="flashPB">
+          <widget class="QPushButton" name="flashCardPB">
            <property name="text">
             <string>Flash</string>
            </property>
@@ -299,7 +278,7 @@ QGroupBox::title {
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QPushButton" name="testConnectionPB">
+          <widget class="QPushButton" name="readCardPB">
            <property name="text">
             <string>Read</string>
            </property>
@@ -9513,10 +9492,10 @@ QGroupBox::title {
   <tabstop>driverCB</tabstop>
   <tabstop>sserialSB</tabstop>
   <tabstop>scrollArea</tabstop>
-  <tabstop>reloadPB</tabstop>
-  <tabstop>flashPB</tabstop>
+  <tabstop>reloadCardPB</tabstop>
+  <tabstop>flashCardPB</tabstop>
   <tabstop>firmwareCB</tabstop>
-  <tabstop>testConnectionPB</tabstop>
+  <tabstop>readCardPB</tabstop>
   <tabstop>copyPB</tabstop>
   <tabstop>jointType_3</tabstop>
   <tabstop>versionLE</tabstop>

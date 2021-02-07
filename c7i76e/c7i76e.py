@@ -7,18 +7,34 @@ from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog, QLineEdit)
 from PyQt5.QtWidgets import (QSpinBox, QCheckBox, QComboBox, QLabel, QGroupBox)
 from PyQt5.QtWidgets import (QDoubleSpinBox, QMessageBox)
-import m7i76e.buildcombos as buildcombos
-import m7i76e.loadini as loadini
-import m7i76e.checkit as checkit
-import m7i76e.buildfiles as buildfiles
-import m7i76e.card as card
-import m7i76e.helptext as helptext
-from m7i76e.dialog import Ui_Dialog as errorDialog
-from m7i76e.help import Ui_Dialog as helpDialog
-from m7i76e.about import Ui_about as aboutDialog
 
-UI_FILE = os.path.join(os.path.dirname(__file__), "m7i76e.ui")
-VERSION = '0.0.5'
+"""
+# for local testing
+import buildcombos
+import loadini
+import checkit
+import buildfiles
+import card
+import helptext
+from dialog import Ui_Dialog as errorDialog
+from help import Ui_Dialog as helpDialog
+from about import Ui_about as aboutDialog
+"""
+
+# for installed deb
+import c7i76e.buildcombos as buildcombos
+import c7i76e.loadini as loadini
+import c7i76e.checkit as checkit
+import c7i76e.buildfiles as buildfiles
+import c7i76e.card as card
+import c7i76e.helptext as helptext
+from c7i76e.dialog import Ui_Dialog as errorDialog
+from c7i76e.help import Ui_Dialog as helpDialog
+from c7i76e.about import Ui_about as aboutDialog
+
+
+UI_FILE = os.path.join(os.path.dirname(__file__), "c7i76e.ui")
+VERSION = '0.1.5'
 
 class MainWindow(QMainWindow):
 	def __init__(self):
@@ -48,7 +64,21 @@ class MainWindow(QMainWindow):
 			'ladderSectionsSB', 'ladderSymbolsSB', 'ladderS32InputsSB',
 			'ladderS32OuputsSB', 'ladderFloatInputsSB', 'ladderFloatOutputsSB']
 		self.units = False
+		self.checks()
+
 		self.show()
+
+	def checks(self):
+		try:
+			subprocess.check_output('mesaflash', encoding='UTF-8')
+			# subprocess.run('mesaflash', check=True, capture_output=True) python 3.7 only
+		except FileNotFoundError:
+			t = "Mesaflash not found go to\nhttps://github.com/LinuxCNC/mesaflash\nfor installation instructions."
+			self.outputPTE.clear()
+			self.outputPTE.insertPlainText(t)
+			self.readCardPB.setEnabled(False)
+			self.flashCardPB.setEnabled(False)
+			self.reloadCardPB.setEnabled(False)
 
 	# Auto connected menu action callbacks
 	@pyqtSlot()
