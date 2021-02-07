@@ -1,3 +1,3 @@
-include m7i76e/*.ui
-include m7i76e/*.bit
+include c7i76e/*.ui
+include c7i76e/*.bit
 

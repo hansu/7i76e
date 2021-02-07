@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Something
+Comment=7i76E Configuration Tool
+Exec=c7i76e
+Icon=/usr/share/pixmaps/linuxcncicon.png
+Categories=X-CNC;
+Terminal=false
+StartupNotify=true
+StartupWMClass=c7i763.py
+Name[en_US]=7i76E Configurator
