@@ -1,13 +1,14 @@
-__pycache__/
-*.egg-info
-*.pyc
-/old files
-*.txt
+old-files
+pins
+*.dsc
+*.xz
+*.gz
+*.buildinfo
+*.changes
+c7i76e/src/firmware
+c7i76e/debian/c7i76e
+c7i76e/debian/.debhelper
+c7i76e/debian/*.substvars
+c7i76e/debian/files
+c7i76e/debian/debhelper*
 docs/build
-*.tar.gz
-/dist
-/deb_dist/*.gz
-/deb_dist/*.buildinfo
-/deb_dist/*.changes
-/deb_dist/*.dsc
-/deb_dist/c7i76e*
