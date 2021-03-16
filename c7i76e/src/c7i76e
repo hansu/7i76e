@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import sys, os, configparser, platform
+import sys, os, configparser, platform, subprocess
+from functools import partial
+
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtCore import pyqtSlot, Qt
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog, QLineEdit)
@@ -13,6 +15,7 @@ from libc7i76e import loadini
 from libc7i76e import checkit
 from libc7i76e import buildfiles
 from libc7i76e import card
+from libc7i76e import pcinfo
 from libc7i76e import helptext
 from libc7i76e.dialog import Ui_Dialog as errorDialog
 from libc7i76e.help import Ui_Dialog as helpDialog
@@ -41,7 +44,6 @@ class MainWindow(QMainWindow):
 		self.helpInfo = helptext.descriptions
 		self.buildCB()
 		self.setupConnections()
-		self.miscStuff()
 		self.axisList = ['axisCB_0', 'axisCB_1', 'axisCB_2', 'axisCB_3', 'axisCB_4']
 		self.ladderOptionsList = ['ladderRungsSB', 'ladderBitsSB', 'ladderWordsSB',
 			'ladderTimersSB', 'iecTimerSB', 'ladderMonostablesSB', 'ladderCountersSB',
@@ -85,7 +87,7 @@ class MainWindow(QMainWindow):
 
 	@pyqtSlot()
 	def on_actionSave_triggered(self):
-		pass
+		self.on_actionBuild_triggered()
 
 	@pyqtSlot()
 	def on_actionAbout_triggered(self):
@@ -178,42 +180,18 @@ class MainWindow(QMainWindow):
 			getattr(self, 'driveCB_' + str(i)).currentIndexChanged.connect(self.driveChanged)
 
 		self.pidDefault_s.clicked.connect(self.pidSetDefault)
-		self.testConnectionPB.clicked.connect(self.cardRead)
-		self.flashPB.clicked.connect(self.flashCard)
-		self.reloadPB.clicked.connect(self.reloadCard)
 		self.copyPB.clicked.connect(self.copyOutput)
 		self.spindleTypeCB.currentIndexChanged.connect(self.spindleTypeChanged)
 		self.linearUnitsCB.currentIndexChanged.connect(self.linearUnitsChanged)
-		self.pinsPB.clicked.connect(self.getPins)
-		self.cpuPB.clicked.connect(self.cpuInfo)
-		self.nicPB.clicked.connect(self.nicInfo)
-		self.calcNicPB.clicked.connect(self.calcNic)
-		self.readTmaxPB.clicked.connect(self.readTmax)
-
-	def readTmax(self):
-		card.readTmax(self)
-
-	def calcNic(self):
-		card.nicCalc(self)
-
-	def getPins(self):
-		card.pins(self)
-
-	def cardRead(self):
-		card.readCard(self)
-
-	def flashCard(self):
-		card.flashCard(self)
-
-	def reloadCard(self):
-		card.reloadCard(self)
-
-	def cpuInfo(self):
-		card.cpuInfo(self)
-
-	def nicInfo(self):
-		card.nicInfo(self)
-
+		#     obj.signal.connect(partial(fun, args1, arg2, ... ))
+		self.cpuPB.clicked.connect(partial(pcinfo.cpuInfo, self))
+		self.nicPB.clicked.connect(partial(pcinfo.nicInfo, self))
+		self.calcNicPB.clicked.connect(partial(pcinfo.nicCalc, self))
+		self.readTmaxPB.clicked.connect(partial(pcinfo.readTmax, self))
+		self.readPB.clicked.connect(partial(card.readCard, self, '7i76e'))
+		self.flashPB.clicked.connect(partial(card.flashCard, self, '7i76e'))
+		self.reloadPB.clicked.connect(partial(card.reloadCard, self, '7i76e'))
+		self.pinsPB.clicked.connect(partial(card.getPins, self))
 
 	def copyOutput(self):
 		self.qclip.setText(self.outputLB.text())
@@ -361,7 +339,8 @@ class MainWindow(QMainWindow):
 		if not self.linearUnitsCB.itemData(self.linearUnitsCB.currentIndex()):
 			QMessageBox.warning(self,'Warning', 'Machine Tab\nLinear Units\nmust be selected', QMessageBox.Ok)
 			return
-		getattr(self, 'p_' + tab).setText('1000')
+		p = int(1000/(int(self.servoPeriodSB.cleanText())/1000000))
+		getattr(self, 'p_' + tab).setText(f'{p}')
 		getattr(self, 'i_' + tab).setText('0')
 		getattr(self, 'd_' + tab).setText('0')
 		getattr(self, 'ff0_' + tab).setText('0')
@@ -381,8 +360,6 @@ class MainWindow(QMainWindow):
 			self.ipAddressCB.addItem(item[0], item[1])
 		for item in buildcombos.setupCombo('board'):
 			self.boardCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('driver'):
-			self.driverCB.addItem(item[0], item[1])
 		for item in buildcombos.setupCombo('display'):
 			self.guiCB.addItem(item[0], item[1])
 		for item in buildcombos.setupCombo('linearUnits'):
@@ -416,12 +393,6 @@ class MainWindow(QMainWindow):
 				getattr(self, 'driveCB_' + str(i)).addItem(item[0], item[1])
 		for item in buildcombos.setupCombo('speed'):
 			self.speedCB.addItem(item[0], item[1])
-
-	def miscStuff(self):
-		if sys.maxsize > 2**32: # test for 64bit OS
-			self.mesaflash = "mesaflash64"
-		else:
-			self.mesaflash = "mesaflash32"
 
 	def iniLoad(self):
 		# iniList section, item, value

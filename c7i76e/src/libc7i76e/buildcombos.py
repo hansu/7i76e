@@ -105,8 +105,6 @@ def setupCombo(combo):
 	if combo == 'board':
 		comboList = [['7i76e', '7i76e']]
 
-	if combo == 'driver':
-		comboList = [['HostMot2 Ethernet', 'hm2_eth']]
 
 	if combo == 'firmware':
 		comboList = [['Select', False],

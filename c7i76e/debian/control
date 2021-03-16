@@ -1,0 +1,14 @@
+Source: c7i76e
+Maintainer: John Thornton, <jt@gnipsel.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Section: python
+Priority: optional
+
+Package: c7i76e
+Priority: optional
+Architecture: all
+Depends: python3 (>=3.6), python3-pyqt5, ${misc:Depends}
+Description: c7i76e Configuration Tool
+ This is its extended description
+ Each line must have one space at the start
