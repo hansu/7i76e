@@ -3,6 +3,7 @@
 
 import sys, os, configparser, platform, subprocess
 from functools import partial
+from datetime import datetime
 
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtCore import pyqtSlot, Qt
@@ -34,11 +35,14 @@ class MainWindow(QMainWindow):
 		self.versionLE.setText(VERSION)
 		self.configNameUnderscored = ''
 		self.checkConfig = checkit.config
+		self.buildConfig = buildfiles.build
+		"""
 		self.builddirs = buildfiles.builddirs
 		self.buildini = buildfiles.buildini
 		self.buildhal = buildfiles.buildhal
 		self.buildio = buildfiles.buildio
 		self.buildmisc = buildfiles.buildmisc
+		"""
 		self.pcStats = platform.uname()
 		self.qclip = QtWidgets.QApplication.clipboard()
 		self.helpInfo = helptext.descriptions
@@ -113,10 +117,25 @@ class MainWindow(QMainWindow):
 
 	@pyqtSlot()
 	def on_actionBuild_triggered(self):
+		self.outputPTE.clear()
 		if not self.checkConfig(self):
 			self.errorDialog(self.checkConfig.result)
 			return
+		if self.backupCB.isChecked():
+			if os.path.exists(self.configPath): # there is something to backup
+				backupDir = os.path.join(self.configPath, 'backups')
+				if not os.path.exists(backupDir):
+					os.mkdir(backupDir)
+				backupFile = os.path.join(backupDir, f'{datetime.now():%m-%d-%y-%H:%M:%S}')
+				self.outputPTE.appendPlainText(f'Saving Files to {backupFile}')
+				p1 = subprocess.Popen(['find',self.configPath,'-maxdepth','1','-type','f','-print'], stdout=subprocess.PIPE)
+				p2 = subprocess.Popen(['zip','-j',backupFile,'-@'], stdin=p1.stdout, stdout=subprocess.PIPE)
+				p1.stdout.close()
+				output = p2.communicate()[0]
+				self.outputPTE.appendPlainText(output.decode())
 
+		self.buildConfig(self)
+		"""
 		result = self.builddirs(self)
 		if result:
 			result = self.buildini(self)
@@ -142,7 +161,7 @@ class MainWindow(QMainWindow):
 			self.statusbar.showMessage('Build Files Completed')
 		else:
 			self.statusbar.showMessage('Build Misc Files Failed')
-
+		"""
 
 	@pyqtSlot()
 	def on_actionSaveAs_triggered(self):

@@ -1,15 +1,13 @@
 import os
 from datetime import datetime
 
-"""
-	linuxcncDir = os.path.expanduser('~/linuxcnc')
-	test = '~/linuxcnc/configs/' + 'fred'
-	print(os.path.expanduser(self.test))
-	configsDir = os.path.expanduser('~/linuxcnc/configs')
-	gcodeDir = os.path.expanduser('~/linuxcnc/nc_files')
-	subroutineDir = os.path.expanduser('~/linuxcnc/subroutines')
-
-"""
+def build(parent):
+	parent.outputPTE.appendPlainText('Building Configuration Files')
+	builddirs(parent)
+	buildini(parent)
+	buildhal(parent)
+	buildio(parent)
+	buildmisc(parent)
 
 def builddirs(parent):
 	if not os.path.exists(os.path.expanduser('~/linuxcnc')):
@@ -20,15 +18,18 @@ def builddirs(parent):
 		os.mkdir(os.path.expanduser('~/linuxcnc/nc_files'))
 	if not os.path.exists(os.path.expanduser('~/linuxcnc/subroutines')):
 		os.mkdir(os.path.expanduser('~/linuxcnc/subroutines'))
-	return True
 
 def buildini(parent):
 	buildErrors = []
 	buildini.result = ''
 	iniFilePath = os.path.join(parent.configPath, parent.configNameUnderscored + '.ini')
+	parent.outputPTE.appendPlainText(f'Building {iniFilePath}')
 
 	if not os.path.exists(parent.configPath):
-		os.mkdir(parent.configPath)
+		try:
+			os.mkdir(parent.configPath)
+		except OSError:
+			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	iniContents = ['# This file was created with the 7i76e Wizard on ']
 	iniContents.append(datetime.now().strftime('%b %d %Y %H:%M:%S') + '\n')
@@ -587,14 +588,24 @@ def buildini(parent):
 			if getattr(parent, option).value() > 0: #******** work to be done here
 				iniContents.append('{} = {}\n'.format(getattr(parent, option).property('item'), getattr(parent, option).value()))
 
-	with open(iniFilePath, 'w') as iniFile:
-		iniFile.writelines(iniContents)
-	buildini.result = 'Sucess {} file was created'.format(iniFilePath)
-	return True
-
+	try:
+		with open(iniFilePath, 'w') as iniFile:
+			iniFile.writelines(iniContents)
+	except OSError:
+		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 def buildhal(parent):
+	for index in range(32):
+		inputText = getattr(parent, 'input_' + str(index)).currentText()
+		if inputText ==  'E-Stop':
+			external_estop = True
+			break
+		else:
+			external_estop = False
+
 	halFilePath = os.path.join(parent.configPath, parent.configNameUnderscored + '.hal')
+	parent.outputPTE.appendPlainText(f'Building {halFilePath}')
+
 	halContents = []
 	halContents = ['# This file was created with the 7i76e Wizard on ']
 	halContents.append(datetime.now().strftime('%b %d %Y %H:%M:%S') + '\n')
@@ -687,27 +698,89 @@ def buildhal(parent):
 			halContents.append('loadrt classicladder_rt\n')
 		halContents.append('addf classicladder.0.refresh servo-thread 1\n')
 
-	with open(halFilePath, 'w') as halFile:
-		halFile.writelines(halContents)
-	return True
+	try:
+		with open(halFilePath, 'w') as halFile:
+			halFile.writelines(halContents)
+	except OSError:
+		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
-"""
 def buildio(parent):
 	ioFilePath = os.path.join(parent.configPath, 'io.hal')
+	parent.outputPTE.appendPlainText(f'Building {ioFilePath}')
 	ioContents = []
 	ioContents = ['# This file was created with the 7i76e Wizard on ']
 	ioContents.append(datetime.now().strftime('%b %d %Y %H:%M:%S') + '\n')
 	ioContents.append('# If you make changes to this file your screwed\n\n')
 
-	ioContents = ['\n']
-	ioContents.append('\n')
-	try:
-		with open(ioFilePath, 'w') as toolFile:
-			ioContents.writelines(toolContents)
-	except FileExistsError:
-		pass
+	# build the inputs
+	for index in range(32):
+		inputText = getattr(parent, 'input_' + str(index)).currentText()
+		inputJoint = getattr(parent, 'inputJoint_' + str(index)).currentData()
+		if getattr(parent, 'inputInvert_' + str(index)).isChecked():
+			invert = '-not'
+		else:
+			invert = ''
+		if inputText == 'E-Stop':
+			ioContents.append('# External E-Stop\n')
+			ioContents.append('net estop-loopout iocontrol.0.emc-enable-in <= estop-latch.0.ok-out\n')
+			ioContents.append('net estop-loopin iocontrol.0.user-enable-out => estop-latch.0.ok-in\n')
+			ioContents.append('net estop-reset iocontrol.0.user-request-enable => estop-latch.0.reset\n')
+			ioContents.append(f'net remote-estop estop-latch.0.fault-in <= hm2_7i96.0.gpio.0{index:02}.in{invert}\n\n')
+		elif inputText == 'Home':
+			ioContents.append('net home-joint-{0} joint.{0}.home-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
+		elif inputText == 'Both Limit':
+			ioContents.append('net limits-joint-{0} joint.{0}.neg-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
+			ioContents.append('net limits-joint-{0} joint.{0}.pos-lim-sw-in\n'.format(inputJoint))
+		elif inputText == 'Min Limit':
+			ioContents.append('net min-limit-joint-{0} joint.{0}.neg-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
+		elif inputText == 'Max Limit':
+			ioContents.append('net max-limit-joint-{0} joint.{0}.pos-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
+		elif inputText == 'Home & Limit':
+			ioContents.append('net home-limit-joint-{0} joint.{0}.home-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
+			ioContents.append('net home-limit-joint-{0} joint.{0}.neg-lim-sw-in\n'.format(inputJoint))
+			ioContents.append('net home-limit-joint-{0} joint.{0}.pos-lim-sw-in\n'.format(inputJoint))
+		elif inputText == 'Min Limit & Home':
+			ioContents.append('net min-limit-home-joint-{0} joint.{0}.neg-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
+			ioContents.append('net min-limit-home-joint-{0} joint.{0}.home-sw-in\n'.format(inputJoint))
+		elif inputText == 'Max Limit & Home':
+			ioContents.append('net max-limit-home-joint-{0} joint.{0}.pos-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
+			ioContents.append('net max-limit-home-joint-{0} joint.{0}.home-sw-in\n'.format(inputJoint))
+		elif inputText == 'Probe':
+			ioContents.append('net probe-input motion.probe-input <= hm2_7i76e.0.7i76.0.0.input-{0:02}\n'.format(index))
+		elif inputText == 'Digital In 0':
+			ioContents.append('net digital-input-0 motion.digital-in-00 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
+		elif inputText == 'Digital In 1':
+			ioContents.append('net digital-input-1 motion.digital-in-01 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
+		elif inputText == 'Digital In 2':
+			ioContents.append('net digital-input-2 motion.digital-in-02 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
+		elif inputText == 'Digital In 3':
+			ioContents.append('net digital-input-3 motion.digital-in-03 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
+
+	outputDict = {
+	'Coolant Flood': 'net flood-output iocontrol.0.coolant-flood => ',
+	'Coolant Mist': 'net mist-output iocontrol.0.coolant-mist => ',
+	'Spindle On': 'net spindle-on spindle.0.on => ',
+	'Spindle CW': 'net spindle-cw spindle.0.forward => ',
+	'Spindle CCW': 'net spindle-ccw spindle.0.reverse => ',
+	'Spindle Brake': 'net spindle-brake spindle.0.brake => ',
+	'E-Stop Out': 'net estop-loop ',
+	'Digital Out 0': 'net digital-out-0 motion.digital-out-00 => ',
+	'Digital Out 1': 'net digital-out-1 motion.digital-out-01 => ',
+	'Digital Out 2': 'net digital-out-2 motion.digital-out-02 => ',
+	'Digital Out 3': 'net digital-out-3 motion.digital-out-03 => ',
+	}
+
+	# build the outputs
+	for index in range(6):
+		outputText = getattr(parent, 'output_' + str(index)).currentText()
+		if outputText != 'Select':
+			netLine = outputDict[outputText]
+			ioContents.append(f'{netLine}hm2_7i96.0.ssr.00.out-0{index}\n')
+
+	with open(ioFilePath, 'w') as ioFile:
+		ioFile.writelines(ioContents)
 	return True
-"""
+
 
 def buildmisc(parent):
 
@@ -720,7 +793,8 @@ def buildmisc(parent):
 				shutupFile.writelines(shutupContents)
 		except FileExistsError:
 			pass
-
+		except OSError:
+			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	customFilePath = os.path.join(parent.configPath, 'custom.hal')
 	customContents = []
@@ -731,6 +805,8 @@ def buildmisc(parent):
 			customFile.writelines(customContents)
 	except FileExistsError:
 		pass
+	except OSError:
+		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the postgui.hal file if not there
 	postguiFilePath = os.path.join(parent.configPath, 'postgui.hal')
@@ -743,6 +819,8 @@ def buildmisc(parent):
 			postguiFile.writelines(postguiContents)
 	except FileExistsError:
 		pass
+	except OSError:
+		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the tool file if not there
 	toolFilePath = os.path.join(parent.configPath, 'tool.tbl')
@@ -754,6 +832,8 @@ def buildmisc(parent):
 			toolFile.writelines(toolContents)
 	except FileExistsError:
 		pass
+	except OSError:
+		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the var file if not there
 	varFilePath = os.path.join(parent.configPath, parent.configNameUnderscored + '.var')
@@ -761,6 +841,8 @@ def buildmisc(parent):
 		open(varFilePath, 'x')
 	except FileExistsError:
 		pass
+	except OSError:
+		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the pyvcp panel if checked and not there
 	if parent.pyvcpCB.isChecked():
@@ -783,6 +865,8 @@ def buildmisc(parent):
 				pyvcpFile.writelines(pyvcpContents)
 		except FileExistsError:
 			pass
+		except OSError:
+			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the clp file if selected
 	if parent.ladderGB.isChecked():
@@ -908,76 +992,7 @@ _/FILES_CLASSICLADDER
 				ladderFile.writelines(ladderContents)
 		except FileExistsError:
 			pass
-	return True
-
-def buildio(parent):
-	ioFilePath = os.path.join(parent.configPath, 'io.hal')
-	ioContents = []
-	ioContents = ['# This file was created with the 7i76e Wizard on ']
-	ioContents.append(datetime.now().strftime('%b %d %Y %H:%M:%S') + '\n')
-	ioContents.append('# If you make changes to this file your screwed\n\n')
-
-	# build the inputs
-	for index in range(31):
-		inputText = getattr(parent, 'input_' + str(index)).currentText()
-		inputJoint = getattr(parent, 'inputJoint_' + str(index)).currentData()
-		if getattr(parent, 'inputInvert_' + str(index)).isChecked():
-			invert = '-not'
-		else:
-			invert = ''
-		if inputText == 'Home':
-			ioContents.append('net home-joint-{0} joint.{0}.home-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
-		elif inputText == 'Both Limit':
-			ioContents.append('net limits-joint-{0} joint.{0}.neg-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
-			ioContents.append('net limits-joint-{0} joint.{0}.pos-lim-sw-in\n'.format(inputJoint))
-		elif inputText == 'Min Limit':
-			ioContents.append('net min-limit-joint-{0} joint.{0}.neg-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
-		elif inputText == 'Max Limit':
-			ioContents.append('net max-limit-joint-{0} joint.{0}.pos-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
-		elif inputText == 'Home & Limit':
-			ioContents.append('net home-limit-joint-{0} joint.{0}.home-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
-			ioContents.append('net home-limit-joint-{0} joint.{0}.neg-lim-sw-in\n'.format(inputJoint))
-			ioContents.append('net home-limit-joint-{0} joint.{0}.pos-lim-sw-in\n'.format(inputJoint))
-		elif inputText == 'Min Limit & Home':
-			ioContents.append('net min-limit-home-joint-{0} joint.{0}.neg-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
-			ioContents.append('net min-limit-home-joint-{0} joint.{0}.home-sw-in\n'.format(inputJoint))
-		elif inputText == 'Max Limit & Home':
-			ioContents.append('net max-limit-home-joint-{0} joint.{0}.pos-lim-sw-in <= hm2_7i76e.0.7i76.0.0.input-{1:02}{2}\n'.format(inputJoint, index, invert))
-			ioContents.append('net max-limit-home-joint-{0} joint.{0}.home-sw-in\n'.format(inputJoint))
-		elif inputText == 'Probe':
-			ioContents.append('net probe-input motion.probe-input <= hm2_7i76e.0.7i76.0.0.input-{0:02}\n'.format(index))
-		elif inputText == 'Digital In 0':
-			ioContents.append('net digital-input-0 motion.digital-in-00 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
-		elif inputText == 'Digital In 1':
-			ioContents.append('net digital-input-1 motion.digital-in-01 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
-		elif inputText == 'Digital In 2':
-			ioContents.append('net digital-input-2 motion.digital-in-02 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
-		elif inputText == 'Digital In 3':
-			ioContents.append('net digital-input-3 motion.digital-in-03 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
-
-	outputDict = {
-	'Coolant Flood': 'net flood-output iocontrol.0.coolant-flood => ',
-	'Coolant Mist': 'net mist-output iocontrol.0.coolant-mist => ',
-	'Spindle On': 'net spindle-on spindle.0.on => ',
-	'Spindle CW': 'net spindle-cw spindle.0.forward => ',
-	'Spindle CCW': 'net spindle-ccw spindle.0.reverse => ',
-	'Spindle Brake': 'net spindle-brake spindle.0.brake => ',
-	'E-Stop Out': 'net estop-loop ',
-	'Digital Out 0': 'net digital-out-0 motion.digital-out-00 => ',
-	'Digital Out 1': 'net digital-out-1 motion.digital-out-01 => ',
-	'Digital Out 2': 'net digital-out-2 motion.digital-out-02 => ',
-	'Digital Out 3': 'net digital-out-3 motion.digital-out-03 => ',
-	}
-
-	# build the outputs
-	for index in range(6):
-		outputText = getattr(parent, 'output_' + str(index)).currentText()
-		if outputText != 'Select':
-			netLine = outputDict[outputText]
-			ioContents.append(f'{netLine}hm2_7i96.0.ssr.00.out-0{index}\n')
-
-	with open(ioFilePath, 'w') as ioFile:
-		ioFile.writelines(ioContents)
-	return True
+		except OSError:
+			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 
