@@ -23,16 +23,16 @@ from libc7i76e.help import Ui_Dialog as helpDialog
 from libc7i76e.about import Ui_about as aboutDialog
 
 UI_FILE = os.path.join(os.path.dirname(__file__), "c7i76e.ui")
-VERSION = '0.1.5'
 
 class MainWindow(QMainWindow):
 	def __init__(self):
 		super(MainWindow, self).__init__()
 		uic.loadUi(UI_FILE, self)
+		self.version = '1.0.0'
 		self.config = configparser.ConfigParser(strict=False)
 		self.cwd = os.getcwd()
-		self.setWindowTitle('7i76e Configuration Tool Version {}'.format(VERSION))
-		self.versionLE.setText(VERSION)
+		self.setWindowTitle(f'7i76e Configuration Tool Version {self.version}')
+		self.versionLE.setText(self.version)
 		self.configNameUnderscored = ''
 		self.checkConfig = checkit.config
 		self.buildConfig = buildfiles.build
@@ -87,7 +87,18 @@ class MainWindow(QMainWindow):
 		if fileName:
 			iniFile = (fileName[0])
 			if self.config.read(iniFile):
-				self.iniLoad()
+				if self.config.has_option('7I76E', 'VERSION'):
+					iniVersion = self.config['7I76E']['VERSION']
+					if iniVersion == self.version:
+						self.iniLoad()
+					else:
+						msg = 'The ini file version is {iniVersion}\n The Configuration Tool version is {self.version}\nTry and open the ini?'
+						if self.errorMsg(msg, 'Version Difference'):
+							self.iniLoad()
+				else:
+					msg = 'This ini file may have been built with an older version\nTry and open?'
+					if self.errorMsg(msg, 'No Version'):
+						self.iniLoad()
 
 	@pyqtSlot()
 	def on_actionSave_triggered(self):
@@ -440,6 +451,31 @@ class MainWindow(QMainWindow):
 		dialog.ui.setupUi(dialog)
 		dialog.ui.label.setText(text)
 		dialog.exec_()
+
+	def errorMsg(self, text, title=None):
+		msgBox = QMessageBox()
+		msgBox.setIcon(QMessageBox.Warning)
+		msgBox.setWindowTitle(title)
+		msgBox.setText(text)
+		msgBox.setStandardButtons(QMessageBox.Cancel | QMessageBox.Ok)
+		returnValue = msgBox.exec()
+		if returnValue == QMessageBox.Ok:
+			return True
+		else:
+			return False
+
+	def errorMsgOk(self, text, title=None):
+		msgBox = QMessageBox()
+		msgBox.setIcon(QMessageBox.Warning)
+		msgBox.setWindowTitle(title)
+		msgBox.setText(text)
+		msgBox.setStandardButtons(QMessageBox.Ok)
+		returnValue = msgBox.exec()
+		if returnValue == QMessageBox.Ok:
+			return True
+		else:
+			return False
+
 
 	def help(self, index):
 		dialog = QtWidgets.QDialog()

@@ -520,6 +520,81 @@ QGroupBox::title {
          <string/>
         </property>
        </widget>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>280</y>
+          <width>221</width>
+          <height>191</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Ignore Me</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_58">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>INI Version</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="driverCB"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>Driver</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_212">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="versionLE_2">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="text">
+            <string>1.1</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_213">
+           <property name="text">
+            <string>Step Gens</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="boardCB_2"/>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="stepgensSB_2"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_223">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="sserialSB_2"/>
+         </item>
+        </layout>
+       </widget>
       </widget>
       <widget class="QWidget" name="axisTab">
        <property name="enabled">
