@@ -775,7 +775,7 @@ def buildio(parent):
 	}
 
 	# build the outputs
-	for index in range(6):
+	for index in range(16):
 		outputText = getattr(parent, 'output_' + str(index)).currentText()
 		if outputText != 'Select':
 			netLine = outputDict[outputText]
