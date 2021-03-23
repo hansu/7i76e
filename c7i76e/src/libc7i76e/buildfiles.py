@@ -955,31 +955,26 @@ def buildio(parent):
 		elif inputText == 'Digital In 3':
 			ioContents.append('net digital-input-3 motion.digital-in-03 <= hm2_7i76e.0.7i76.0.0.input-{0:02}{1}\n'.format(index, invert))
 
+	outputDict = {
+	'Coolant Flood': 'net flood-output iocontrol.0.coolant-flood => ',
+	'Coolant Mist': 'net mist-output iocontrol.0.coolant-mist => ',
+	'Spindle On': 'net spindle-on spindle.0.on => ',
+	'Spindle CW': 'net spindle-cw spindle.0.forward => ',
+	'Spindle CCW': 'net spindle-ccw spindle.0.reverse => ',
+	'Spindle Brake': 'net spindle-brake spindle.0.brake => ',
+	'E-Stop Out': 'net estop-loop ',
+	'Digital Out 0': 'net digital-out-0 motion.digital-out-00 => ',
+	'Digital Out 1': 'net digital-out-1 motion.digital-out-01 => ',
+	'Digital Out 2': 'net digital-out-2 motion.digital-out-02 => ',
+	'Digital Out 3': 'net digital-out-3 motion.digital-out-03 => ',
+	}
+
 	# build the outputs
-	for index in range(15):
+	for index in range(6):
 		outputText = getattr(parent, 'output_' + str(index)).currentText()
-		if outputText == 'Coolant Flood':
-			ioContents.append('net flood-output iocontrol.0.coolant-flood => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Coolant Mist':
-			ioContents.append('net mist-output iocontrol.0.coolant-mist => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Spindle On':
-			ioContents.append('net spindle-on motion.spindle-on => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Spindle CW':
-			ioContents.append('net spindle-cw motion.spindle-forward => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Spindle CCW':
-			ioContents.append('net spindle-ccw motion.spindle-reverse => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Spindle Brake':
-			ioContents.append('net spindle-brake motion.spindle-brake => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'E-Stop Out':
-			ioContents.append('net estop-loop hm2_7i76e.0.7i76.0.0.output-0{0:02}\n'.format(index))
-		if outputText == 'Digital Out 0':
-			ioContents.append('net digital-out-0 motion.digital-out-00 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Digital Out 1':
-			ioContents.append('net digital-out-1 motion.digital-out-01 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Digital Out 2':
-			ioContents.append('net digital-out-2 motion.digital-out-02 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
-		if outputText == 'Digital Out 3':
-			ioContents.append('net digital-out-3 motion.digital-out-03 => hm2_7i76e.0.7i76.0.0.output-{0:02}\n'.format(index))
+		if outputText != 'Select':
+			netLine = outputDict[outputText]
+			ioContents.append(f'{netLine}hm2_7i96.0.ssr.00.out-0{index}\n')
 
 	with open(ioFilePath, 'w') as ioFile:
 		ioFile.writelines(ioContents)
