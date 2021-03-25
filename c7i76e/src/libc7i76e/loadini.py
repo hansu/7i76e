@@ -71,13 +71,13 @@ def iniList():
 		iniList.append(['INPUTS', f'INPUT_{i}', f'input_{i}'])
 
 	for i in range(32):
-		iniList.append(['INPUTS', 'INPUT_JOINT_{}'.format(i), 'inputJoint_{}'.format(i)])
+		iniList.append(['INPUTS', f'INPUT_JOINT_{i}', f'inputJoint_{i}'])
 
 	for i in range(32):
-		iniList.append(['INPUTS', 'INPUT_INVERT_{}'.format(i), 'inputInvert_{}'.format(i)])
+		iniList.append(['INPUTS', f'INPUT_INVERT_{i}', f'inputInvert_{i}'])
 
 	for i in range(16):
-		iniList.append(['OUTPUTS', 'OUTPUT_{}'.format(i), 'output_{}'.format(i)])
+		iniList.append(['OUTPUTS', f'OUTPUT_{i}', f'output_{i}'])
 
 	iniList.append(['OPTIONS', 'MANUAL_TOOL_CHANGE', 'manualToolChangeCB'])
 	iniList.append(['OPTIONS', 'HALUI', 'haluiCB'])

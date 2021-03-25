@@ -118,325 +118,53 @@ def buildini(parent):
 	# build the [HALUI] section
 	iniContents.append('\n[HALUI]\n')
 
-	# need to loop-a-fy this
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'X':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_X]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
+	# build the axes
+	for index in range(5):
+		axis = getattr(parent,'axisCB_' + str(index)).currentData()
+		if axis:
+			jointTab = getattr(parent,'axisCB_' + str(index)).objectName()[7]
+			iniContents.append(f'\n[AXIS_{axis}]\n')
+			iniContents.append(f'MIN_LIMIT = {getattr(parent, "minLimit_" + jointTab).text()}\n')
+			iniContents.append(f'MAX_LIMIT = {getattr(parent, "maxLimit_" + jointTab).text()}\n')
+			iniContents.append(f'MAX_VELOCITY = {getattr(parent, "maxVelocity_" + jointTab).text()}\n')
+			iniContents.append(f'MAX_ACCELERATION = {getattr(parent, "maxAccel_" + jointTab).text()}\n')
 
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'Y':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_Y]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'Z':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_Z]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'A':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_A]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'B':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_B]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'C':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_C]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'U':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_U]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'V':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_V]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	for item in parent.axisList:
-		if getattr(parent,item).itemData(getattr(parent,item).currentIndex()) == 'W':
-			jointTab = getattr(parent,item).objectName()[7]
-			iniContents.append('\n[AXIS_W]\n')
-			iniContents.append('MIN_LIMIT = {}\n'.format(getattr(parent, 'minLimit_' + jointTab).text()))
-			iniContents.append('MAX_LIMIT = {}\n'.format(getattr(parent, 'maxLimit_' + jointTab).text()))
-			iniContents.append('MAX_VELOCITY = {}\n'.format(getattr(parent, 'maxVelocity_' + jointTab).text()))
-			iniContents.append('MAX_ACCELERATION = {}\n'.format(getattr(parent, 'maxAccel_' + jointTab).text()))
-			break
-
-	# need to loop-a-fy this section one day
-	# build the [JOINT_0] section
-	if parent.axisCB_0.itemData(parent.axisCB_0.currentIndex()):
-		iniContents.append('\n[JOINT_0]\n')
-		iniContents.append('AXIS = {}\n'.format(parent.axisCB_0.itemData(parent.axisCB_0.currentIndex())))
-		iniContents.append('MIN_LIMIT = {}\n'.format(parent.minLimit_0.text()))
-		iniContents.append('MAX_LIMIT = {}\n'.format(parent.maxLimit_0.text()))
-		iniContents.append('MAX_VELOCITY = {}\n'.format(parent.maxVelocity_0.text()))
-		iniContents.append('MAX_ACCELERATION = {}\n'.format(parent.maxAccel_0.text()))
-		iniContents.append('TYPE = {}\n'.format(parent.axisType_0.text()))
-		iniContents.append('SCALE = {}\n'.format(parent.scale_0.text()))
-		iniContents.append('STEPGEN_MAX_VEL = {}\n'.format(str(float(parent.maxVelocity_0.text()) * 1.2)))
-		iniContents.append('STEPGEN_MAX_ACC = {}\n'.format(str(float(parent.maxAccel_0.text()) * 1.2)))
-		if parent.units == 'inches':
-			iniContents.append('FERROR = {}\n'.format('0.0002'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0001'))
-		else:
-			iniContents.append('FERROR = {}\n'.format('0.0051'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0025'))
-		iniContents.append('DIRSETUP = {}\n'.format(parent.dirSetup_0.text()))
-		iniContents.append('DIRHOLD = {}\n'.format(parent.dirHold_0.text()))
-		iniContents.append('STEPLEN = {}\n'.format(parent.stepTime_0.text()))
-		iniContents.append('STEPSPACE = {}\n'.format(parent.stepSpace_0.text()))
-		iniContents.append('DEADBAND = {}\n'.format(parent.deadband_0.text()))
-		iniContents.append('P = {}\n'.format(parent.p_0.text()))
-		iniContents.append('I = {}\n'.format(parent.i_0.text()))
-		iniContents.append('D = {}\n'.format(parent.d_0.text()))
-		iniContents.append('FF0 = {}\n'.format(parent.ff0_0.text()))
-		iniContents.append('FF1 = {}\n'.format(parent.ff1_0.text()))
-		iniContents.append('FF2 = {}\n'.format(parent.ff2_0.text()))
-		iniContents.append('BIAS = {}\n'.format(parent.bias_0.text()))
-		iniContents.append('MAX_OUTPUT = {}\n'.format(parent.maxOutput_0.text()))
-		iniContents.append('MAX_ERROR = {}\n'.format(parent.maxError_0.text()))
-
-		if parent.home_0.text():
-			iniContents.append('HOME = {}\n'.format(parent.home_0.text()))
-		if parent.homeOffset_0.text():
-			iniContents.append('HOME_OFFSET = {}\n'.format(parent.homeOffset_0.text()))
-		if parent.homeSearchVel_0.text():
-			iniContents.append('HOME_SEARCH_VEL = {}\n'.format(parent.homeSearchVel_0.text()))
-		if parent.homeLatchVel_0.text():
-			iniContents.append('HOME_LATCH_VEL = {}\n'.format(parent.homeLatchVel_0.text()))
-		if parent.homeSequence_0.text():
-			iniContents.append('HOME_SEQUENCE = {}\n'.format(parent.homeSequence_0.text()))
-		iniContents.append('HOME_USE_INDEX = {}\n'.format(parent.homeUseIndex_0.isChecked()))
-		iniContents.append('HOME_IGNORE_LIMITS = {}\n'.format(parent.homeIgnoreLimits_0.isChecked()))
-
-
-	# build the [JOINT_1] section
-	if parent.axisCB_1.itemData(parent.axisCB_1.currentIndex()):
-		iniContents.append('\n[JOINT_1]\n')
-		iniContents.append('AXIS = {}\n'.format(parent.axisCB_1.itemData(parent.axisCB_1.currentIndex())))
-		iniContents.append('MIN_LIMIT = {}\n'.format(parent.minLimit_1.text()))
-		iniContents.append('MAX_LIMIT = {}\n'.format(parent.maxLimit_1.text()))
-		iniContents.append('MAX_VELOCITY = {}\n'.format(parent.maxVelocity_1.text()))
-		iniContents.append('MAX_ACCELERATION = {}\n'.format(parent.maxAccel_1.text()))
-		iniContents.append('TYPE = {}\n'.format(parent.axisType_1.text()))
-		iniContents.append('SCALE = {}\n'.format(parent.scale_1.text()))
-		iniContents.append('STEPGEN_MAX_VEL = {}\n'.format(str(float(parent.maxVelocity_1.text()) * 1.2)))
-		iniContents.append('STEPGEN_MAX_ACC = {}\n'.format(str(float(parent.maxAccel_1.text()) * 1.2)))
-		if parent.units == 'inches':
-			iniContents.append('FERROR = {}\n'.format('0.0002'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0001'))
-		else:
-			iniContents.append('FERROR = {}\n'.format('0.0051'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0025'))
-		iniContents.append('DIRSETUP = {}\n'.format(parent.dirSetup_1.text()))
-		iniContents.append('DIRHOLD = {}\n'.format(parent.dirHold_1.text()))
-		iniContents.append('STEPLEN = {}\n'.format(parent.stepTime_1.text()))
-		iniContents.append('STEPSPACE = {}\n'.format(parent.stepSpace_1.text()))
-		iniContents.append('DEADBAND = {}\n'.format(parent.deadband_1.text()))
-		iniContents.append('P = {}\n'.format(parent.p_1.text()))
-		iniContents.append('I = {}\n'.format(parent.i_1.text()))
-		iniContents.append('D = {}\n'.format(parent.d_1.text()))
-		iniContents.append('FF0 = {}\n'.format(parent.ff0_1.text()))
-		iniContents.append('FF1 = {}\n'.format(parent.ff1_1.text()))
-		iniContents.append('FF2 = {}\n'.format(parent.ff2_1.text()))
-		iniContents.append('BIAS = {}\n'.format(parent.bias_1.text()))
-		iniContents.append('MAX_OUTPUT = {}\n'.format(parent.maxOutput_1.text()))
-		iniContents.append('MAX_ERROR = {}\n'.format(parent.maxError_1.text()))
-		if parent.home_1.text():
-			iniContents.append('HOME = {}\n'.format(parent.home_1.text()))
-		if parent.homeOffset_1.text():
-			iniContents.append('HOME_OFFSET = {}\n'.format(parent.homeOffset_1.text()))
-		if parent.homeSearchVel_1.text():
-			iniContents.append('HOME_SEARCH_VEL = {}\n'.format(parent.homeSearchVel_1.text()))
-		if parent.homeLatchVel_1.text():
-			iniContents.append('HOME_LATCH_VEL = {}\n'.format(parent.homeLatchVel_1.text()))
-		if parent.homeSequence_1.text():
-			iniContents.append('HOME_SEQUENCE = {}\n'.format(parent.homeSequence_1.text()))
-		iniContents.append('HOME_USE_INDEX = {}\n'.format(parent.homeUseIndex_1.isChecked()))
-		iniContents.append('HOME_IGNORE_LIMITS = {}\n'.format(parent.homeIgnoreLimits_1.isChecked()))
-
-	# build the [JOINT_2] section
-	if parent.axisCB_2.itemData(parent.axisCB_2.currentIndex()):
-		iniContents.append('\n[JOINT_2]\n')
-		iniContents.append('AXIS = {}\n'.format(parent.axisCB_2.itemData(parent.axisCB_2.currentIndex())))
-		iniContents.append('MIN_LIMIT = {}\n'.format(parent.minLimit_2.text()))
-		iniContents.append('MAX_LIMIT = {}\n'.format(parent.maxLimit_2.text()))
-		iniContents.append('MAX_VELOCITY = {}\n'.format(parent.maxVelocity_2.text()))
-		iniContents.append('MAX_ACCELERATION = {}\n'.format(parent.maxAccel_2.text()))
-		iniContents.append('TYPE = {}\n'.format(parent.axisType_2.text()))
-		iniContents.append('SCALE = {}\n'.format(parent.scale_2.text()))
-		iniContents.append('STEPGEN_MAX_VEL = {}\n'.format(str(float(parent.maxVelocity_2.text()) * 1.2)))
-		iniContents.append('STEPGEN_MAX_ACC = {}\n'.format(str(float(parent.maxAccel_2.text()) * 1.2)))
-		if parent.units == 'inches':
-			iniContents.append('FERROR = {}\n'.format('0.0002'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0001'))
-		else:
-			iniContents.append('FERROR = {}\n'.format('0.0051'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0025'))
-		iniContents.append('DIRSETUP = {}\n'.format(parent.dirSetup_2.text()))
-		iniContents.append('DIRHOLD = {}\n'.format(parent.dirHold_2.text()))
-		iniContents.append('STEPLEN = {}\n'.format(parent.stepTime_2.text()))
-		iniContents.append('STEPSPACE = {}\n'.format(parent.stepSpace_2.text()))
-		iniContents.append('DEADBAND = {}\n'.format(parent.deadband_2.text()))
-		iniContents.append('P = {}\n'.format(parent.p_2.text()))
-		iniContents.append('I = {}\n'.format(parent.i_2.text()))
-		iniContents.append('D = {}\n'.format(parent.d_2.text()))
-		iniContents.append('FF0 = {}\n'.format(parent.ff0_2.text()))
-		iniContents.append('FF1 = {}\n'.format(parent.ff1_2.text()))
-		iniContents.append('FF2 = {}\n'.format(parent.ff2_2.text()))
-		iniContents.append('BIAS = {}\n'.format(parent.bias_2.text()))
-		iniContents.append('MAX_OUTPUT = {}\n'.format(parent.maxOutput_2.text()))
-		iniContents.append('MAX_ERROR = {}\n'.format(parent.maxError_2.text()))
-		if parent.home_2.text():
-			iniContents.append('HOME = {}\n'.format(parent.home_2.text()))
-		if parent.homeOffset_2.text():
-			iniContents.append('HOME_OFFSET = {}\n'.format(parent.homeOffset_2.text()))
-		if parent.homeSearchVel_2.text():
-			iniContents.append('HOME_SEARCH_VEL = {}\n'.format(parent.homeSearchVel_2.text()))
-		if parent.homeLatchVel_2.text():
-			iniContents.append('HOME_LATCH_VEL = {}\n'.format(parent.homeLatchVel_2.text()))
-		if parent.homeSequence_2.text():
-			iniContents.append('HOME_SEQUENCE = {}\n'.format(parent.homeSequence_2.text()))
-		iniContents.append('HOME_USE_INDEX = {}\n'.format(parent.homeUseIndex_2.isChecked()))
-		iniContents.append('HOME_IGNORE_LIMITS = {}\n'.format(parent.homeIgnoreLimits_2.isChecked()))
-
-	# build the [JOINT_3] section
-	if parent.axisCB_3.itemData(parent.axisCB_3.currentIndex()):
-		iniContents.append('\n[JOINT_3]\n')
-		iniContents.append('AXIS = {}\n'.format(parent.axisCB_3.itemData(parent.axisCB_3.currentIndex())))
-		iniContents.append('MIN_LIMIT = {}\n'.format(parent.minLimit_3.text()))
-		iniContents.append('MAX_LIMIT = {}\n'.format(parent.maxLimit_3.text()))
-		iniContents.append('MAX_VELOCITY = {}\n'.format(parent.maxVelocity_3.text()))
-		iniContents.append('MAX_ACCELERATION = {}\n'.format(parent.maxAccel_3.text()))
-		iniContents.append('TYPE = {}\n'.format(parent.axisType_3.text()))
-		iniContents.append('SCALE = {}\n'.format(parent.scale_3.text()))
-		iniContents.append('STEPGEN_MAX_VEL = {}\n'.format(str(float(parent.maxVelocity_3.text()) * 1.2)))
-		iniContents.append('STEPGEN_MAX_ACC = {}\n'.format(str(float(parent.maxAccel_3.text()) * 1.2)))
-		if parent.units == 'inches':
-			iniContents.append('FERROR = {}\n'.format('0.0002'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0001'))
-		else:
-			iniContents.append('FERROR = {}\n'.format('0.0051'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0025'))
-		iniContents.append('DIRSETUP = {}\n'.format(parent.dirSetup_3.text()))
-		iniContents.append('DIRHOLD = {}\n'.format(parent.dirHold_3.text()))
-		iniContents.append('STEPLEN = {}\n'.format(parent.stepTime_3.text()))
-		iniContents.append('STEPSPACE = {}\n'.format(parent.stepSpace_3.text()))
-		iniContents.append('DEADBAND = {}\n'.format(parent.deadband_3.text()))
-		iniContents.append('P = {}\n'.format(parent.p_3.text()))
-		iniContents.append('I = {}\n'.format(parent.i_3.text()))
-		iniContents.append('D = {}\n'.format(parent.d_3.text()))
-		iniContents.append('FF0 = {}\n'.format(parent.ff0_3.text()))
-		iniContents.append('FF1 = {}\n'.format(parent.ff1_3.text()))
-		iniContents.append('FF2 = {}\n'.format(parent.ff2_3.text()))
-		iniContents.append('BIAS = {}\n'.format(parent.bias_3.text()))
-		iniContents.append('MAX_OUTPUT = {}\n'.format(parent.maxOutput_3.text()))
-		iniContents.append('MAX_ERROR = {}\n'.format(parent.maxError_3.text()))
-		if parent.home_3.text():
-			iniContents.append('HOME = {}\n'.format(parent.home_3.text()))
-		if parent.homeOffset_3.text():
-			iniContents.append('HOME_OFFSET = {}\n'.format(parent.homeOffset_3.text()))
-		if parent.homeSearchVel_3.text():
-			iniContents.append('HOME_SEARCH_VEL = {}\n'.format(parent.homeSearchVel_3.text()))
-		if parent.homeLatchVel_3.text():
-			iniContents.append('HOME_LATCH_VEL = {}\n'.format(parent.homeLatchVel_3.text()))
-		if parent.homeSequence_3.text():
-			iniContents.append('HOME_SEQUENCE = {}\n'.format(parent.homeSequence_3.text()))
-		iniContents.append('HOME_USE_INDEX = {}\n'.format(parent.homeUseIndex_3.isChecked()))
-		iniContents.append('HOME_IGNORE_LIMITS = {}\n'.format(parent.homeIgnoreLimits_3.isChecked()))
-
-	# build the [JOINT_4] section
-	if parent.axisCB_4.itemData(parent.axisCB_4.currentIndex()):
-		iniContents.append('\n[JOINT_4]\n')
-		iniContents.append('AXIS = {}\n'.format(parent.axisCB_4.itemData(parent.axisCB_4.currentIndex())))
-		iniContents.append('MIN_LIMIT = {}\n'.format(parent.minLimit_4.text()))
-		iniContents.append('MAX_LIMIT = {}\n'.format(parent.maxLimit_4.text()))
-		iniContents.append('MAX_VELOCITY = {}\n'.format(parent.maxVelocity_4.text()))
-		iniContents.append('MAX_ACCELERATION = {}\n'.format(parent.maxAccel_4.text()))
-		iniContents.append('TYPE = {}\n'.format(parent.axisType_4.text()))
-		iniContents.append('SCALE = {}\n'.format(parent.scale_4.text()))
-		iniContents.append('STEPGEN_MAX_VEL = {}\n'.format(str(float(parent.maxVelocity_4.text()) * 1.2)))
-		iniContents.append('STEPGEN_MAX_ACC = {}\n'.format(str(float(parent.maxAccel_4.text()) * 1.2)))
-		if parent.units == 'inches':
-			iniContents.append('FERROR = {}\n'.format('0.0002'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0001'))
-		else:
-			iniContents.append('FERROR = {}\n'.format('0.0051'))
-			iniContents.append('MIN_FERROR = {}\n'.format('0.0025'))
-		iniContents.append('DIRSETUP = {}\n'.format(parent.dirSetup_4.text()))
-		iniContents.append('DIRHOLD = {}\n'.format(parent.dirHold_4.text()))
-		iniContents.append('STEPLEN = {}\n'.format(parent.stepTime_4.text()))
-		iniContents.append('STEPSPACE = {}\n'.format(parent.stepSpace_4.text()))
-		iniContents.append('DEADBAND = {}\n'.format(parent.deadband_4.text()))
-		iniContents.append('P = {}\n'.format(parent.p_4.text()))
-		iniContents.append('I = {}\n'.format(parent.i_4.text()))
-		iniContents.append('D = {}\n'.format(parent.d_4.text()))
-		iniContents.append('FF0 = {}\n'.format(parent.ff0_4.text()))
-		iniContents.append('FF1 = {}\n'.format(parent.ff1_4.text()))
-		iniContents.append('FF2 = {}\n'.format(parent.ff2_4.text()))
-		iniContents.append('BIAS = {}\n'.format(parent.bias_4.text()))
-		iniContents.append('MAX_OUTPUT = {}\n'.format(parent.maxOutput_4.text()))
-		iniContents.append('MAX_ERROR = {}\n'.format(parent.maxError_4.text()))
-		if parent.home_4.text():
-			iniContents.append('HOME = {}\n'.format(parent.home_4.text()))
-		if parent.homeOffset_4.text():
-			iniContents.append('HOME_OFFSET = {}\n'.format(parent.homeOffset_4.text()))
-		if parent.homeSearchVel_4.text():
-			iniContents.append('HOME_SEARCH_VEL = {}\n'.format(parent.homeSearchVel_4.text()))
-		if parent.homeLatchVel_4.text():
-			iniContents.append('HOME_LATCH_VEL = {}\n'.format(parent.homeLatchVel_4.text()))
-		if parent.homeSequence_4.text():
-			iniContents.append('HOME_SEQUENCE = {}\n'.format(parent.homeSequence_4.text()))
-		iniContents.append('HOME_USE_INDEX = {}\n'.format(parent.homeUseIndex_4.isChecked()))
-		iniContents.append('HOME_IGNORE_LIMITS = {}\n'.format(parent.homeIgnoreLimits_4.isChecked()))
-
+	# build the [JOINT_n] sections
+	for i in range(5):
+		if getattr(parent, "axisCB_" + str(i)).currentData():
+			iniContents.append(f'\n[JOINT_{i}]\n')
+			iniContents.append(f'AXIS = {getattr(parent, "axisCB_" + str(i)).currentData()}\n')
+			iniContents.append(f'MIN_LIMIT = {getattr(parent, "minLimit_" + str(i)).text()}\n')
+			iniContents.append(f'MAX_LIMIT = {getattr(parent, "maxLimit_" + str(i)).text()}\n')
+			iniContents.append(f'MAX_VELOCITY = {getattr(parent, "maxVelocity_" + str(i)).text()}\n')
+			iniContents.append(f'MAX_ACCELERATION = {getattr(parent, "maxAccel_" + str(i)).text()}\n')
+			iniContents.append(f'TYPE = {getattr(parent, "axisType_" + str(i)).text()}\n')
+			if getattr(parent, "reverse_" + str(i)).isChecked():
+				iniContents.append(f'SCALE = -{getattr(parent, "scale_" + str(i)).text()}\n')
+			else:
+				iniContents.append(f'SCALE = {getattr(parent, "scale_" + str(i)).text()}\n')
+			iniContents.append(f'STEPGEN_MAX_VEL = {str(float(getattr(parent, "maxVelocity_" + str(i)).text()) * 1.2)}\n')
+			iniContents.append(f'STEPGEN_MAX_ACC = {str(float(getattr(parent, "maxAccel_" + str(i)).text()) * 1.2)}\n')
+			if parent.units == 'inches':
+				iniContents.append('FERROR = 0.0002\n')
+				iniContents.append('MIN_FERROR = 0.0001\n')
+			else:
+				iniContents.append('FERROR = 0.0051\n')
+				iniContents.append('MIN_FERROR = 0.0025\n')
+			iniContents.append(f'DIRSETUP = {getattr(parent, "dirSetup_" + str(i)).text()}\n')
+			iniContents.append(f'DIRHOLD = {getattr(parent, "dirHold_" + str(i)).text()}\n')
+			iniContents.append(f'STEPLEN = {getattr(parent, "stepTime_" + str(i)).text()}\n')
+			iniContents.append(f'STEPSPACE = {getattr(parent, "stepSpace_" + str(i)).text()}\n')
+			iniContents.append(f'DEADBAND = {getattr(parent, "deadband_" + str(i)).text()}\n')
+			iniContents.append(f'P = {getattr(parent, "p_" + str(i)).text()}\n')
+			iniContents.append(f'I = {getattr(parent, "i_" + str(i)).text()}\n')
+			iniContents.append(f'D = {getattr(parent, "d_" + str(i)).text()}\n')
+			iniContents.append(f'FF0 = {getattr(parent, "ff0_" + str(i)).text()}\n')
+			iniContents.append(f'FF1 = {getattr(parent, "ff1_" + str(i)).text()}\n')
+			iniContents.append(f'FF2 = {getattr(parent, "ff2_" + str(i)).text()}\n')
+			iniContents.append(f'BIAS = {getattr(parent, "bias_" + str(i)).text()}\n')
+			iniContents.append(f'MAX_OUTPUT = {getattr(parent, "maxOutput_" + str(i)).text()}\n')
+			iniContents.append(f'MAX_ERROR = {getattr(parent, "maxError_" + str(i)).text()}\n')
 
 	# build the [SPINDLE] section if enabled
 
@@ -460,128 +188,21 @@ def buildini(parent):
 
 	# build the [INPUTS] section
 	iniContents.append('\n[INPUTS]\n')
-	iniContents.append('# DO NOT change the input text\n')
-	iniContents.append('INPUT_0 = {}\n'.format(parent.input_0.currentText()))
-	iniContents.append('INPUT_INVERT_0 = {}\n'.format(parent.inputInvert_0.isChecked()))
-	iniContents.append('INPUT_JOINT_0 = {}\n'.format(parent.inputJoint_0.currentData()))
-	iniContents.append('INPUT_1 = {}\n'.format(parent.input_1.currentText()))
-	iniContents.append('INPUT_INVERT_1 = {}\n'.format(parent.inputInvert_1.isChecked()))
-	iniContents.append('INPUT_JOINT_1 = {}\n'.format(parent.inputJoint_1.currentData()))
-	iniContents.append('INPUT_2 = {}\n'.format(parent.input_2.currentText()))
-	iniContents.append('INPUT_INVERT_2 = {}\n'.format(parent.inputInvert_2.isChecked()))
-	iniContents.append('INPUT_JOINT_2 = {}\n'.format(parent.inputJoint_2.currentData()))
-	iniContents.append('INPUT_3 = {}\n'.format(parent.input_3.currentText()))
-	iniContents.append('INPUT_INVERT_3 = {}\n'.format(parent.inputInvert_3.isChecked()))
-	iniContents.append('INPUT_JOINT_3 = {}\n'.format(parent.inputJoint_3.currentData()))
-	iniContents.append('INPUT_4 = {}\n'.format(parent.input_4.currentText()))
-	iniContents.append('INPUT_INVERT_4 = {}\n'.format(parent.inputInvert_4.isChecked()))
-	iniContents.append('INPUT_JOINT_4 = {}\n'.format(parent.inputJoint_4.currentData()))
-	iniContents.append('INPUT_5 = {}\n'.format(parent.input_5.currentText()))
-	iniContents.append('INPUT_INVERT_5 = {}\n'.format(parent.inputInvert_5.isChecked()))
-	iniContents.append('INPUT_JOINT_5 = {}\n'.format(parent.inputJoint_5.currentData()))
-	iniContents.append('INPUT_6 = {}\n'.format(parent.input_6.currentText()))
-	iniContents.append('INPUT_INVERT_6 = {}\n'.format(parent.inputInvert_6.isChecked()))
-	iniContents.append('INPUT_JOINT_6 = {}\n'.format(parent.inputJoint_6.currentData()))
-	iniContents.append('INPUT_7 = {}\n'.format(parent.input_7.currentText()))
-	iniContents.append('INPUT_INVERT_7 = {}\n'.format(parent.inputInvert_7.isChecked()))
-	iniContents.append('INPUT_JOINT_7 = {}\n'.format(parent.inputJoint_7.currentData()))
-	iniContents.append('INPUT_8 = {}\n'.format(parent.input_8.currentText()))
-	iniContents.append('INPUT_INVERT_8 = {}\n'.format(parent.inputInvert_8.isChecked()))
-	iniContents.append('INPUT_JOINT_8 = {}\n'.format(parent.inputJoint_8.currentData()))
-	iniContents.append('INPUT_9 = {}\n'.format(parent.input_9.currentText()))
-	iniContents.append('INPUT_INVERT_9 = {}\n'.format(parent.inputInvert_9.isChecked()))
-	iniContents.append('INPUT_JOINT_9 = {}\n'.format(parent.inputJoint_9.currentData()))
-	iniContents.append('INPUT_10 = {}\n'.format(parent.input_10.currentText()))
-	iniContents.append('INPUT_INVERT_10 = {}\n'.format(parent.inputInvert_10.isChecked()))
-	iniContents.append('INPUT_JOINT_10 = {}\n'.format(parent.inputJoint_10.currentData()))
-	iniContents.append('INPUT_11 = {}\n'.format(parent.input_11.currentText()))
-	iniContents.append('INPUT_INVERT_11 = {}\n'.format(parent.inputInvert_11.isChecked()))
-	iniContents.append('INPUT_JOINT_11 = {}\n'.format(parent.inputJoint_11.currentData()))
-	iniContents.append('INPUT_12 = {}\n'.format(parent.input_12.currentText()))
-	iniContents.append('INPUT_INVERT_12 = {}\n'.format(parent.inputInvert_12.isChecked()))
-	iniContents.append('INPUT_JOINT_12 = {}\n'.format(parent.inputJoint_12.currentData()))
-	iniContents.append('INPUT_13 = {}\n'.format(parent.input_13.currentText()))
-	iniContents.append('INPUT_INVERT_13 = {}\n'.format(parent.inputInvert_13.isChecked()))
-	iniContents.append('INPUT_JOINT_13 = {}\n'.format(parent.inputJoint_13.currentData()))
-	iniContents.append('INPUT_14 = {}\n'.format(parent.input_14.currentText()))
-	iniContents.append('INPUT_INVERT_14 = {}\n'.format(parent.inputInvert_14.isChecked()))
-	iniContents.append('INPUT_JOINT_14 = {}\n'.format(parent.inputJoint_14.currentData()))
-	iniContents.append('INPUT_15 = {}\n'.format(parent.input_15.currentText()))
-	iniContents.append('INPUT_INVERT_15 = {}\n'.format(parent.inputInvert_15.isChecked()))
-	iniContents.append('INPUT_JOINT_15 = {}\n'.format(parent.inputJoint_15.currentData()))
-	iniContents.append('INPUT_16 = {}\n'.format(parent.input_16.currentText()))
-	iniContents.append('INPUT_INVERT_16 = {}\n'.format(parent.inputInvert_16.isChecked()))
-	iniContents.append('INPUT_JOINT_16 = {}\n'.format(parent.inputJoint_16.currentData()))
-	iniContents.append('INPUT_17 = {}\n'.format(parent.input_17.currentText()))
-	iniContents.append('INPUT_INVERT_17 = {}\n'.format(parent.inputInvert_17.isChecked()))
-	iniContents.append('INPUT_JOINT_17 = {}\n'.format(parent.inputJoint_17.currentData()))
-	iniContents.append('INPUT_18 = {}\n'.format(parent.input_18.currentText()))
-	iniContents.append('INPUT_INVERT_18 = {}\n'.format(parent.inputInvert_18.isChecked()))
-	iniContents.append('INPUT_JOINT_18 = {}\n'.format(parent.inputJoint_18.currentData()))
-	iniContents.append('INPUT_19 = {}\n'.format(parent.input_19.currentText()))
-	iniContents.append('INPUT_INVERT_19 = {}\n'.format(parent.inputInvert_19.isChecked()))
-	iniContents.append('INPUT_JOINT_19 = {}\n'.format(parent.inputJoint_19.currentData()))
-	iniContents.append('INPUT_20 = {}\n'.format(parent.input_20.currentText()))
-	iniContents.append('INPUT_INVERT_20 = {}\n'.format(parent.inputInvert_20.isChecked()))
-	iniContents.append('INPUT_JOINT_20 = {}\n'.format(parent.inputJoint_20.currentData()))
-	iniContents.append('INPUT_21 = {}\n'.format(parent.input_21.currentText()))
-	iniContents.append('INPUT_INVERT_21 = {}\n'.format(parent.inputInvert_21.isChecked()))
-	iniContents.append('INPUT_JOINT_21 = {}\n'.format(parent.inputJoint_21.currentData()))
-	iniContents.append('INPUT_22 = {}\n'.format(parent.input_22.currentText()))
-	iniContents.append('INPUT_INVERT_22 = {}\n'.format(parent.inputInvert_22.isChecked()))
-	iniContents.append('INPUT_JOINT_22 = {}\n'.format(parent.inputJoint_22.currentData()))
-	iniContents.append('INPUT_23 = {}\n'.format(parent.input_23.currentText()))
-	iniContents.append('INPUT_INVERT_23 = {}\n'.format(parent.inputInvert_23.isChecked()))
-	iniContents.append('INPUT_JOINT_23 = {}\n'.format(parent.inputJoint_23.currentData()))
-	iniContents.append('INPUT_24 = {}\n'.format(parent.input_24.currentText()))
-	iniContents.append('INPUT_INVERT_24 = {}\n'.format(parent.inputInvert_24.isChecked()))
-	iniContents.append('INPUT_JOINT_24 = {}\n'.format(parent.inputJoint_24.currentData()))
-	iniContents.append('INPUT_25 = {}\n'.format(parent.input_25.currentText()))
-	iniContents.append('INPUT_INVERT_25 = {}\n'.format(parent.inputInvert_25.isChecked()))
-	iniContents.append('INPUT_JOINT_25 = {}\n'.format(parent.inputJoint_25.currentData()))
-	iniContents.append('INPUT_26 = {}\n'.format(parent.input_26.currentText()))
-	iniContents.append('INPUT_INVERT_26 = {}\n'.format(parent.inputInvert_26.isChecked()))
-	iniContents.append('INPUT_JOINT_26 = {}\n'.format(parent.inputJoint_26.currentData()))
-	iniContents.append('INPUT_27 = {}\n'.format(parent.input_27.currentText()))
-	iniContents.append('INPUT_INVERT_27 = {}\n'.format(parent.inputInvert_27.isChecked()))
-	iniContents.append('INPUT_JOINT_27 = {}\n'.format(parent.inputJoint_27.currentData()))
-	iniContents.append('INPUT_28 = {}\n'.format(parent.input_28.currentText()))
-	iniContents.append('INPUT_INVERT_28 = {}\n'.format(parent.inputInvert_28.isChecked()))
-	iniContents.append('INPUT_JOINT_28 = {}\n'.format(parent.inputJoint_28.currentData()))
-	iniContents.append('INPUT_29 = {}\n'.format(parent.input_29.currentText()))
-	iniContents.append('INPUT_INVERT_29 = {}\n'.format(parent.inputInvert_29.isChecked()))
-	iniContents.append('INPUT_JOINT_29 = {}\n'.format(parent.inputJoint_29.currentData()))
-	iniContents.append('INPUT_30 = {}\n'.format(parent.input_30.currentText()))
-	iniContents.append('INPUT_INVERT_30 = {}\n'.format(parent.inputInvert_30.isChecked()))
-	iniContents.append('INPUT_JOINT_30 = {}\n'.format(parent.inputJoint_30.currentData()))
-	iniContents.append('INPUT_31 = {}\n'.format(parent.input_31.currentText()))
-	iniContents.append('INPUT_INVERT_31 = {}\n'.format(parent.inputInvert_31.isChecked()))
-	iniContents.append('INPUT_JOINT_31 = {}\n'.format(parent.inputJoint_31.currentData()))
-
+	iniContents.append('# DO NOT change the inputs text\n')
+	for i in range(11):
+		iniContents.append(f'INPUT_{i} = {getattr(parent, "input_" + str(i)).currentText()}\n')
+		iniContents.append(f'INPUT_DIR{i} = {getattr(parent, "inputInvert_" + str(i)).isChecked()}\n')
+		iniContents.append(f'INPUT_JOINT{i} = {getattr(parent, "inputJoint_" + str(i)).currentText()}\n')
 
 	# build the [OUTPUTS] section
 	iniContents.append('\n[OUTPUTS]\n')
-	iniContents.append('# DO NOT change the output text\n')
-	iniContents.append('OUTPUT_0 = {}\n'.format(parent.output_0.currentText()))
-	iniContents.append('OUTPUT_1 = {}\n'.format(parent.output_1.currentText()))
-	iniContents.append('OUTPUT_2 = {}\n'.format(parent.output_2.currentText()))
-	iniContents.append('OUTPUT_3 = {}\n'.format(parent.output_3.currentText()))
-	iniContents.append('OUTPUT_4 = {}\n'.format(parent.output_4.currentText()))
-	iniContents.append('OUTPUT_5 = {}\n'.format(parent.output_5.currentText()))
-	iniContents.append('OUTPUT_6 = {}\n'.format(parent.output_6.currentText()))
-	iniContents.append('OUTPUT_7 = {}\n'.format(parent.output_7.currentText()))
-	iniContents.append('OUTPUT_8 = {}\n'.format(parent.output_8.currentText()))
-	iniContents.append('OUTPUT_9 = {}\n'.format(parent.output_9.currentText()))
-	iniContents.append('OUTPUT_10 = {}\n'.format(parent.output_10.currentText()))
-	iniContents.append('OUTPUT_11 = {}\n'.format(parent.output_11.currentText()))
-	iniContents.append('OUTPUT_12 = {}\n'.format(parent.output_12.currentText()))
-	iniContents.append('OUTPUT_13 = {}\n'.format(parent.output_13.currentText()))
-	iniContents.append('OUTPUT_14 = {}\n'.format(parent.output_14.currentText()))
-	iniContents.append('OUTPUT_15 = {}\n'.format(parent.output_15.currentText()))
-	
+	iniContents.append('# DO NOT change the outputs text\n')
+	for i in range(5):
+		iniContents.append(f'OUTPUT_{i} = {getattr(parent, "output_" + str(i)).currentText()}\n')
 
 	# build the [OPTIIONS] section
 	iniContents.append('\n[OPTIONS]\n')
+	iniContents.append(f'INTRO_GRAPHIC = {parent.splashScreenCB.isChecked()}\n')
 	iniContents.append('MANUAL_TOOL_CHANGE = {}\n'.format(parent.manualToolChangeCB.isChecked()))
 	iniContents.append('HALUI = {}\n'.format(parent.haluiCB.isChecked()))
 	iniContents.append('PYVCP = {}\n'.format(parent.pyvcpCB.isChecked()))
