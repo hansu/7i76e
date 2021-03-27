@@ -10,16 +10,16 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog, QLineEdit)
 from PyQt5.QtWidgets import (QSpinBox, QCheckBox, QComboBox, QLabel, QGroupBox)
 from PyQt5.QtWidgets import (QDoubleSpinBox, QMessageBox)
 
-from libc7i76e import buildcombos
-from libc7i76e import loadini
-from libc7i76e import checkit
-from libc7i76e import buildfiles
-from libc7i76e import card
-from libc7i76e import pcinfo
-from libc7i76e import helptext
-from libc7i76e.dialog import Ui_Dialog as errorDialog
-from libc7i76e.help import Ui_Dialog as helpDialog
-from libc7i76e.about import Ui_about as aboutDialog
+from lib7i76e import buildcombos
+from lib7i76e import loadini
+from lib7i76e import checkit
+from lib7i76e import buildfiles
+from lib7i76e import card
+from lib7i76e import pcinfo
+from lib7i76e import helptext
+from lib7i76e.dialog import Ui_Dialog as errorDialog
+from lib7i76e.help import Ui_Dialog as helpDialog
+from lib7i76e.about import Ui_about as aboutDialog
 
 class VersionError(QMainWindow):
 	def __init__(self):
@@ -33,12 +33,16 @@ class VersionError(QMainWindow):
 		msgBox.exec()
 		sys.exit()
 
-UI_FILE = os.path.join(os.path.dirname(__file__), "c7i76e.ui")
-
 class MainWindow(QMainWindow):
 	def __init__(self):
 		super(MainWindow, self).__init__()
-		uic.loadUi(UI_FILE, self)
+		if os.path.split(sys.argv[0])[0] == '/usr/bin':
+			self.lib_path = '/usr/lib/lib7i76e'
+			print('Installed')
+		if os.path.split(sys.argv[0])[0] == '.':
+			self.lib_path = os.path.split(os.path.realpath(sys.argv[0]))[0]
+			print('In Development')
+		uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
 		self.version = '1.0.2'
 		self.config = configparser.ConfigParser(strict=False)
 		self.cwd = os.getcwd()

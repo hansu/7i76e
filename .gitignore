@@ -5,10 +5,10 @@ pins
 *.gz
 *.buildinfo
 *.changes
-c7i76e/src/firmware
-c7i76e/debian/c7i76e
-c7i76e/debian/.debhelper
-c7i76e/debian/*.substvars
-c7i76e/debian/files
-c7i76e/debian/debhelper*
+7i76e/src/firmware
+7i76e/debian/7i76e
+7i76e/debian/.debhelper
+7i76e/debian/*.substvars
+7i76e/debian/files
+7i76e/debian/debhelper*
 docs/build

@@ -1,5 +1,0 @@
-src/c7i76e usr/bin
-src/c7i76e.ui usr/bin
-src/libc7i76e/*.* usr/lib/python3/dist-packages/libc7i76e
-src/firmware/*.* usr/lib/python3/dist-packages/libc7i76e
-*.desktop usr/share/applications
