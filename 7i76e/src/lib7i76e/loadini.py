@@ -25,8 +25,8 @@ def openini(parent, fileName = ''):
 		iniFile = (fileName)
 
 	if config.read(iniFile):
-		if config.has_option('7I95', 'VERSION'):
-			iniVersion = config['7I95']['VERSION']
+		if config.has_option('7i76e', 'VERSION'):
+			iniVersion = config['7i76e']['VERSION']
 			if iniVersion == parent.version:
 				loadini(parent)
 			else:
@@ -117,7 +117,6 @@ def loadini(parent):
 	for i in range(parent.card['outputs']):
 		iniList.append(['OUTPUT_PB', f'OUTPUT_PB_{i}', f'outputPB_{i}'])
 
-	iniList.append(['OPTIONS', 'INTRO_GRAPHIC', 'splashScreenCB'])
 	iniList.append(['OPTIONS', 'INTRO_GRAPHIC_TIME', 'splashScreenSB'])
 	iniList.append(['OPTIONS', 'MANUAL_TOOL_CHANGE', 'manualToolChangeCB'])
 	iniList.append(['OPTIONS', 'CUSTOM_HAL', 'customhalCB'])

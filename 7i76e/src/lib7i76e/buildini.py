@@ -33,11 +33,11 @@ def build(parent):
 	iniContents.append('\n[HOSTMOT2]\n')
 	iniContents.append('DRIVER = hm2_eth\n')
 	iniContents.append(f'IPADDRESS = {parent.ipAddressCB.currentData()}\n')
-	iniContents.append('BOARD = 7i95\n')
+	iniContents.append(f'BOARD = {parent.card["type"]}\n')
 	iniContents.append(f'STEPGENS = {str(parent.stepgensCB.currentData())}\n')
 	iniContents.append(f'ENCODERS = {str(parent.encodersCB.currentData())}\n')
 	iniContents.append(f'PWMS = {str(parent.pwmsCB.currentData())}\n')
-	#iniContents.append(f'SSERIAL_PORT = {str(parent.sserialSB.value())}\n')
+	iniContents.append(f'SSERIAL_PORT = 0\n')
 	iniContents.append(f'FIRMWARE = {parent.firmwareCB.currentData()}\n')
 
 	# build the [DISPLAY] section maxFeedOverrideLE
@@ -47,9 +47,8 @@ def build(parent):
 	iniContents.append(f'POSITION_FEEDBACK = {parent.positionFeedbackCB.currentData()}\n')
 	iniContents.append(f'MAX_FEED_OVERRIDE = {parent.maxFeedOverrideSB.value()}\n')
 	iniContents.append('CYCLE_TIME = 0.1\n')
-	if parent.splashScreenCB.isChecked():
-		iniContents.append(f'INTRO_GRAPHIC = {parent.introGraphicLE.text()}\n')
-		iniContents.append(f'INTRO_TIME = {parent.splashScreenSB.value()}\n')
+	iniContents.append(f'INTRO_GRAPHIC = {parent.introGraphicLE.text()}\n')
+	iniContents.append(f'INTRO_TIME = {parent.splashScreenSB.value()}\n')
 	iniContents.append('OPEN_FILE = ""\n')
 	if parent.pyvcpCB.isChecked():
 		iniContents.append(f'PYVCP = {parent.configNameUnderscored}.xml\n')
@@ -90,7 +89,7 @@ def build(parent):
 	iniContents.append('\n[TRAJ]\n')
 	iniContents.append(f'COORDINATES = {parent.coordinatesLB.text()}\n')
 	iniContents.append(f'LINEAR_UNITS = {parent.linearUnitsCB.currentData()}\n')
-	#iniContents.append(f'ANGULAR_UNITS = {parent.angularUnitsCB.currentData()}\n')
+	iniContents.append('ANGULAR_UNITS = degree\n')
 	iniContents.append(f'MAX_LINEAR_VELOCITY = {parent.maxLinearVel.text()}\n')
 
 	# build the [HAL] section
@@ -197,7 +196,7 @@ def build(parent):
 	# build the [OPTIONS] section
 	iniContents.append('\n[OPTIONS]\n')
 	iniContents.append('# DO NOT change the options text\n')
-	iniContents.append(f'INTRO_GRAPHIC = {parent.splashScreenCB.isChecked()}\n')
+	iniContents.append(f'INTRO_GRAPHIC = {parent.introGraphicLE.text()}\n')
 	iniContents.append(f'INTRO_GRAPHIC_TIME = {parent.splashScreenSB.value()}\n')
 	iniContents.append(f'MANUAL_TOOL_CHANGE = {parent.manualToolChangeCB.isChecked()}\n')
 	iniContents.append(f'CUSTOM_HAL = {parent.customhalCB.isChecked()}\n')

@@ -60,7 +60,7 @@ class MainWindow(QMainWindow):
 		if float(sys.version[0:3]) < 3.6:
 			print('wrong python version')
 		self.setWindowTitle(f'7i76e Configuration Tool Version {self.version}')
-		self.card = {'type':'7i763', 'joints': 5, 'inputs': 32, 'outputs': 16}
+		self.card = {'type':'7i76e', 'joints': 5, 'inputs': 32, 'outputs': 16}
 		buildmenus.build(self)
 		buildcombos.build(self)
 		utilities.checks(self)
