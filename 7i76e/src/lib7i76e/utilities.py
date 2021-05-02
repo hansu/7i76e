@@ -124,7 +124,11 @@ def updateAxisInfo(parent):
 	stepRate = scale * maxVelocity
 	getattr(parent, 'stepRateJoint_' + joint).setText(f'{abs(stepRate):.0f} pulses')
 
-def spindleTypeChanged(parent): 
+
+def spindleTypeChanged(parent):
+	pass
+
+	"""
 	#print(parent.spindleTypeCB.itemData(parent.spindleTypeCB.currentIndex()))
 	if parent.spindleTypeCB.currentData():
 		parent.spindleGB.setEnabled(True)
@@ -173,30 +177,13 @@ def spindleTypeChanged(parent):
 		parent.spindleInfo2Lbl.setText("")
 		parent.spindleInfo3Lbl.setText("")
 		parent.spindleInfo4Lbl.setText("")
+"""
 
 def fileNew(parent):
-	pass
-	"""
-	parent.ipAddressCB.setCurrentIndex(0)
-	for i in range(6):
-		getattr(parent, f'axisCB_{i}').setCurrentIndex(0)
-	parent.linearUnitsCB.setCurrentIndex(0)
-	parent.guiCB.setCurrentIndex(0)
-	parent.positionOffsetCB.setCurrentIndex(0)
-	parent.positionFeedbackCB.setCurrentIndex(0)
-	parent.ssCardCB.setCurrentIndex(0)
-	for i in range(6):
-		getattr(parent, f'driveCB_{i}').setCurrentIndex(0)
-	parent.debugCB.setCurrentIndex(0)
-	parent.spindleTypeCB.setCurrentIndex(0)
-	parent.cpuSpeedCB.setCurrentIndex(0)
-	parent.firmwareCB.setCurrentIndex(0)
-	"""
-
-
+	parent.errorMsgOk('Close the Tool,\n Then open', 'Info!')
 
 def fileSaveAs(parent):
-	pass
+	parent.errorMsgOk('Change the Name,\n Then Save', 'Info!')
 
 
 

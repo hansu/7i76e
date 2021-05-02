@@ -72,7 +72,7 @@ class MainWindow(QMainWindow):
 
 		#self.testing()
 		# for testing
-		#loadini.openini(self, '/home/john/linuxcnc/configs/7i95/7i95.ini')
+		loadini.openini(self, '/home/john/linuxcnc/configs/7i76e/7i76e.ini')
 		self.show()
 
 	def testing(self):
@@ -514,13 +514,14 @@ class MainWindow(QMainWindow):
 			return False
 
 
-	def help(self, index):
-		dialog = QtWidgets.QDialog()
+	def help(self, tab):
+		if tab == 0:
+			tab = self.tabWidget.currentIndex()
+		dialog = QDialog()
 		dialog.ui = helpDialog()
 		dialog.ui.setupUi(dialog)
-		dialog.ui.label.setText(self.helpInfo(index))
+		dialog.ui.label.setText(helptext.descriptions(tab))
 		dialog.exec_()
-
 
 def main():
 	app = QApplication(sys.argv)

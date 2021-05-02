@@ -15,12 +15,12 @@ def build(parent):
 		except OSError:
 			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
-	iniContents = ['# This file was created with the 7i95 Configuration Tool on ']
+	iniContents = ['# This file was created with the 7i76e Configuration Tool on ']
 	iniContents.append(datetime.now().strftime('%b %d %Y %H:%M:%S') + '\n')
 	iniContents.append('# Changes to most things are ok and will be read by the Configuration Tool\n')
 
-	# build the [7i95] section
-	iniContents.append('\n[7I95]\n')
+	# build the [7i76e] section
+	iniContents.append('\n[7i76e]\n')
 	iniContents.append(f'VERSION = {parent.version}\n')
 
 	# build the [EMC] section
@@ -61,7 +61,7 @@ def build(parent):
 	# build the [KINS] section
 	iniContents.append('\n[KINS]\n')
 	if len(set(parent.coordinatesLB.text())) == len(parent.coordinatesLB.text()): # 1 joint for each axis
-		iniContents.append('KINEMATICS = trivkins coordinates={parent.coordinatesLB.text()}\n')
+		iniContents.append(f'KINEMATICS = trivkins coordinates={parent.coordinatesLB.text()}\n')
 	else: # more than one joint per axis
 		iniContents.append(f'KINEMATICS = trivkins coordinates={parent.coordinatesLB.text()} kinstype=BOTH\n')
 	iniContents.append(f'JOINTS = {len(parent.coordinatesLB.text())}\n')
