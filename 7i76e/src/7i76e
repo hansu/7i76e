@@ -48,9 +48,11 @@ class MainWindow(QMainWindow):
 		if os.path.split(sys.argv[0])[0] == '/usr/bin':
 			self.lib_path = '/usr/lib/lib7i76e'
 			print('Installed')
+			devel = False
 		if os.path.split(sys.argv[0])[0] == '.':
 			self.lib_path = os.path.split(os.path.realpath(sys.argv[0]))[0]
 			print('In Development')
+			devel = True
 		uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
 		self.version = '0.1.0'
 		self.emcVersion = '1.1'
@@ -69,10 +71,10 @@ class MainWindow(QMainWindow):
 		self.axes = 0
 		self.setupConnections()
 
-
 		#self.testing()
 		# for testing
-		loadini.openini(self, '/home/john/linuxcnc/configs/7i76e/7i76e.ini')
+		if devel:
+			loadini.openini(self, '/home/john/linuxcnc/configs/7i76e/7i76e.ini')
 		self.show()
 
 	def testing(self):
