@@ -51,14 +51,11 @@ class MainWindow(QMainWindow):
 			if len(sys.argv) > 1:
 				if sys.argv[1] == 'devel':
 					devel = True
-				else:
-					devel = False
+			else:
+				devel = False
 		if os.path.split(sys.argv[0])[0] == '.':
 			self.lib_path = os.path.split(os.path.realpath(sys.argv[0]))[0]
-			print(f'Number of args {len(sys.argv)}')
 			print('In Development')
-			if len(sys.argv) > 1:
-				print(sys.argv[1])
 			devel = True
 		uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
 		self.version = '0.1.0'
