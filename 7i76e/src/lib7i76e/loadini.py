@@ -1,16 +1,59 @@
-def iniList():
+import os, configparser
+from PyQt5.QtWidgets import (QFileDialog, QLabel, QLineEdit, QSpinBox,
+	QDoubleSpinBox, QCheckBox, QGroupBox, QComboBox, QPushButton)
+
+from lib7i76e import loadss
+
+config = configparser.ConfigParser(strict=False)
+config.optionxform = str
+
+def openini(parent, fileName = ''):
+	parent.tabWidget.setCurrentIndex(0)
+	parent.outputPTE.clear()
+	if not fileName:
+		if os.path.isdir(os.path.expanduser('~/linuxcnc/configs')):
+			configsDir = os.path.expanduser('~/linuxcnc/configs')
+		else:
+			configsDir = os.path.expanduser('~/')
+		fileName = QFileDialog.getOpenFileName(parent,
+		caption="Select Configuration INI File", directory=configsDir,
+		filter='*.ini', options=QFileDialog.DontUseNativeDialog,)
+		if fileName:
+			parent.outputPTE.appendPlainText(f'Loading {fileName[0]}')
+			iniFile = (fileName[0])
+	else: # we passed a file name and path for testing
+		iniFile = (fileName)
+
+	if config.read(iniFile):
+		if config.has_option('7I95', 'VERSION'):
+			iniVersion = config['7I95']['VERSION']
+			if iniVersion == parent.version:
+				loadini(parent)
+			else:
+				msg = (f'The ini file version is {iniVersion}\n'
+					'The Configuration Tool version is {parent.version}\n'
+					'Try and open the ini?')
+				if parent.errorMsg(msg, 'Version Difference'):
+					loadini(parent)
+		else:
+			msg = ('This ini file may have been built with an older version\n'
+				'Try and open?')
+			if parent.errorMsg(msg, 'No Version'):
+				loadini(parent)
+
+def loadini(parent):
 	# Section, Item, Object Name
 	iniList = []
-	iniList.append(['EMC', 'VERSION', 'versionLE'])
+	#iniList.append(['EMC', 'VERSION', 'versionLE'])
 	iniList.append(['EMC', 'MACHINE', 'configName'])
-	iniList.append(['EMC', 'DEBUG', 'debugCombo'])
+	iniList.append(['EMC', 'DEBUG', 'debugCB'])
 
-	iniList.append(['HOSTMOT2', 'DRIVER', 'driverCB'])
+	#iniList.append(['HOSTMOT2', 'DRIVER', 'driverCB'])
 	iniList.append(['HOSTMOT2', 'IPADDRESS', 'ipAddressCB'])
-	iniList.append(['HOSTMOT2', 'BOARD', 'boardCB'])
-	iniList.append(['HOSTMOT2', 'STEPGENS', 'stepgensSB'])
-	iniList.append(['HOSTMOT2', 'ENCODERS', 'encodersSB'])
-	iniList.append(['HOSTMOT2', 'SSERIAL_PORT', 'sserialSB'])
+	#iniList.append(['HOSTMOT2', 'BOARD', 'boardCB'])
+	#iniList.append(['HOSTMOT2', 'STEPGENS', 'stepgensSB'])
+	#iniList.append(['HOSTMOT2', 'ENCODERS', 'encodersSB'])
+	#iniList.append(['HOSTMOT2', 'SSERIAL_PORT', 'sserialSB'])
 
 	iniList.append(['DISPLAY', 'DISPLAY', 'guiCB'])
 	iniList.append(['DISPLAY', 'POSITION_OFFSET', 'positionOffsetCB'])
@@ -21,9 +64,9 @@ def iniList():
 
 	iniList.append(['TRAJ', 'LINEAR_UNITS', 'linearUnitsCB'])
 	iniList.append(['TRAJ', 'COORDINATES', 'coordinatesLB'])
-	iniList.append(['TRAJ', 'MAX_LINEAR_VELOCITY', 'maxLinearVelocity'])
+	iniList.append(['TRAJ', 'MAX_LINEAR_VELOCITY', 'maxLinearVel'])
 
-	for i in range(5):
+	for i in range(parent.card['joints']):
 		iniList.append([f'JOINT_{i}', 'AXIS', f'axisCB_{i}'])
 		iniList.append([f'JOINT_{i}', 'STEPLEN', f'stepTime_{i}'])
 		iniList.append([f'JOINT_{i}', 'STEPSPACE', f'stepSpace_{i}'])
@@ -67,25 +110,58 @@ def iniList():
 	iniList.append(['SPINDLE', 'BIAS', 'bias_s'])
 	iniList.append(['SPINDLE', 'MAX_ERROR', 'maxError_s'])
 
-	for i in range(32):
-		iniList.append(['INPUTS', f'INPUT_{i}', f'input_{i}'])
+	for i in range(parent.card['inputs']):
+		iniList.append(['INPUT_PB', f'INPUT_PB_{i}', f'inputPB_{i}'])
+		iniList.append(['INPUT_PB', f'INPUT_INVERT_{i}', f'inputInvertCb_{i}'])
 
-	for i in range(32):
-		iniList.append(['INPUTS', f'INPUT_JOINT_{i}', f'inputJoint_{i}'])
+	for i in range(parent.card['outputs']):
+		iniList.append(['OUTPUT_PB', f'OUTPUT_PB_{i}', f'outputPB_{i}'])
 
-	for i in range(32):
-		iniList.append(['INPUTS', f'INPUT_INVERT_{i}', f'inputInvert_{i}'])
-
-	for i in range(16):
-		iniList.append(['OUTPUTS', f'OUTPUT_{i}', f'output_{i}'])
-
+	iniList.append(['OPTIONS', 'INTRO_GRAPHIC', 'splashScreenCB'])
+	iniList.append(['OPTIONS', 'INTRO_GRAPHIC_TIME', 'splashScreenSB'])
 	iniList.append(['OPTIONS', 'MANUAL_TOOL_CHANGE', 'manualToolChangeCB'])
+	iniList.append(['OPTIONS', 'CUSTOM_HAL', 'customhalCB'])
+	iniList.append(['OPTIONS', 'POST_GUI_HAL', 'postguiCB'])
+	iniList.append(['OPTIONS', 'SHUTDOWN_HAL', 'shutdownCB'])
 	iniList.append(['OPTIONS', 'HALUI', 'haluiCB'])
 	iniList.append(['OPTIONS', 'PYVCP', 'pyvcpCB'])
 	iniList.append(['OPTIONS', 'GLADEVCP', 'gladevcpCB'])
 	iniList.append(['OPTIONS', 'LADDER', 'ladderGB'])
 	iniList.append(['OPTIONS', 'LADDER_RUNGS', 'ladderRungsSB'])
-
-	return iniList
+	iniList.append(['OPTIONS', 'BACKUP', 'backupCB'])
+	iniList.append(['SSERIAL', 'SS_CARD', 'ssCardCB'])
 
 #iniList.append(['', '', ''])
+	# iniList section, item, value
+	for item in iniList:
+		if config.has_option(item[0], item[1]):
+			if isinstance(getattr(parent, item[2]), QLabel):
+				getattr(parent, item[2]).setText(config[item[0]][item[1]])
+			elif isinstance(getattr(parent, item[2]), QLineEdit):
+				getattr(parent, item[2]).setText(config[item[0]][item[1]])
+			elif isinstance(getattr(parent, item[2]), QSpinBox):
+				getattr(parent, item[2]).setValue(abs(int(config[item[0]][item[1]])))
+			elif isinstance(getattr(parent, item[2]), QDoubleSpinBox):
+				getattr(parent, item[2]).setValue(float(config[item[0]][item[1]]))
+			elif isinstance(getattr(parent, item[2]), QCheckBox):
+				getattr(parent, item[2]).setChecked(eval(config[item[0]][item[1]]))
+			elif isinstance(getattr(parent, item[2]), QGroupBox):
+				getattr(parent, item[2]).setChecked(eval(config[item[0]][item[1]]))
+			elif isinstance(getattr(parent, item[2]), QComboBox):
+				index = getattr(parent, item[2]).findData(config[item[0]][item[1]])
+				if index >= 0:
+					getattr(parent, item[2]).setCurrentIndex(index)
+			elif isinstance(getattr(parent, item[2]), QPushButton):
+				getattr(parent, item[2]).setText(config[item[0]][item[1]])
+			else:
+				print(item[2])
+
+	parent.outputPTE.appendPlainText('INI file Loaded')
+
+	if config.has_section('SSERIAL'):
+		card = config.get('SSERIAL', 'ssCardCB')
+		index = parent.ssCardCB.findText(card)
+		if index > 0:
+			parent.ssCardCB.setCurrentIndex(index)
+		loadss.load(parent, config)
+	parent.outputPTE.appendPlainText('Smart Serial file Loaded')

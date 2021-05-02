@@ -55,21 +55,20 @@ def getPins(parent):
 		arguments = ["-f", "temp.hal"]
 		parent.extcmd.job(cmd="halrun", args=arguments, dest=parent.pinsPTE, clean='temp.hal')
 
-def saveHal(parent, item):
+def savePins(parent, item):
 	if parent.configName.text() == '':
 		parent.errorMsgOk('A Configuration\nmust be loaded', 'Error')
 		return
 	if not "0x48414c32" in subprocess.getoutput('ipcs'):
 		parent.errorMsgOk(f'LinuxCNC must be running\nthe {parent.configName.text()} configuration', 'Error')
 		return
-	print(f'Getting {item}')
 	parent.results = subprocess.getoutput(f"halcmd show {item}")
 	fp = os.path.join(parent.configPath, parent.configNameUnderscored + f'-{item}.txt')
 	with open(fp, 'w') as f:
 		f.writelines(parent.results)
 	parent.statusbar.showMessage(f'{item}s saved to {fp}')
 
-def saveHalSignals(parent):
+def saveSignals(parent):
 	if parent.configName.text() == '':
 		parent.errorMsgOk('A Configuration\nmust be loaded', 'Error')
 		return
@@ -82,7 +81,7 @@ def saveHalSignals(parent):
 		f.writelines(parent.results)
 	parent.statusbar.showMessage(f'Signals saved to {fp}')
 
-def saveHalParameters(parent):
+def saveParameters(parent):
 	if parent.configName.text() == '':
 		parent.errorMsgOk('A Configuration\nmust be loaded', 'Error')
 		return
