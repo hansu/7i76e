@@ -1,3 +1,9 @@
+7i76e (0.1.1) unstable; urgency=medium
+
+  * Add firmware 
+
+ -- John Thornton <jt@gnipsel.com>  Sun, 02 May 2021 16:13:13 -0500
+
 7i76e (0.1.0) unstable; urgency=medium
 
   * Rework Code

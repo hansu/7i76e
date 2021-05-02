@@ -95,7 +95,7 @@ def build(parent):
 		['Keling 4030', ['5000', '5000', '20000', '20000']]
 		]
 
-	for i in range(6):
+	for i in range(parent.card['joints']):
 		for item in drives:
 			getattr(parent, f'driveCB_{i}').addItem(item[0], item[1])
 
@@ -146,7 +146,17 @@ def build(parent):
 
 	firmware = [
 		['Select', False],
-		['6 StepGens ', '7i95d.bit']
+		['7i76e 7i76x1 7i74x1D', '7i76e_7i76x1_7i74x1D.bit'],
+		['7i76e 7i76x1 7i74x1SSID', '7i76e_7i76x1_7i74x1SSID.bit'],
+		['7i76e 7i76x1 7i77x1D', '7i76e_7i76x1_7i77x1D.bit'],
+		['7i76e 7i76x1 7i85sx1D', '7i76e_7i76x1_7i85sx1D.bit'],
+		['7i76e 7i76x1 7i85x1_7i85sx1D', '7i76e_7i76x1_7i85x1_7i85sx1D.bit'],
+		['7i76e 7i76x1 7i85x1D', '7i76e_7i76x1_7i85x1D.bit'],
+		['7i76e 7i76x1 bstechx2d', '7i76e_7i76x1_bstechx2d.bit'],
+		['7i76e 7i76x1D', '7i76e_7i76x1D.bit'],
+		['7i76e 7i76x1pD', '7i76e_7i76x1pD.bit'],
+		['7i76e 7i76x3D', '7i76e_7i76x3D.bit'],
+		['7i76e JUSTIO', '7i76e_JUSTIO.bit'],
 		]
 
 	for item in firmware:

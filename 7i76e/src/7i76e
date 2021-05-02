@@ -48,11 +48,10 @@ class MainWindow(QMainWindow):
 		if os.path.split(sys.argv[0])[0] == '/usr/bin':
 			self.lib_path = '/usr/lib/lib7i76e'
 			print('Installed')
+			devel = False
 			if len(sys.argv) > 1:
 				if sys.argv[1] == 'devel':
 					devel = True
-			else:
-				devel = False
 		if os.path.split(sys.argv[0])[0] == '.':
 			self.lib_path = os.path.split(os.path.realpath(sys.argv[0]))[0]
 			print('In Development')
@@ -76,7 +75,6 @@ class MainWindow(QMainWindow):
 		self.setupConnections()
 
 		#self.testing()
-		# for testing
 		if devel:
 			loadini.openini(self, '/home/john/linuxcnc/configs/7i76e/7i76e.ini')
 		self.show()
@@ -90,7 +88,6 @@ class MainWindow(QMainWindow):
 		self.positionOffsetCB.setCurrentIndex(1)
 		self.positionFeedbackCB.setCurrentIndex(1)
 		self.axisCB_0.setCurrentIndex(1)
-		#utilities.pidSetDefault(self)
 		self.driveCB_0.setCurrentIndex(3)
 		self.scale_0.setText('1000')
 		self.minLimit_0.setText('0')
@@ -128,7 +125,7 @@ class MainWindow(QMainWindow):
 		self.actionTabHelp.triggered.connect(partial(self.help, 0))
 		self.actionBuildHelp.triggered.connect(partial(self.help, 20))
 		self.actionPCHelp.triggered.connect(partial(self.help, 30))
-
+		self.copyPB.clicked.connect(partial(utilities.copyOutput, self))
 		self.cpuPB.clicked.connect(partial(pcinfo.cpuInfo, self))
 		self.nicPB.clicked.connect(partial(pcinfo.nicInfo, self))
 		self.calcNicPB.clicked.connect(partial(pcinfo.nicCalc, self))
