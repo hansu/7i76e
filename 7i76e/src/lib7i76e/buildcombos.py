@@ -8,6 +8,26 @@ def build(parent):
 	for item in ipAddress:
 		parent.ipAddressCB.addItem(item[0], item[1])
 
+	parent.boardCB.addItem('7i76e', '7i76e')
+
+	stepgens = [
+		['5', '5'],
+		['0', '0'],
+		['1', '1'],
+		['2', '2'],
+		['3', '3'],
+		['4', '4']
+	]
+
+	for item in stepgens:
+		parent.stepgensCB.addItem(item[0], item[1])
+
+	parent.encodersCB.addItem('1', '1')
+
+	parent.pwmgensCB.addItem('0', '0')
+
+	parent.sserialPortCB.addItem('00xxxx', '00xxxx')
+
 	axes = [
 		['Select', False],
 		['X', 'X'],

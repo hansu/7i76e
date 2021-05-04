@@ -231,12 +231,22 @@ QGroupBox::title {
            <item row="4" column="0">
             <widget class="QLabel" name="label_29">
              <property name="text">
-              <string>PWM Gens</string>
+              <string>PWM Generators</string>
              </property>
             </widget>
            </item>
            <item row="4" column="1">
-            <widget class="QComboBox" name="pwmsCB"/>
+            <widget class="QComboBox" name="pwmgensCB"/>
+           </item>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="sserialPortCB"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_876">
+             <property name="text">
+              <string>SSerial Port</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -286,7 +296,7 @@ QGroupBox::title {
              <x>0</x>
              <y>0</y>
              <width>1018</width>
-             <height>427</height>
+             <height>413</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">

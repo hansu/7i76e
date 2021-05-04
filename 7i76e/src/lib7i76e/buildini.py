@@ -36,8 +36,8 @@ def build(parent):
 	iniContents.append(f'BOARD = {parent.card["type"]}\n')
 	iniContents.append(f'STEPGENS = {str(parent.stepgensCB.currentData())}\n')
 	iniContents.append(f'ENCODERS = {str(parent.encodersCB.currentData())}\n')
-	iniContents.append(f'PWMS = {str(parent.pwmsCB.currentData())}\n')
-	iniContents.append(f'SSERIAL_PORT = 0\n')
+	iniContents.append(f'PWMS = {str(parent.pwmgensCB.currentData())}\n')
+	iniContents.append(f'SSERIAL_PORT = {parent.sserialPortCB.currentData()}\n')
 	iniContents.append(f'FIRMWARE = {parent.firmwareCB.currentData()}\n')
 
 	# build the [DISPLAY] section maxFeedOverrideLE
