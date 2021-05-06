@@ -12,3 +12,4 @@ pins
 7i76e/debian/files
 7i76e/debian/debhelper*
 docs/build
+configurations
