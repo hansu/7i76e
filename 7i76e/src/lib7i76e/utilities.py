@@ -47,6 +47,7 @@ def configNameChanged(parent, text):
 		parent.pathLabel.setText('')
 
 def pidSetDefault(parent):
+	print('here')
 	tab = parent.sender().objectName()[-1]
 	if not parent.linearUnitsCB.currentData():
 		QMessageBox.warning(parent,'Warning', 'Machine Tab\nLinear Units\nmust be selected', QMessageBox.Ok)
@@ -66,6 +67,26 @@ def pidSetDefault(parent):
 		maxError = '0.0127'
 	getattr(parent, 'maxError_' + tab).setText(maxError)
 	getattr(parent, 'deadband_' + tab).setText('0')
+
+def spindlePidDefault(parent):
+	if not parent.linearUnitsCB.currentData():
+		QMessageBox.warning(parent,'Warning', 'Machine Tab\nLinear Units\nmust be selected', QMessageBox.Ok)
+		return
+	if parent.spindleMaxRpm.text() == '':
+		QMessageBox.warning(parent,'Warning', 'Spindle Tab\nMax RPM\nmust be specified', QMessageBox.Ok)
+		return
+	if not isNumber(parent.spindleMaxRpm.text()):
+		QMessageBox.warning(parent,'Warning', 'Spindle Tab\nMax RPM\nnot a valid number', QMessageBox.Ok)
+		return
+	getattr(parent, 'p_s').setText('0.0')
+	getattr(parent, 'i_s').setText('0.0')
+	getattr(parent, 'd_s').setText('0.0')
+	getattr(parent, 'ff0_s').setText('1.0')
+	getattr(parent, 'ff1_s').setText('0.0')
+	getattr(parent, 'ff2_s').setText('0.0')
+	getattr(parent, 'bias_s').setText('0.0')
+	getattr(parent, 'deadband_s').setText('0.0')
+	getattr(parent, 'maxOutput_s').setText(f'{parent.spindleMaxRpm.text()}')
 
 def driveChanged(parent):
 	timing = parent.sender().itemData(parent.sender().currentIndex())

@@ -34,11 +34,12 @@ def build(parent):
 	iniContents.append('DRIVER = hm2_eth\n')
 	iniContents.append(f'IPADDRESS = {parent.ipAddressCB.currentData()}\n')
 	iniContents.append(f'BOARD = {parent.card["type"]}\n')
-	iniContents.append(f'STEPGENS = {str(parent.stepgensCB.currentData())}\n')
-	iniContents.append(f'ENCODERS = {str(parent.encodersCB.currentData())}\n')
-	iniContents.append(f'PWMS = {str(parent.pwmgensCB.currentData())}\n')
-	iniContents.append(f'SSERIAL_PORT = {parent.sserialPortCB.currentData()}\n')
-	iniContents.append(f'FIRMWARE = {parent.firmwareCB.currentData()}\n')
+	if parent.stepgensCB.currentData():
+		iniContents.append(f'STEPGENS = {str(parent.stepgensCB.currentData())}\n')
+	if parent.encodersCB.currentData():
+		iniContents.append(f'ENCODERS = {str(parent.encodersCB.currentData())}\n')
+	if parent.pwmgensCB.currentData():
+		iniContents.append(f'PWMS = {str(parent.pwmgensCB.currentData())}\n')
 
 	# build the [DISPLAY] section maxFeedOverrideLE
 	iniContents.append('\n[DISPLAY]\n')
@@ -160,7 +161,7 @@ def build(parent):
 
 	# build the [SPINDLE] section if enabled
 	#print(parent.spindleTypeCB.currentText())
-	if parent.spindleTypeCB.itemData(parent.spindleTypeCB.currentIndex()):
+	if len(parent.spindleMaxRpm.text()) > 0:
 		iniContents.append('\n[SPINDLE]\n')
 		iniContents.append(f'OUTPUT_TYPE = {parent.spindleTypeCB.currentData()}\n')
 		iniContents.append(f'SCALE = {parent.spindleScale.text()}\n')
@@ -175,7 +176,6 @@ def build(parent):
 		iniContents.append(f'FF1 = {parent.ff1_s.text()}\n')
 		iniContents.append(f'FF2 = {parent.ff2_s.text()}\n')
 		iniContents.append(f'BIAS = {parent.bias_s.text()}\n')
-		iniContents.append(f'MAX_ERROR = {parent.maxError_s.text()}\n')
 
 	iniContents.append('\n# Everything below this line is only used to\n')
 	iniContents.append('# setup the Configuration Tool when loading the ini.\n')

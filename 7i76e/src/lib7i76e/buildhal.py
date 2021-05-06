@@ -24,11 +24,13 @@ def build(parent):
 	halContents.append('loadrt hostmot2\n\n')
 	halContents.append('loadrt [HOSTMOT2](DRIVER) ')
 	halContents.append('board_ip=[HOSTMOT2](IPADDRESS) ')
-	halContents.append('config="num_encoders=[HOSTMOT2](ENCODERS) ')
-	halContents.append('num_stepgens=[HOSTMOT2](STEPGENS) ')
-	halContents.append('num_pwmgens=[HOSTMOT2](PWMS) ')
-	halContents.append('sserial_port_0=[HOSTMOT2](SSERIAL_PORT)"\n')
-	halContents.append(f'setp hm2_[HOSTMOT2](BOARD).0.watchdog.timeout_ns {parent.servoPeriodSB.value() * 5}\n')
+	if parent.stepgensCB.currentData():
+		halContents.append('num_stepgens=[HOSTMOT2](STEPGENS) ')
+	if parent.encodersCB.currentData():
+		halContents.append('config="num_encoders=[HOSTMOT2](ENCODERS) ')
+	if parent.pwmgensCB.currentData():
+		halContents.append('num_pwmgens=[HOSTMOT2](PWMS) ')
+	halContents.append(f'\nsetp hm2_[HOSTMOT2](BOARD).0.watchdog.timeout_ns {parent.servoPeriodSB.value() * 5}\n')
 	halContents.append('\n# THREADS\n')
 	halContents.append('addf hm2_[HOSTMOT2](BOARD).0.read servo-thread\n')
 	halContents.append('addf motion-command-handler servo-thread\n')
@@ -71,13 +73,16 @@ def build(parent):
 		halContents.append(f'setp pid.{i}.maxoutput [JOINT_{i}]MAX_OUTPUT\n')
 		halContents.append(f'setp pid.{i}.maxerror [JOINT_{i}]MAX_ERROR\n')
 
-	if parent.spindleTypeCB.itemData(parent.spindleTypeCB.currentIndex()):
 		halContents.append('\n# Spindle\n')
-		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.pwmgen.00.output-type [SPINDLE]OUTPUT_TYPE\n')
-		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.pwmgen.00.scale [SPINDLE]MAX_RPM\n')
-		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.pwmgen.pwm_frequency [SPINDLE]PWM_FREQUENCY\n')
+		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.pinout-scalemax [SPINDLE]SCALE\n')
+		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-minlim [SPINDLE]MINLIM\n')
+		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-maxlim [SPINDLE]MAXLIM\n')
+	"""
+	if parent.spindleTypeCB.itemData(parent.spindleTypeCB.currentIndex()):
+
 		halContents.append('net spindle-on spindle.0.on => hm2_[HOSTMOT2](BOARD).0.pwmgen.00.enable\n')
 		halContents.append('net spindle-speed spindle.0.speed-out => hm2_[HOSTMOT2](BOARD).0.pwmgen.00.value\n')
+	"""
 
 	halContents.append('\n# Standard I/O Block - EStop, Etc\n')
 	halContents.append('# create a signal for the estop loopback\n')

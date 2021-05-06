@@ -11,22 +11,35 @@ def build(parent):
 	parent.boardCB.addItem('7i76e', '7i76e')
 
 	stepgens = [
-		['5', '5'],
+		['Default', False],
 		['0', '0'],
 		['1', '1'],
 		['2', '2'],
 		['3', '3'],
-		['4', '4']
+		['4', '4'],
+		['5', '5']
 	]
 
 	for item in stepgens:
 		parent.stepgensCB.addItem(item[0], item[1])
 
-	parent.encodersCB.addItem('1', '1')
+	encoders = [
+		['Default', False],
+		['0', '0'],
+		['1', '1']
+	]
 
-	parent.pwmgensCB.addItem('0', '0')
+	for item in encoders:
+		parent.encodersCB.addItem(item[0], item[1])
 
-	parent.sserialPortCB.addItem('00xxxx', '00xxxx')
+	pwmgens = [
+		['Default', False],
+		['0', '0'],
+		['1', '1']
+	]
+
+	for item in pwmgens:
+		parent.pwmgensCB.addItem(item[0], item[1])
 
 	axes = [
 		['Select', False],
@@ -143,18 +156,6 @@ def build(parent):
 
 	for item in debug:
 		parent.debugCB.addItem(item[0], item[1])
-
-		spindle = [
-		['None', False],
-		['PWM Direction', '1'],
-		['Up Down', '2'],
-		['PDM Direction', '3'],
-		['Direction PWM', '4'],
-		['Step Direction', False],
-		]
-
-	for item in spindle:
-		parent.spindleTypeCB.addItem(item[0], item[1])
 
 	cpuSpeed = [
 		['GHz', 1000],
