@@ -18,3 +18,4 @@ dch -v 0.1.1
 to build a deb from the top most directory
 dpkg-buildpackage -us -uc
 
+md5sum 7i76e_0.1.1_all.deb > md5sum.txt

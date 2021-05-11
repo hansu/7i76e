@@ -14884,27 +14884,7 @@ The Smart Serial Card configuration will not load from the ini file at this time
          </property>
          <layout class="QGridLayout" name="gridLayout_38">
           <item row="0" column="0">
-           <widget class="QLabel" name="infoLB">
-            <property name="font">
-             <font>
-              <family>Courier</family>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Box</enum>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-            </property>
-           </widget>
+           <widget class="QPlainTextEdit" name="infoPTE"/>
           </item>
          </layout>
         </widget>
@@ -15127,30 +15107,7 @@ The Smart Serial Card configuration will not load from the ini file at this time
          </property>
          <layout class="QGridLayout" name="gridLayout_40">
           <item row="0" column="0">
-           <widget class="QLabel" name="tMaxLB">
-            <property name="font">
-             <font>
-              <family>Courier</family>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="focusPolicy">
-             <enum>Qt::ClickFocus</enum>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Box</enum>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-            </property>
-           </widget>
+           <widget class="QPlainTextEdit" name="tmaxPTE"/>
           </item>
          </layout>
         </widget>
