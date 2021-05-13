@@ -136,7 +136,7 @@ def updateAxisInfo(parent):
 		return
 
 	if not parent.linearUnitsCB.currentData():
-		parent.errorDialog('Machine Tab:\nLinear Units must be selected')
+		parent.errorMsg('Machine Tab:\nLinear Units must be selected', 'Error')
 		return
 	accelTime = maxVelocity / maxAccel
 	getattr(parent, 'timeJoint_' + joint).setText(f'{accelTime:.2f} seconds')
