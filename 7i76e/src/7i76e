@@ -14,13 +14,13 @@ from lib7i76e import buildmenus
 from lib7i76e import sscards
 from lib7i76e import checkconfig
 from lib7i76e import loadini
+from lib7i76e import buildfiles
 from lib7i76e import buildini
 from lib7i76e import buildhal
 from lib7i76e import buildio
 from lib7i76e import buildmisc
 from lib7i76e import buildss
 #from lib7i76e import checkit
-#from lib7i76e import buildfiles
 from lib7i76e import utilities
 from lib7i76e import card
 from lib7i76e import pcinfo
@@ -485,6 +485,7 @@ class MainWindow(QMainWindow):
 		if not checkconfig.checkit(self):
 			self.outputPTE.appendPlainText('Build Failed')
 			return
+		buildfiles.build(self)
 		buildini.build(self)
 		buildhal.build(self)
 		buildio.build(self)
