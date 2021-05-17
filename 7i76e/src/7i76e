@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-import sys, os, configparser, platform, subprocess
+import sys, os
 from functools import partial
-from datetime import datetime
 
-from PyQt5 import uic, QtWidgets
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt5 import uic
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox,
 	QDialog)
 
@@ -20,14 +18,12 @@ from lib7i76e import buildhal
 from lib7i76e import buildio
 from lib7i76e import buildmisc
 from lib7i76e import buildss
-#from lib7i76e import checkit
 from lib7i76e import utilities
 from lib7i76e import card
 from lib7i76e import pcinfo
 from lib7i76e import extcmd
-
-from lib7i76e.help import Ui_Dialog as helpDialog
 from lib7i76e import helptext
+from lib7i76e.help import Ui_Dialog as helpDialog
 from lib7i76e.about import Ui_about as aboutDialog
 
 class VersionError(QMainWindow):
@@ -59,11 +55,6 @@ class MainWindow(QMainWindow):
 		uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
 		self.version = '0.1.0'
 		self.emcVersion = '1.1'
-
-		#self.config = configparser.ConfigParser(strict=False)
-		#self.cwd = os.getcwd()
-		if float(sys.version[0:3]) < 3.6:
-			print('wrong python version')
 		self.setWindowTitle(f'7i76e Configuration Tool Version {self.version}')
 		self.card = {'type':'7i76e', 'joints': 5, 'inputs': 32, 'outputs': 16}
 		buildmenus.build(self)
@@ -71,10 +62,8 @@ class MainWindow(QMainWindow):
 		utilities.checks(self)
 		self.extcmd = extcmd.extcmd()
 		self.ladderOptionsList = utilities.plcOptions()
-		self.axes = 0
 		self.setupConnections()
 
-		#self.testing()
 		if devel:
 			loadini.openini(self, '/home/john/linuxcnc/configs/7i76e/7i76e.ini')
 		self.show()
@@ -135,352 +124,6 @@ class MainWindow(QMainWindow):
 		self.reloadPB.clicked.connect(partial(card.reloadCard, self, '7i76e'))
 		self.pinsPB.clicked.connect(partial(card.getPins, self))
 
-	"""
-	# Auto connected menu action callbacks
-	@pyqtSlot()
-	def on_actionFileNew_triggered(self):
-		print('File New')
-
-	@pyqtSlot()
-	def on_actionOpen_triggered(self):
-		if os.path.isdir(os.path.expanduser('~/linuxcnc/configs')):
-			configsDir = os.path.expanduser('~/linuxcnc/configs')
-		else:
-			configsDir = os.path.expanduser('~/')
-		fileName = QFileDialog.getOpenFileName(self,
-		caption="Select Configuration INI File", directory=configsDir,
-		filter='*.ini', options=QFileDialog.DontUseNativeDialog,)
-		if fileName:
-			iniFile = (fileName[0])
-			if self.config.read(iniFile):
-				if self.config.has_option('7I76E', 'VERSION'):
-					iniVersion = self.config['7I76E']['VERSION']
-					if iniVersion == self.version:
-						self.iniLoad()
-					else:
-						msg = 'The ini file version is {iniVersion}\n The Configuration Tool version is {self.version}\nTry and open the ini?'
-						if self.errorMsg(msg, 'Version Difference'):
-							self.iniLoad()
-				else:
-					msg = 'This ini file may have been built with an older version\nTry and open?'
-					if self.errorMsg(msg, 'No Version'):
-						self.iniLoad()
-
-	@pyqtSlot()
-	def on_actionSave_triggered(self):
-		self.on_actionBuild_triggered()
-
-	@pyqtSlot()
-	def on_actionAbout_triggered(self):
-		dialog = QtWidgets.QDialog()
-		dialog.ui = aboutDialog()
-		dialog.ui.setupUi(dialog)
-		dialog.ui.versionLB.setText('Version {}'.format(self.version))
-		dialog.ui.systemLB.setText(self.pcStats.system)
-		dialog.ui.releaseLB.setText('Kernel {}'.format(self.pcStats.release))
-		dialog.ui.machineLB.setText('Processor {}'.format(self.pcStats.machine))
-		if sys.maxsize > 2**32: # test for 64bit OS
-			dialog.ui.bitsLB.setText('64 bit OS')
-		else:
-			dialog.ui.bitsLB.setText('32 bit OS')
-		dialog.exec_()
-
-	@pyqtSlot()
-	def on_actionCheck_triggered(self):
-		if self.checkConfig(self):
-			QMessageBox.about(self, 'Configuration', '		Checked OK		')
-		else:
-			self.errorDialog(self.checkConfig.result)
-
-	@pyqtSlot()
-	def on_actionBuild_triggered(self):
-		self.outputPTE.clear()
-		if not self.checkConfig(self):
-			self.errorDialog(self.checkConfig.result)
-			return
-		if self.backupCB.isChecked():
-			if os.path.exists(self.configPath): # there is something to backup
-				backupDir = os.path.join(self.configPath, 'backups')
-				if not os.path.exists(backupDir):
-					os.mkdir(backupDir)
-				backupFile = os.path.join(backupDir, f'{datetime.now():%m-%d-%y-%H:%M:%S}')
-				self.outputPTE.appendPlainText(f'Saving Files to {backupFile}')
-				p1 = subprocess.Popen(['find',self.configPath,'-maxdepth','1','-type','f','-print'], stdout=subprocess.PIPE)
-				p2 = subprocess.Popen(['zip','-j',backupFile,'-@'], stdin=p1.stdout, stdout=subprocess.PIPE)
-				p1.stdout.close()
-				output = p2.communicate()[0]
-				self.outputPTE.appendPlainText(output.decode())
-
-		self.buildConfig(self)
-
-		result = self.builddirs(self)
-		if result:
-			result = self.buildini(self)
-		else:
-			self.statusbar.showMessage('Build Directories Failed')
-			return
-		if result:
-			result = self.buildhal(self)
-		else:
-			self.statusbar.showMessage('Build INI File Failed')
-			return
-		if result:
-			result = self.buildio(self)
-		else:
-			self.statusbar.showMessage('Build HAL Files Failed')
-			return
-		if result:
-			result = self.buildmisc(self)
-		else:
-			self.statusbar.showMessage('Build I/O Files Failed')
-			return
-		if result:
-			self.statusbar.showMessage('Build Files Completed')
-		else:
-			self.statusbar.showMessage('Build Misc Files Failed')
-
-
-	@pyqtSlot()
-	def on_actionSaveAs_triggered(self):
-		 print('File Save As')
-
-	@pyqtSlot()
-	def on_actionExit_triggered(self):
-		exit()
-
-	@pyqtSlot()
-	def on_actionTabHelp_triggered(self):
-		self.help(self.tabWidget.currentIndex())
-
-	@pyqtSlot()
-	def on_actionBuildHelp_triggered(self):
-		self.help(20)
-
-	@pyqtSlot()
-	def on_actionPCHelp_triggered(self):
-		self.help(30)
-
-	def copyOutput(self):
-		self.qclip.setText(self.outputLB.text())
-		self.statusbar.showMessage('Output copied to clipboard')
-
-	def isNumber(self, s):
-		try:
-			s[-1].isdigit()
-			float(s)
-			return True
-		except ValueError:
-			return False
-
-	def onConfigNameChanged(self, text):
-		# update the iniDictionary when text is changed
-		if text:
-			self.configNameUnderscored = text.replace(' ','_').lower()
-			self.configPath = os.path.expanduser('~/linuxcnc/configs') + '/' + self.configNameUnderscored
-			self.pathLabel.setText(self.configPath)
-		else:
-			self.pathLabel.setText('')
-
-	def linearUnitsChanged(self):
-		if self.linearUnitsCB.itemData(self.linearUnitsCB.currentIndex()) == 'inch':
-			for i in range(5):
-				getattr(self, 'minLimit_' + str(i)).setToolTip('inches')
-				getattr(self, 'maxLimit_' + str(i)).setToolTip('inches')
-				getattr(self, 'maxVelocity_' + str(i)).setToolTip('inches per second')
-				getattr(self, 'maxAccel_' + str(i)).setToolTip('inches per second per second')
-				self.units = 'inches'
-		if self.linearUnitsCB.itemData(self.linearUnitsCB.currentIndex()) == 'metric':
-			for i in range(5):
-				getattr(self, 'minLimit_' + str(i)).setToolTip('millimeters')
-				getattr(self, 'maxLimit_' + str(i)).setToolTip('millimeters')
-				getattr(self, 'maxVelocity_' + str(i)).setToolTip('millimeters per second')
-				getattr(self, 'maxAccel_' + str(i)).setToolTip('millimeters per second per second')
-				self.units = 'mm'
-		if self.linearUnitsCB.itemData(self.linearUnitsCB.currentIndex()):
-			self.axisTab.setEnabled(True)
-			self.joint0tab.setEnabled(True)
-		else:
-			self.axisTab.setEnabled(False)
-
-	def onAxisChanged(self):
-		coordList = []
-		for item in self.axisList:
-			if getattr(self,item).itemData(getattr(self,item).currentIndex()):
-				jointTab = getattr(self,item).objectName()[7]
-				axisLetter = getattr(self,item).itemData(getattr(self,item).currentIndex())
-				coordList.append(axisLetter)
-				if axisLetter in ['X', 'Y', 'Z', 'U', 'V', 'W']:
-					getattr(self, 'axisType_' + jointTab).setText('LINEAR')
-				elif axisLetter in ['A', 'B', 'C']:
-					getattr(self, 'axisType_' + jointTab).setText('ANGULAR')
-				else:
-					getattr(self, 'axisType_' + jointTab).setText('')
-		self.coordinatesLB.setText(''.join(coordList))
-		self.stepgensSB.setValue(len(coordList))
-
-	def driveChanged(self):
-		timing = self.sender().itemData(self.sender().currentIndex())
-		joint = self.sender().objectName()[-1]
-		if timing:
-			getattr(self, 'stepTime_' + joint).setText(timing[0])
-			getattr(self, 'stepSpace_' + joint).setText(timing[1])
-			getattr(self, 'dirSetup_' + joint).setText(timing[2])
-			getattr(self, 'dirHold_' + joint).setText(timing[3])
-			getattr(self, 'stepTime_' + joint).setEnabled(False)
-			getattr(self, 'stepSpace_' + joint).setEnabled(False)
-			getattr(self, 'dirSetup_' + joint).setEnabled(False)
-			getattr(self, 'dirHold_' + joint).setEnabled(False)
-		else:
-			getattr(self, 'stepTime_' + joint).setEnabled(True)
-			getattr(self, 'stepSpace_' + joint).setEnabled(True)
-			getattr(self, 'dirSetup_' + joint).setEnabled(True)
-			getattr(self, 'dirHold_' + joint).setEnabled(True)
-
-
-	def updateAxisInfo(self):
-		if self.sender().objectName() == 'actionOpen':
-			return
-		joint = self.sender().objectName()[-1]
-		scale = getattr(self, 'scale_' + joint).text()
-		if scale and self.isNumber(scale):
-			scale = float(scale)
-		else:
-			return
-
-		maxVelocity = getattr(self, 'maxVelocity_' + joint).text()
-		if maxVelocity and self.isNumber(maxVelocity):
-			maxVelocity = float(maxVelocity)
-		else:
-			return
-
-		maxAccel = getattr(self, 'maxAccel_' + joint).text()
-		if maxAccel and self.isNumber(maxAccel):
-			maxAccel = float(maxAccel)
-		else:
-			return
-
-		if not self.units:
-			self.errorDialog('Machine Tab:\nLinear Units must be selected')
-			return
-		accelTime = maxVelocity / maxAccel
-		getattr(self, 'timeJoint_' + joint).setText('{:.2f} seconds'.format(accelTime))
-		accelDistance = accelTime * 0.5 * maxVelocity
-		getattr(self, 'distanceJoint_' + joint).setText('{:.2f} {}'.format(accelDistance, self.units))
-		stepRate = scale * maxVelocity
-		getattr(self, 'stepRateJoint_' + joint).setText('{:.0f} pulses'.format(abs(stepRate)))
-
-	def spindleTypeChanged(self): 
-		if self.spindleTypeCB.itemData(self.spindleTypeCB.currentIndex()) == 'openLoop':
-			pid = '0'
-			self.ff0_s.setText('1')
-			self.spindleGB.setEnabled(True)
-			self.encoderGB.setEnabled(False)
-			self.spindlepidGB.setEnabled(False)
-			self.spindle = True
-		if self.spindleTypeCB.itemData(self.spindleTypeCB.currentIndex()) == 'closedLoop':
-			self.spindle = True
-			pid = '0'
-			self.ff0_s.setText('1')
-			self.spindleGB.setEnabled(True)
-			self.encoderGB.setEnabled(True)
-			self.spindlepidGB.setEnabled(True)
-		if not self.spindleTypeCB.itemData(self.spindleTypeCB.currentIndex()):
-			self.spindle = False
-			pid = ''
-			self.ff0_s.setText('')
-			self.spindleGB.setEnabled(False)
-			self.encoderGB.setEnabled(False)
-			self.spindlepidGB.setEnabled(False)
-		self.p_s.setText(pid)
-		self.i_s.setText(pid)
-		self.d_s.setText(pid)
-		self.ff1_s.setText(pid)
-		self.ff2_s.setText(pid)
-		self.bias_s.setText(pid)
-		self.maxOutput_s.setText(pid)
-		self.maxError_s.setText(pid)
-		self.deadband_s.setText(pid)
-
-	def pidSetDefault(self):
-		tab = self.sender().objectName()[-1]
-		if not self.linearUnitsCB.itemData(self.linearUnitsCB.currentIndex()):
-			QMessageBox.warning(self,'Warning', 'Machine Tab\nLinear Units\nmust be selected', QMessageBox.Ok)
-			return
-		p = int(1000/(int(self.servoPeriodSB.cleanText())/1000000))
-		getattr(self, 'p_' + tab).setText(f'{p}')
-		getattr(self, 'i_' + tab).setText('0')
-		getattr(self, 'd_' + tab).setText('0')
-		getattr(self, 'ff0_' + tab).setText('0')
-		getattr(self, 'ff1_' + tab).setText('1')
-		getattr(self, 'ff2_' + tab).setText('0.00013')
-		getattr(self, 'bias_' + tab).setText('0')
-		getattr(self, 'maxOutput_' + tab).setText('0')
-		if self.linearUnitsCB.itemData(self.linearUnitsCB.currentIndex()) == 'inch':
-			maxError = '0.0005'
-		else:
-			maxError = '0.0127'
-		getattr(self, 'maxError_' + tab).setText(maxError)
-		getattr(self, 'deadband_' + tab).setText('0')
-
-	def buildCB(self):
-		for item in buildcombos.setupCombo('ipAddress'):
-			self.ipAddressCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('board'):
-			self.boardCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('display'):
-			self.guiCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('linearUnits'):
-			self.linearUnitsCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('angularUnits'):
-			self.angularUnitsCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('positionOffset'):
-			self.positionOffsetCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('positionFeedback'):
-			self.positionFeedbackCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('firmware'):
-			self.firmwareCB.addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('spindle'):
-			self.spindleTypeCB.addItem(item[0], item[1])
-		for i in range(5):
-			for item in buildcombos.setupCombo('axis'):
-				getattr(self, 'axisCB_' + str(i)).addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('debug'):
-			self.debugCombo.addItem(item[0], item[1])
-		for i in range(5):
-			for item in buildcombos.setupCombo('drive'):
-				getattr(self, 'driveCB_' + str(i)).addItem(item[0], item[1])
-		for item in buildcombos.setupCombo('speed'):
-			self.speedCB.addItem(item[0], item[1])
-
-	def iniLoad(self):
-		# iniList section, item, value
-		for item in loadini.iniList():
-			if self.config.has_option(item[0], item[1]):
-				if isinstance(getattr(self, item[2]), QLabel):
-					getattr(self, item[2]).setText(self.config[item[0]][item[1]])
-				if isinstance(getattr(self, item[2]), QLineEdit):
-					getattr(self, item[2]).setText(self.config[item[0]][item[1]])
-				if isinstance(getattr(self, item[2]), QSpinBox):
-					getattr(self, item[2]).setValue(abs(int(self.config[item[0]][item[1]])))
-				if isinstance(getattr(self, item[2]), QDoubleSpinBox):
-					getattr(self, item[2]).setValue(float(self.config[item[0]][item[1]]))
-				if isinstance(getattr(self, item[2]), QCheckBox):
-					getattr(self, item[2]).setChecked(eval(self.config[item[0]][item[1]]))
-				if isinstance(getattr(self, item[2]), QGroupBox):
-					getattr(self, item[2]).setChecked(eval(self.config[item[0]][item[1]]))
-				if isinstance(getattr(self, item[2]), QComboBox):
-					index = getattr(self, item[2]).findData(self.config[item[0]][item[1]])
-					if index >= 0:
-						getattr(self, item[2]).setCurrentIndex(index)
-
-	def errorDialog(self, text):
-		dialog = QtWidgets.QDialog()
-		dialog.ui = errorDialog()
-		dialog.ui.setupUi(dialog)
-		dialog.ui.label.setText(text)
-		dialog.exec_()
-	"""
-
 	def buildfiles(self):
 		if not checkconfig.checkit(self):
 			self.outputPTE.appendPlainText('Build Failed')
@@ -516,7 +159,6 @@ class MainWindow(QMainWindow):
 			return True
 		else:
 			return False
-
 
 	def help(self, tab):
 		if tab == 0:
