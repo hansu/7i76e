@@ -28,7 +28,7 @@ terminal in the directory containing the deb and issue the md5sum
 ::
 
 	md5sum 7i76e_0.1.1_all.deb
-	c3007e79089cbcd2446b42b549d84bf7  7i76e_0.1.1_all.deb
+	3e0757cfd3a9ad5e7b60d552caff4f9d  7i76e_0.1.1_all.deb
 
 Open the File Manager and right click on the file and open with Gdebi then install.
 
