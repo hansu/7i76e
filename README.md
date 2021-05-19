@@ -10,7 +10,7 @@ next time you run the 7i76e Configuration Tool it will read the values from the
 ini file.
 
 md5sum and latest deb
-3e0757cfd3a9ad5e7b60d552caff4f9d  7i76e_0.1.1_all.deb
+46020427db6fce8b3cc319d51986e15b  7i76e_0.1.1_all.deb
 
 See the [documentation](https://gnipsel.com/mesa/index.html) for installation
 and usage instructions.
