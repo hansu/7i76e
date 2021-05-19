@@ -23,12 +23,7 @@ If you get `bash: wget: command not found` you can install it from a terminal wi
 
 	sudo apt install wget
 
-Check the md5sum of the downloaded deb to be sure you got it all. Open a
-terminal in the directory containing the deb and issue the md5sum
-::
-
-	md5sum 7i76e_0.1.1_all.deb
-	3e0757cfd3a9ad5e7b60d552caff4f9d  7i76e_0.1.1_all.deb
+Check the readme.md file for the latest deb and md5sum.
 
 Open the File Manager and right click on the file and open with Gdebi then install.
 
