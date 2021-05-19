@@ -47,7 +47,6 @@ def configNameChanged(parent, text):
 		parent.pathLabel.setText('')
 
 def pidSetDefault(parent):
-	print('here')
 	tab = parent.sender().objectName()[-1]
 	if not parent.linearUnitsCB.currentData():
 		QMessageBox.warning(parent,'Warning', 'Machine Tab\nLinear Units\nmust be selected', QMessageBox.Ok)
