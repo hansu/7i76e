@@ -73,10 +73,11 @@ def build(parent):
 		halContents.append(f'setp pid.{i}.maxoutput [JOINT_{i}]MAX_OUTPUT\n')
 		halContents.append(f'setp pid.{i}.maxerror [JOINT_{i}]MAX_ERROR\n')
 
-		halContents.append('\n# Spindle\n')
-		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.pinout-scalemax [SPINDLE]SCALE\n')
-		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-minlim [SPINDLE]MINLIM\n')
-		halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-maxlim [SPINDLE]MAXLIM\n')
+		if len(parent.spindleMaxRpm.text()) > 0:
+			halContents.append('\n# Spindle\n')
+			halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-scalemax [SPINDLE]SCALE\n')
+			halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-minlim [SPINDLE]MINLIM\n')
+			halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-maxlim [SPINDLE]MAXLIM\n')
 	"""
 	if parent.spindleTypeCB.itemData(parent.spindleTypeCB.currentIndex()):
 
@@ -86,6 +87,7 @@ def build(parent):
 
 	halContents.append('\n# Standard I/O Block - EStop, Etc\n')
 	halContents.append('# create a signal for the estop loopback\n')
+	halContents.append('net estop-loopback iocontrol.0.emc-enable-in <= iocontrol.0.user-enable-out\n')
 
 	if parent.manualToolChangeCB.isChecked():
 		halContents.append('\n# create signals for tool loading loopback\n')
