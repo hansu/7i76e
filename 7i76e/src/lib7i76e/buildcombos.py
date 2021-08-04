@@ -1,3 +1,5 @@
+import shutil
+
 def build(parent):
 	ipAddress = [
 	['Select', False],
@@ -131,6 +133,21 @@ def build(parent):
 	for i in range(parent.card['joints']):
 		for item in drives:
 			getattr(parent, f'driveCB_{i}').addItem(item[0], item[1])
+
+	editors = {'Gedit':'gedit', 'Geany':'geany', 'Pyroom':'pyroom',
+		'Pluma':'pluma', 'Scite':'scite', 'Kwrite':'kwrite',
+		'Kate':'kate', 'Mousepad':'mousepad', 'Jedit':'jedit',
+		'XED':'xed'}
+	installed = False
+	for key, value in editors.items():
+		if shutil.which(value) is not None:
+			if not installed:
+				parent.editorCB.addItem('Select', False)
+				installed = True
+			parent.editorCB.addItem(key, value)
+	if not installed:
+		parent.editorCB.addItem('None', False)
+		parent.machinePTE.appendPlainText('No Editors were found!')
 
 	debug = [
 		['Debug Off', '0x00000000'],

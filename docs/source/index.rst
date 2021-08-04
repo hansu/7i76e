@@ -24,11 +24,3 @@
    pc
 
 Report Issues at the `GitHub Issues Tracker for the 7i76e <https://github.com/jethornton/7i76e/issues>`_
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

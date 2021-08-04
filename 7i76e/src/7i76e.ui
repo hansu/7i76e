@@ -501,94 +501,59 @@ QGroupBox::title {
          </item>
         </layout>
        </widget>
-       <widget class="QLineEdit" name="versionLE">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
+       <widget class="QGroupBox" name="groupBox_62">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>220</y>
-          <width>91</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QGroupBox" name="groupBox">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>280</y>
-          <width>221</width>
-          <height>191</height>
+          <y>200</y>
+          <width>270</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="title">
-         <string>Ignore Me</string>
+         <string>G code Editor</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_58">
+        <layout class="QGridLayout" name="gridLayout_118">
          <item row="0" column="0">
-          <widget class="QLabel" name="label_36">
-           <property name="text">
-            <string>INI Version</string>
-           </property>
-          </widget>
+          <widget class="QComboBox" name="editorCB"/>
          </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="driverCB"/>
-         </item>
-         <item row="1" column="0">
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_63">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>280</y>
+          <width>271</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Default Settings</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_119">
+         <item row="0" column="0">
           <widget class="QLabel" name="label_30">
            <property name="text">
-            <string>Driver</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_212">
-           <property name="text">
-            <string>TextLabel</string>
+            <string>Default Jog Speed</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLabel" name="versionLE_2">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
+          <widget class="QDoubleSpinBox" name="defaultJogSpeedDSB">
+           <property name="suffix">
+            <string> ips</string>
            </property>
-           <property name="text">
-            <string>1.1</string>
+           <property name="decimals">
+            <number>1</number>
            </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
            </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_213">
-           <property name="text">
-            <string>Step Gens</string>
+           <property name="value">
+            <double>0.500000000000000</double>
            </property>
           </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="boardCB_2"/>
-         </item>
-         <item row="3" column="1">
-          <widget class="QSpinBox" name="stepgensSB_2"/>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_223">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QSpinBox" name="sserialSB_2"/>
          </item>
         </layout>
        </widget>

@@ -60,9 +60,11 @@ def loadini(parent):
 	#iniList.append(['HOSTMOT2', 'SSERIAL_PORT', 'sserialSB'])
 
 	iniList.append(['DISPLAY', 'DISPLAY', 'guiCB'])
+	iniList.append(['DISPLAY', 'EDITOR', 'editorCB'])
 	iniList.append(['DISPLAY', 'POSITION_OFFSET', 'positionOffsetCB'])
 	iniList.append(['DISPLAY', 'POSITION_FEEDBACK', 'positionFeedbackCB'])
 	iniList.append(['DISPLAY', 'MAX_FEED_OVERRIDE', 'maxFeedOverrideSB'])
+	iniList.append(['DISPLAY', 'DEFAULT_LINEAR_VELOCITY', 'defaultJogSpeedDSB'])
 
 	iniList.append(['EMCMOT', 'SERVO_PERIOD', 'servoPeriodSB'])
 

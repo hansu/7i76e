@@ -44,9 +44,13 @@ def build(parent):
 	# build the [DISPLAY] section maxFeedOverrideLE
 	iniContents.append('\n[DISPLAY]\n')
 	iniContents.append(f'DISPLAY = {parent.guiCB.itemData(parent.guiCB.currentIndex())}\n')
+	if parent.editorCB.currentData():
+		iniContents.append(f'EDITOR = {parent.editorCB.currentData()}\n')
+	iniContents.append(f'PROGRAM_PREFIX = {os.path.expanduser("~/linuxcnc/nc_files")}\n')
 	iniContents.append(f'POSITION_OFFSET = {parent.positionOffsetCB.currentData()}\n')
 	iniContents.append(f'POSITION_FEEDBACK = {parent.positionFeedbackCB.currentData()}\n')
 	iniContents.append(f'MAX_FEED_OVERRIDE = {parent.maxFeedOverrideSB.value()}\n')
+	iniContents.append(f'DEFAULT_LINEAR_VELOCITY = {parent.defaultJogSpeedDSB.value()}\n')
 	iniContents.append('CYCLE_TIME = 0.1\n')
 	iniContents.append(f'INTRO_GRAPHIC = {parent.introGraphicLE.text()}\n')
 	iniContents.append(f'INTRO_TIME = {parent.splashScreenSB.value()}\n')
@@ -75,6 +79,7 @@ def build(parent):
 	# build the [RS274NGC] section
 	iniContents.append('\n[RS274NGC]\n')
 	iniContents.append(f'PARAMETER_FILE = {parent.configNameUnderscored}.var\n')
+	iniContents.append(f'SUBROUTINE_PATH = {os.path.expanduser("~/linuxcnc/subroutines")}\n')
 
 	# build the [EMCMOT] section
 	iniContents.append('\n[EMCMOT]\n')
