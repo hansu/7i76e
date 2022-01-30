@@ -5891,6 +5891,23 @@ max speed</string>
            </property>
           </widget>
          </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_194">
+           <property name="text">
+            <string>PWM Frequency</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="pwmFrequencySB">
+           <property name="maximum">
+            <number>193000</number>
+           </property>
+           <property name="value">
+            <number>20000</number>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
        <widget class="QGroupBox" name="spindleInfoGB">

@@ -146,9 +146,6 @@ def updateAxisInfo(parent):
 
 
 def spindleTypeChanged(parent):
-	pass
-
-	"""
 	#print(parent.spindleTypeCB.itemData(parent.spindleTypeCB.currentIndex()))
 	if parent.spindleTypeCB.currentData():
 		parent.spindleGB.setEnabled(True)
@@ -197,7 +194,7 @@ def spindleTypeChanged(parent):
 		parent.spindleInfo2Lbl.setText("")
 		parent.spindleInfo3Lbl.setText("")
 		parent.spindleInfo4Lbl.setText("")
-"""
+
 
 def fileNew(parent):
 	parent.errorMsgOk('Close the Tool,\n Then open', 'Info!')
