@@ -116,10 +116,12 @@ def build(parent):
 	# build the [HALUI] section
 	iniContents.append('\n[HALUI]\n')
 
-	# build the axes
+	# build the [AXIS_n] section
+	axes = []
 	for i in range(parent.card['joints']):
 		axis = getattr(parent, f'axisCB_{i}').currentData()
-		if axis:
+		if axis and axis not in axes:
+			axes.append(axis)
 			jointTab = getattr(parent, f'axisCB_{i}').objectName()[7]
 			iniContents.append(f'\n[AXIS_{axis}]\n')
 			iniContents.append(f'MIN_LIMIT = {getattr(parent, f"minLimit_{jointTab}").text()}\n')
@@ -165,8 +167,7 @@ def build(parent):
 			iniContents.append(f'MAX_ERROR = {getattr(parent, f"maxError_{i}").text()}\n')
 
 	# build the [SPINDLE] section if enabled
-	#print(parent.spindleTypeCB.currentText())
-	if len(parent.spindleMaxRpm.text()) > 0:
+	if parent.spindleTypeCB.currentData():
 		iniContents.append('\n[SPINDLE]\n')
 		iniContents.append(f'OUTPUT_TYPE = {parent.spindleTypeCB.currentData()}\n')
 		iniContents.append(f'SCALE = {parent.spindleScale.text()}\n')

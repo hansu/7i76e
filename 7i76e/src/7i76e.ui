@@ -276,7 +276,7 @@ QGroupBox::title {
              <x>0</x>
              <y>0</y>
              <width>1018</width>
-             <height>447</height>
+             <height>457</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
@@ -5596,12 +5596,12 @@ max speed</string>
        </attribute>
        <widget class="QGroupBox" name="spindlepidGB">
         <property name="enabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="geometry">
          <rect>
           <x>380</x>
-          <y>80</y>
+          <y>120</y>
           <width>353</width>
           <height>197</height>
          </rect>
@@ -5819,12 +5819,12 @@ max speed</string>
        </widget>
        <widget class="QGroupBox" name="encoderGB">
         <property name="enabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>80</y>
+          <y>120</y>
           <width>331</width>
           <height>111</height>
          </rect>
@@ -5853,12 +5853,12 @@ max speed</string>
        </widget>
        <widget class="QGroupBox" name="spindleGB">
         <property name="enabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="geometry">
          <rect>
           <x>39</x>
-          <y>220</y>
+          <y>260</y>
           <width>321</width>
           <height>111</height>
          </rect>
@@ -5900,7 +5900,7 @@ max speed</string>
         <property name="geometry">
          <rect>
           <x>390</x>
-          <y>310</y>
+          <y>340</y>
           <width>291</width>
           <height>171</height>
          </rect>
@@ -5951,6 +5951,62 @@ max speed</string>
             <string/>
            </property>
           </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="label_142">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>431</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Spindle PWM requires the 4 axis plus PWM configuration.&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_876">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>0</y>
+          <width>201</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>For Spindle On/Off, 
+Spindle CW/CCW
+use Outputs</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>10</y>
+          <width>204</width>
+          <height>66</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Spindle Type</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_58">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_193">
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="spindleTypeCB"/>
          </item>
         </layout>
        </widget>
@@ -15141,7 +15197,7 @@ The Smart Serial Card configuration will not load from the ini file at this time
      <x>0</x>
      <y>0</y>
      <width>1060</width>
-     <height>25</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
