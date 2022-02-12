@@ -51,8 +51,8 @@ def build(parent):
 		halContents.append(f'net emcmot.{i}.pos-cmd joint.{i}.motor-pos-cmd => pid.{i}.command\n')
 		halContents.append(f'net motor.{i}.pos-fb <= hm2_[HOSTMOT2](BOARD).0.stepgen.0{i}.position-fb joint.{i}.motor-pos-fb pid.{i}.feedback\n')
 		halContents.append(f'net motor.{i}.command pid.{i}.output hm2_[HOSTMOT2](BOARD).0.stepgen.0{i}.velocity-cmd\n')
-		halContents.append(f'setp pid.{i}.error-previous-target true\n\n')
-		halContents.append(f'setp hm2_[HOSTMOT2](BOARD).0.stepgen.0{i}.dirsetup [JOINT_{i}]DIRSETUP\n')
+		halContents.append(f'setp pid.{i}.error-previous-target true\n')
+		halContents.append(f'\nsetp hm2_[HOSTMOT2](BOARD).0.stepgen.0{i}.dirsetup [JOINT_{i}]DIRSETUP\n')
 		halContents.append(f'setp hm2_[HOSTMOT2](BOARD).0.stepgen.0{i}.dirhold [JOINT_{i}]DIRHOLD\n')
 		halContents.append(f'setp hm2_[HOSTMOT2](BOARD).0.stepgen.0{i}.steplen [JOINT_{i}]STEPLEN\n')
 		halContents.append(f'setp hm2_[HOSTMOT2](BOARD).0.stepgen.0{i}.stepspace [JOINT_{i}]STEPSPACE\n')
@@ -75,9 +75,11 @@ def build(parent):
 
 		if len(parent.spindleMaxRpm.text()) > 0:
 			halContents.append('\n# Spindle\n')
-			halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-scalemax [SPINDLE]SCALE\n')
-			halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-minlim [SPINDLE]MINLIM\n')
-			halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-maxlim [SPINDLE]MAXLIM\n')
+			halContents.append('net spindle-enable spindle.0.on => hm2_7i76e.0.7i76.0.0.spinena\n')
+
+			#halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-scalemax [SPINDLE]SCALE\n')
+			#halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-minlim [SPINDLE]MINLIM\n')
+			#halContents.append('setp hm2_[HOSTMOT2](BOARD).0.spinout-maxlim [SPINDLE]MAXLIM\n')
 	"""
 	if parent.spindleTypeCB.itemData(parent.spindleTypeCB.currentIndex()):
 

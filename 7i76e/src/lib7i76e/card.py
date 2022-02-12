@@ -46,6 +46,16 @@ def reloadCard(parent, card):
 		arguments = ["--device", card, "--addr", ipAddress, "--reload"]
 		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.outputPTE)
 
+def verifyCard(parent, card):
+	if check_emc():
+		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to verify the {card}', 'Error')
+		return
+	if check_ip(parent):
+		ipAddress = parent.ipAddressCB.currentText()
+		firmware = os.path.join(parent.lib_path, parent.firmwareCB.currentData())
+		arguments = ["--device", card, "--addr", ipAddress, "--verify", firmware]
+		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.outputPTE)
+
 def getPins(parent):
 	if check_ip(parent):
 		with open('temp.hal', 'w') as f:

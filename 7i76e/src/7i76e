@@ -123,6 +123,7 @@ class MainWindow(QMainWindow):
 		self.readPB.clicked.connect(partial(card.readCard, self, '7i76e'))
 		self.flashPB.clicked.connect(partial(card.flashCard, self, '7i76e'))
 		self.reloadPB.clicked.connect(partial(card.reloadCard, self, '7i76e'))
+		self.verifyPB.clicked.connect(partial(card.verifyCard, self, '7i76e'))
 		self.pinsPB.clicked.connect(partial(card.getPins, self))
 
 	def buildfiles(self):
