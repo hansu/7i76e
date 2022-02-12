@@ -139,7 +139,7 @@ def build(parent):
 			iniContents.append(f'MAX_VELOCITY = {getattr(parent, f"maxVelocity_{i}").text()}\n')
 			iniContents.append(f'MAX_ACCELERATION = {getattr(parent, f"maxAccel_{i}").text()}\n')
 			iniContents.append(f'TYPE = {getattr(parent, f"axisType_{i}").text()}\n')
-			if parent.reverse_0.isChecked():
+			if getattr(parent, "reverse_" + str(i)).isChecked():
 				iniContents.append(f'SCALE = -{getattr(parent, f"scale_{i}").text()}\n')
 			else:
 				iniContents.append(f'SCALE = {getattr(parent, f"scale_{i}").text()}\n')
