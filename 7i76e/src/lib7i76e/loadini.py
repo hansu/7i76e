@@ -155,6 +155,8 @@ def loadini(parent):
 				getattr(parent, item[2]).setChecked(eval(config[item[0]][item[1]]))
 			elif isinstance(getattr(parent, item[2]), QComboBox):
 				index = getattr(parent, item[2]).findData(config[item[0]][item[1]])
+				if item[1] == 'DRIVE':
+					index = getattr(parent, item[2]).findText(config[item[0]][item[1]])
 				if index >= 0:
 					getattr(parent, item[2]).setCurrentIndex(index)
 			elif isinstance(getattr(parent, item[2]), QPushButton):

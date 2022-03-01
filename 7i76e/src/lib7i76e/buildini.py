@@ -143,6 +143,7 @@ def build(parent):
 				iniContents.append(f'SCALE = -{getattr(parent, f"scale_{i}").text()}\n')
 			else:
 				iniContents.append(f'SCALE = {getattr(parent, f"scale_{i}").text()}\n')
+			iniContents.append(f'DRIVE = {getattr(parent, "driveCB_" + str(i)).currentText()}\n')
 			iniContents.append(f'STEPGEN_MAX_VEL = {str(float(getattr(parent, f"maxVelocity_{i}").text()) * 1.2)}\n')
 			iniContents.append(f'STEPGEN_MAX_ACC = {str(float(getattr(parent, f"maxAccel_{i}").text()) * 1.2)}\n')
 			if parent.linearUnitsCB.currentData() == 'inches':
