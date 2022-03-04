@@ -24,12 +24,19 @@ def build(parent):
 	halContents.append('loadrt hostmot2\n\n')
 	halContents.append('loadrt [HOSTMOT2](DRIVER) ')
 	halContents.append('board_ip=[HOSTMOT2](IPADDRESS) ')
-	if parent.stepgensCB.currentData():
-		halContents.append('num_stepgens=[HOSTMOT2](STEPGENS) ')
+	config = False
 	if parent.encodersCB.currentData():
-		halContents.append('config="num_encoders=[HOSTMOT2](ENCODERS) ')
-	if parent.pwmgensCB.currentData():
-		halContents.append('num_pwmgens=[HOSTMOT2](PWMS) ')
+		config = True
+	elif parent.stepgensCB.currentData():
+		config = True
+	if config:
+		halContents.append('config="')
+	if parent.encodersCB.currentData():
+		halContents.append('num_encoders=[HOSTMOT2](ENCODERS) ')
+	if parent.stepgensCB.currentData():
+		halContents.append('num_stepgens=[HOSTMOT2](STEPGENS)')
+	if config:
+		halContents.append('"')
 	halContents.append(f'\nsetp hm2_[HOSTMOT2](BOARD).0.watchdog.timeout_ns {parent.servoPeriodSB.value() * 5}\n')
 	halContents.append('\n# THREADS\n')
 	halContents.append('addf hm2_[HOSTMOT2](BOARD).0.read servo-thread\n')
