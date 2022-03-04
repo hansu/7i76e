@@ -43,12 +43,8 @@ The 7i76 must be connected to the PC and 5vdc power supplied.
 * **Copy** Copies the contents of the output window to the clipboard. Then you
   can paste the output to a file for later use.
 
-Board Setup Group
-^^^^^^^^^^^^^^^^^
-
-The `Board Setup Group` contains options for the 7i76e card.
-
-* **Driver** Default is HostMot2 Ethernet
+Configuration Setup Group
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * **IP Address** Select the IP address configured on the 7i76e.
 
@@ -56,11 +52,7 @@ The `Board Setup Group` contains options for the 7i76e card.
 
 * **Encoders** For future use
 
-* **SSerial Port** For future use
-
 Misc.
-
-* **Version** should be 1.1 or higher, it is used by the LinuxCNC conversion script.
 
 * **Coordinates** displays the coordinates that are configured in the Axis tab.
 
