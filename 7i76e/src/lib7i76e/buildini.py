@@ -38,8 +38,6 @@ def build(parent):
 		iniContents.append(f'STEPGENS = {str(parent.stepgensCB.currentData())}\n')
 	if parent.encodersCB.currentData():
 		iniContents.append(f'ENCODERS = {str(parent.encodersCB.currentData())}\n')
-	if parent.pwmgensCB.currentData():
-		iniContents.append(f'PWMS = {str(parent.pwmgensCB.currentData())}\n')
 
 	# build the [DISPLAY] section maxFeedOverrideLE
 	iniContents.append('\n[DISPLAY]\n')
