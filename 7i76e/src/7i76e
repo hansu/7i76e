@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 
+"""
+To Do:
+
+"""
+VERSION = '0.1.1'
+
 import sys, os
 from functools import partial
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox,
 	QDialog)
+from PyQt5.QtGui import QPixmap
 
 from lib7i76e import buildcombos
 from lib7i76e import buildmenus
@@ -43,17 +50,12 @@ class MainWindow(QMainWindow):
 		super(MainWindow, self).__init__()
 		if os.path.split(sys.argv[0])[0] == '/usr/bin':
 			self.lib_path = '/usr/lib/lib7i76e'
-			print('Installed')
-			devel = False
-			if len(sys.argv) > 1:
-				if sys.argv[1] == 'devel':
-					devel = True
+			uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
 		if os.path.split(sys.argv[0])[0] == '.':
-			self.lib_path = os.path.split(os.path.realpath(sys.argv[0]))[0]
-			print('In Development')
-			devel = True
-		uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
-		self.version = '0.1.0'
+			srcPath = os.path.split(os.path.realpath(sys.argv[0]))[0]
+			self.lib_path = os.path.join(srcPath, 'lib7i76e')
+			uic.loadUi(os.path.join(srcPath, '7i76e.ui'), self)
+		self.version = VERSION
 		self.emcVersion = '1.1'
 		self.setWindowTitle(f'7i76e Configuration Tool Version {self.version}')
 		self.card = {'type':'7i76e', 'joints': 5, 'inputs': 32, 'outputs': 16}
@@ -63,27 +65,7 @@ class MainWindow(QMainWindow):
 		self.extcmd = extcmd.extcmd()
 		self.ladderOptionsList = utilities.plcOptions()
 		self.setupConnections()
-
-		if devel:
-			loadini.openini(self, '/home/john/linuxcnc/configs/7i76e/7i76e.ini')
 		self.show()
-
-	def testing(self):
-		self.configName.setText('7i76e')
-		self.linearUnitsCB.setCurrentIndex(1)
-		self.maxLinearVel.setText('5')
-		self.ipAddressCB.setCurrentIndex(1)
-		self.guiCB.setCurrentIndex(1)
-		self.positionOffsetCB.setCurrentIndex(1)
-		self.positionFeedbackCB.setCurrentIndex(1)
-		self.axisCB_0.setCurrentIndex(1)
-		self.driveCB_0.setCurrentIndex(3)
-		self.scale_0.setText('1000')
-		self.minLimit_0.setText('0')
-		self.maxLimit_0.setText('25')
-		self.maxVelocity_0.setText('5')
-		self.maxAccel_0.setText('15')
-		#self..setText('')
 
 	def setupConnections(self):
 		self.configName.textChanged[str].connect(partial(utilities.configNameChanged, self))
@@ -125,6 +107,8 @@ class MainWindow(QMainWindow):
 		self.reloadPB.clicked.connect(partial(card.reloadCard, self, '7i76e'))
 		self.verifyPB.clicked.connect(partial(card.verifyCard, self, '7i76e'))
 		self.pinsPB.clicked.connect(partial(card.getPins, self))
+		pixmap = QPixmap(os.path.join(self.lib_path, '7i76e.png'))
+		self.card7i76eLB.setPixmap(pixmap)
 
 	def buildfiles(self):
 		if not checkconfig.checkit(self):

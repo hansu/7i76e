@@ -14906,66 +14906,85 @@ The Smart Serial Card configuration will not load from the ini file at this time
        <attribute name="title">
         <string>Info</string>
        </attribute>
-       <widget class="QScrollArea" name="scrollArea_2">
-        <property name="geometry">
-         <rect>
-          <x>8</x>
-          <y>14</y>
-          <width>731</width>
-          <height>461</height>
-         </rect>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_2">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>729</width>
-           <height>459</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_38">
-          <item row="0" column="0">
-           <widget class="QPlainTextEdit" name="infoPTE"/>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-       <widget class="QPushButton" name="cpuPB">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>500</y>
-          <width>80</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>Central Processing Unit</string>
-        </property>
-        <property name="text">
-         <string>CPU</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="nicPB">
-        <property name="geometry">
-         <rect>
-          <x>130</x>
-          <y>500</y>
-          <width>80</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Network Interface Card&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string>NIC</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_120">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_3">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_7">
+           <attribute name="title">
+            <string>7i76e</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_121">
+            <item row="0" column="0">
+             <widget class="QLabel" name="card7i76eLB">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::Box</enum>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_36">
+              <property name="frameShape">
+               <enum>QFrame::Box</enum>
+              </property>
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_8">
+           <attribute name="title">
+            <string>PC</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_38">
+            <item row="0" column="0" colspan="3">
+             <widget class="QPlainTextEdit" name="infoPTE"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="cpuPB">
+              <property name="toolTip">
+               <string>Central Processing Unit</string>
+              </property>
+              <property name="text">
+               <string>CPU</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="nicPB">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Network Interface Card&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>NIC</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>Copy</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="pc">
        <attribute name="title">
@@ -15547,7 +15566,6 @@ The Smart Serial Card configuration will not load from the ini file at this time
   <tabstop>tabWidget_2</tabstop>
   <tabstop>scrollArea_4</tabstop>
   <tabstop>pinsPB</tabstop>
-  <tabstop>scrollArea_2</tabstop>
   <tabstop>cpuPB</tabstop>
   <tabstop>nicPB</tabstop>
   <tabstop>calcNicPB</tabstop>

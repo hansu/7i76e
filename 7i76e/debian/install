@@ -1,5 +1,6 @@
 src/7i76e usr/bin
 src/7i76e.ui usr/lib/lib7i76e
-src/lib7i76e/*.* usr/lib/python3/dist-packages/lib7i76e
+src/lib7i76e/*.png usr/lib/lib7i76e
+src/lib7i76e/*.py usr/lib/python3/dist-packages/lib7i76e
 src/firmware/*.* usr/lib/lib7i76e
 *.desktop usr/share/applications
