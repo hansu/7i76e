@@ -4,12 +4,12 @@ Installing
 
 7i76e Configuration Tool
 
-.. Note:: Tested on Debian 10, no other OS is supported but it should
-	work on other Debian type OS's.
+.. Note:: Tested on Debian 10, and Linux Mint 20.2 but it should work on
+	other Debian type OS's.
 
 .. Note:: Requires Python 3.6 or newer to work.
 
-I now have a Debian deb for installing 7i76e!!!
+I now have a Debian deb for installing the 7i76e Configuration Tool!!!
 
 Download the `deb <https://github.com/jethornton/7i76e/raw/master/7i76e_0.1.1_all.deb>`_
 

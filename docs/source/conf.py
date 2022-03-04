@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = u'7i76e'
-copyright = u'2019, John Thornton'
+copyright = u'2022, John Thornton'
 author = u'John Thornton'
 
 # The short X.Y version
@@ -78,16 +78,16 @@ pygments_style = 'sphinx'
 # a list of builtin themes.
 #
 # html_theme = 'alabaster'
-html_theme = "sphinx_rtd_theme"
+html_theme = "classic"
 
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {
-    'display_version': False,
-}
+#html_theme_options = {
+#    'display_version': False,
+#}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

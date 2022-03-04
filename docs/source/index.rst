@@ -1,10 +1,6 @@
-.. 7i76e documentation master file, created by
-   sphinx-quickstart on Fri Jan 11 15:50:41 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-7i76e Configuration Tool Documentation
-======================================
+Mesa 7i76e Configuration Tool
+=============================
 
 .. toctree::
    :maxdepth: 1
@@ -17,6 +13,7 @@
    spindle
    inputs
    outputs
+   sserial
    options
    plc
    pins
@@ -24,3 +21,5 @@
    pc
 
 Report Issues at the `GitHub Issues Tracker for the 7i76e <https://github.com/jethornton/7i76e/issues>`_
+or on the #linuxcnc channel of the IRC, if I'm not viewing the channel
+at the time open a dialog window and leave me a message.
