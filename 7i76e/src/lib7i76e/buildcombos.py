@@ -10,8 +10,6 @@ def build(parent):
 	for item in ipAddress:
 		parent.ipAddressCB.addItem(item[0], item[1])
 
-	parent.boardCB.addItem('7i76e', '7i76e')
-
 	stepgens = [
 		['Default', False],
 		['0', '0'],
@@ -33,15 +31,6 @@ def build(parent):
 
 	for item in encoders:
 		parent.encodersCB.addItem(item[0], item[1])
-
-	pwmgens = [
-		['Default', False],
-		['0', '0'],
-		['1', '1']
-	]
-
-	for item in pwmgens:
-		parent.pwmgensCB.addItem(item[0], item[1])
 
 	axes = [
 		['Select', False],
