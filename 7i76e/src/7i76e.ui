@@ -178,15 +178,25 @@ QGroupBox::title {
            <string>Configuration Setup</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_26">
-           <item row="0" column="1">
-            <widget class="QComboBox" name="ipAddressCB"/>
-           </item>
-           <item row="2" column="0">
+           <item row="1" column="0">
             <widget class="QLabel" name="label_33">
              <property name="text">
               <string>Step Generators</string>
              </property>
             </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="ipAddressCB"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_34">
+             <property name="text">
+              <string>Encoders</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="stepgensCB"/>
            </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label_27">
@@ -195,38 +205,8 @@ QGroupBox::title {
              </property>
             </widget>
            </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="encodersCB"/>
-           </item>
            <item row="2" column="1">
-            <widget class="QComboBox" name="stepgensCB"/>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_34">
-             <property name="text">
-              <string>Encoders</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="boardCB"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_32">
-             <property name="text">
-              <string>Board</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_29">
-             <property name="text">
-              <string>Spindle PWM</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QComboBox" name="pwmgensCB"/>
+            <widget class="QComboBox" name="encodersCB"/>
            </item>
           </layout>
          </widget>
@@ -276,7 +256,7 @@ QGroupBox::title {
              <x>0</x>
              <y>0</y>
              <width>1018</width>
-             <height>457</height>
+             <height>471</height>
             </rect>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
@@ -15249,6 +15229,7 @@ The Smart Serial Card configuration will not load from the ini file at this time
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionOpen7i76e"/>
     <addaction name="actionSave"/>
     <addaction name="actionSaveAs"/>
     <addaction name="separator"/>
@@ -15289,6 +15270,7 @@ The Smart Serial Card configuration will not load from the ini file at this time
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
+   <addaction name="actionOpen7i76e"/>
    <addaction name="actionCheck"/>
    <addaction name="actionBuild"/>
    <addaction name="actionExit"/>
@@ -15364,6 +15346,11 @@ The Smart Serial Card configuration will not load from the ini file at this time
   <action name="actionSaveSignals">
    <property name="text">
     <string>Save Signals</string>
+   </property>
+  </action>
+  <action name="actionOpen7i76e">
+   <property name="text">
+    <string>Open 7i76e</string>
    </property>
   </action>
  </widget>
@@ -15492,7 +15479,6 @@ The Smart Serial Card configuration will not load from the ini file at this time
   <tabstop>homeLatchVel_4</tabstop>
   <tabstop>homeIgnoreLimits_4</tabstop>
   <tabstop>debugCB</tabstop>
-  <tabstop>boardCB</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>reloadPB</tabstop>
   <tabstop>flashPB</tabstop>

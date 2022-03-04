@@ -73,6 +73,7 @@ class MainWindow(QMainWindow):
 		self.ssCardCB.currentIndexChanged.connect(partial(sscards.build, self))
 		self.actionNew.triggered.connect(partial(utilities.fileNew, self))
 		self.actionOpen.triggered.connect(partial(loadini.openini, self))
+		self.actionOpen7i76e.triggered.connect(partial(loadini.openini, self, '7i76e'))
 		self.actionSavePins.triggered.connect(partial(card.savePins, self))
 		self.actionSaveSignals.triggered.connect(partial(card.saveSignals, self))
 		self.actionSaveParameters.triggered.connect(partial(card.saveParameters, self))
