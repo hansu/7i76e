@@ -137,7 +137,7 @@ def build(parent):
 			parent.editorCB.addItem(key, value)
 	if not installed:
 		parent.editorCB.addItem('None', False)
-		parent.machinePTE.appendPlainText('No Editors were found!')
+		parent.outputPTE.appendPlainText('No Editors were found!')
 
 	debug = [
 		['Debug Off', '0x00000000'],

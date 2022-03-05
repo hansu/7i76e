@@ -25,9 +25,9 @@ def openini(parent, configName = ''):
 				if 'PNCconf' in contents:
 					parent.errorMsgOk('Can not open a PNCconf ini file!', 'Incompatable File')
 					return
-			parent.machinePTE.appendPlainText(f'Loading {fileName[0]}')
+			parent.outputPTE.appendPlainText(f'Loading {fileName[0]}')
 		else:
-			parent.machinePTE.appendPlainText('Open File Cancled')
+			parent.outputPTE.appendPlainText('Open File Cancled')
 			iniFile = ''
 	else: # we passed a file name
 		configsDir = os.path.expanduser('~/linuxcnc/configs')
