@@ -94,9 +94,15 @@ def build(parent):
 		halContents.append('net spindle-speed spindle.0.speed-out => hm2_[HOSTMOT2](BOARD).0.pwmgen.00.value\n')
 	"""
 
-	halContents.append('\n# Standard I/O Block - EStop, Etc\n')
-	halContents.append('# create a signal for the estop loopback\n')
-	halContents.append('net estop-loopback iocontrol.0.emc-enable-in <= iocontrol.0.user-enable-out\n')
+	externalEstop = False
+	for i in range(6): # test for an external e stop input
+		key = getattr(parent, 'inputPB_' + str(i)).text()
+		if key == 'External E Stop':
+			externalEstop = True
+	if not externalEstop:
+		halContents.append('\n# Standard I/O Block - EStop, Etc\n')
+		halContents.append('# create a signal for the estop loopback\n')
+		halContents.append('net estop-loopback iocontrol.0.emc-enable-in <= iocontrol.0.user-enable-out\n')
 
 	if parent.manualToolChangeCB.isChecked():
 		halContents.append('\n# create signals for tool loading loopback\n')
