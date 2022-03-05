@@ -120,8 +120,7 @@ class MainWindow(QMainWindow):
 		buildhal.build(self)
 		buildio.build(self)
 		buildmisc.build(self)
-		if self.ssCardCB.currentData():
-			buildss.build(self)
+		buildss.build(self)
 
 	def errorMsg(self, text, title=None):
 		msgBox = QMessageBox()
