@@ -3,7 +3,8 @@ from datetime import datetime
 
 def build(parent):
 	filePath = os.path.join(parent.configPath, 'sserial.hal')
-	os.remove(filePath)
+	if os.path.exists(filePath):
+		os.remove(filePath)
 	if parent.ssCardCB.currentData():
 		parent.outputPTE.appendPlainText(f'Building {filePath}')
 		contents = []
