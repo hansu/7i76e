@@ -731,7 +731,7 @@ QGroupBox::title {
                <item row="1" column="8">
                 <widget class="QCheckBox" name="reverse_0">
                  <property name="text">
-                  <string>CheckBox</string>
+                  <string>Reverse Dir</string>
                  </property>
                 </widget>
                </item>
@@ -1654,7 +1654,7 @@ QGroupBox::title {
                <item row="1" column="7">
                 <widget class="QCheckBox" name="reverse_1">
                  <property name="text">
-                  <string>CheckBox</string>
+                  <string>Reverse Dir</string>
                  </property>
                 </widget>
                </item>
@@ -2463,7 +2463,7 @@ QGroupBox::title {
                <item row="1" column="7">
                 <widget class="QCheckBox" name="reverse_2">
                  <property name="text">
-                  <string>CheckBox</string>
+                  <string>Reverse Dir</string>
                  </property>
                 </widget>
                </item>
@@ -3276,7 +3276,7 @@ to max speed</string>
                <item row="1" column="7">
                 <widget class="QCheckBox" name="reverse_3">
                  <property name="text">
-                  <string>CheckBox</string>
+                  <string>Reverse Dir</string>
                  </property>
                 </widget>
                </item>
@@ -4097,7 +4097,7 @@ max speed</string>
                <item row="1" column="7">
                 <widget class="QCheckBox" name="reverse_4">
                  <property name="text">
-                  <string>CheckBox</string>
+                  <string>Reverse Dir</string>
                  </property>
                 </widget>
                </item>
@@ -4906,7 +4906,7 @@ max speed</string>
                <item row="1" column="7">
                 <widget class="QCheckBox" name="reverse_5">
                  <property name="text">
-                  <string>CheckBox</string>
+                  <string>Reverse Dir</string>
                  </property>
                 </widget>
                </item>
