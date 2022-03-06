@@ -7,7 +7,7 @@ Priority: optional
 
 Package: 7i76e
 Priority: optional
-Architecture: all
+Architecture: amd64
 Depends: python3 (>=3.6), python3-pyqt5, ${misc:Depends}, ${python3:Depends}
 Description: Mesa 7i76e Configuration Tool
  This tool creates the configuration files

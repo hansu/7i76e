@@ -11,12 +11,12 @@ Installing
 
 I now have a Debian deb for installing the 7i76e Configuration Tool!!!
 
-Download the `deb <https://github.com/jethornton/7i76e/raw/master/7i76e_0.1.1_all.deb>`_
+Download the `deb <https://github.com/jethornton/7i76e/raw/master/7i76e_0.1.1_amd64.deb>`_
 
 Or use wget from a terminal
 ::
 
-	wget https://github.com/jethornton/7i76e/raw/master/7i76e_0.1.1_all.deb
+	wget https://github.com/jethornton/7i76e/raw/master/7i76e_0.1.1_amd64.deb
 
 If you get `bash: wget: command not found` you can install it from a terminal with
 ::
