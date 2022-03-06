@@ -16,7 +16,7 @@ def checks(parent):
 		t = ('Mesaflash not found go to\n'
 			'https://github.com/LinuxCNC/mesaflash\n'
 			'for installation instructions.')
-		parent.outputPTE.appendPlainText(t)
+		parent.machinePTE.appendPlainText(t)
 		parent.readPB.setEnabled(False)
 		parent.flashPB.setEnabled(False)
 		parent.reloadPB.setEnabled(False)
@@ -204,6 +204,6 @@ def fileSaveAs(parent):
 
 def copyOutput(parent):
 	qclip = QApplication.clipboard()
-	qclip.setText(parent.outputPTE.toPlainText())
+	qclip.setText(parent.machinePTE.toPlainText())
 	parent.statusbar.showMessage('Output copied to clipboard')
 

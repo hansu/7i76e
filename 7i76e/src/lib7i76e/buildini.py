@@ -4,7 +4,7 @@ from datetime import datetime
 def build(parent):
 	buildErrors = []
 	iniFilePath = os.path.join(parent.configPath, parent.configNameUnderscored + '.ini')
-	parent.outputPTE.appendPlainText(f'Building {iniFilePath}')
+	parent.machinePTE.appendPlainText(f'Building {iniFilePath}')
 
 	if os.path.isfile(iniFilePath):
 		pass
@@ -13,7 +13,7 @@ def build(parent):
 		try:
 			os.mkdir(parent.configPath)
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	iniContents = ['# This file was created with the 7i76e Configuration Tool on ']
 	iniContents.append(datetime.now().strftime('%b %d %Y %H:%M:%S') + '\n')
@@ -286,4 +286,4 @@ def build(parent):
 		with open(iniFilePath, 'w') as iniFile:
 			iniFile.writelines(iniContents)
 	except OSError:
-		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+		parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')

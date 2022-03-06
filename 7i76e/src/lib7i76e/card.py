@@ -21,7 +21,7 @@ def readCard(parent, card):
 	if check_ip(parent):
 		ipAddress = parent.ipAddressCB.currentText()
 		arguments = ["--device", card, "--addr", ipAddress, "--readhmid"]
-		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.outputPTE)
+		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 
 def flashCard(parent, card):
 	if check_emc():
@@ -33,7 +33,7 @@ def flashCard(parent, card):
 			ipAddress = parent.ipAddressCB.currentText()
 			firmware = os.path.join(parent.lib_path, parent.firmwareCB.currentData())
 			arguments = ["--device", card, "--addr", ipAddress, "--write", firmware]
-			parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.outputPTE)
+			parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 		else:
 			parent.errorMsgOk('A firmware must be selected', 'Error!')
 
@@ -44,7 +44,7 @@ def reloadCard(parent, card):
 	if check_ip(parent):
 		ipAddress = parent.ipAddressCB.currentText()
 		arguments = ["--device", card, "--addr", ipAddress, "--reload"]
-		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.outputPTE)
+		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 
 def verifyCard(parent, card):
 	if check_emc():
@@ -54,7 +54,7 @@ def verifyCard(parent, card):
 		ipAddress = parent.ipAddressCB.currentText()
 		firmware = os.path.join(parent.lib_path, parent.firmwareCB.currentData())
 		arguments = ["--device", card, "--addr", ipAddress, "--verify", firmware]
-		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.outputPTE)
+		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 
 def getPins(parent):
 	if check_ip(parent):

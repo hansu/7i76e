@@ -9,11 +9,11 @@ def build(parent):
 		try: # if this file exists don't write over it
 			with open(shutupFilepath, 'x') as shutupFile:
 				shutupFile.writelines(shutupContents)
-			parent.outputPTE.appendPlainText(f'Building {shutupFilepath}')
+			parent.machinePTE.appendPlainText(f'Building {shutupFilepath}')
 		except FileExistsError:
 			pass
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	if parent.customhalCB.isChecked():
 		customFilePath = os.path.join(parent.configPath, 'custom.hal')
@@ -23,11 +23,11 @@ def build(parent):
 		try: # if this file exists don't write over it
 			with open(customFilePath, 'x') as customFile:
 				customFile.writelines(customContents)
-			parent.outputPTE.appendPlainText(f'Building {customFilePath}')
+			parent.machinePTE.appendPlainText(f'Building {customFilePath}')
 		except FileExistsError:
 			pass
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	if parent.postguiCB.isChecked():
 		# create the postgui.hal file if not there
@@ -39,11 +39,11 @@ def build(parent):
 		try: # if this file exists don't write over it
 			with open(postguiFilePath, 'x') as postguiFile:
 				postguiFile.writelines(postguiContents)
-			parent.outputPTE.appendPlainText(f'Building {postguiFilePath}')
+			parent.machinePTE.appendPlainText(f'Building {postguiFilePath}')
 		except FileExistsError:
 			pass
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	if parent.shutdownCB.isChecked():
 		# create the shutdown.hal file if not there
@@ -55,11 +55,11 @@ def build(parent):
 		try: # if this file exists don't write over it
 			with open(shutdownFilePath, 'x') as shutdownFile:
 				shutdownFile.writelines(shutdownContents)
-			parent.outputPTE.appendPlainText(f'Building {shutdownFilePath}')
+			parent.machinePTE.appendPlainText(f'Building {shutdownFilePath}')
 		except FileExistsError:
 			pass
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the tool file if not there
 	toolFilePath = os.path.join(parent.configPath, 'tool.tbl')
@@ -69,11 +69,11 @@ def build(parent):
 	try: # if this file exists don't write over it
 		with open(toolFilePath, 'x') as toolFile:
 			toolFile.writelines(toolContents)
-		parent.outputPTE.appendPlainText(f'Building {toolFilePath}')
+		parent.machinePTE.appendPlainText(f'Building {toolFilePath}')
 	except FileExistsError:
 		pass
 	except OSError:
-		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+		parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the var file if not there
 	varFilePath = os.path.join(parent.configPath, parent.configNameUnderscored + '.var')
@@ -82,7 +82,7 @@ def build(parent):
 	except FileExistsError:
 		pass
 	except OSError:
-		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+		parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the pyvcp panel if checked and not there
 	if parent.pyvcpCB.isChecked():
@@ -103,11 +103,11 @@ def build(parent):
 		try: # if this file exists don't write over it
 			with open(pyvcpFilePath, 'x') as pyvcpFile:
 				pyvcpFile.writelines(pyvcpContents)
-			parent.outputPTE.appendPlainText(f'Building {pyvcpFilePath}')
+			parent.machinePTE.appendPlainText(f'Building {pyvcpFilePath}')
 		except FileExistsError:
 			pass
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
 
 	# create the clp file if selected
 	if parent.ladderGB.isChecked():
@@ -231,8 +231,8 @@ _/FILES_CLASSICLADDER
 		try: # if this file exists don't write over it
 			with open(ladderFilePath, 'x') as ladderFile:
 				ladderFile.writelines(ladderContents)
-				parent.outputPTE.appendPlainText(f'Building {ladderFilePath}')
+				parent.machinePTE.appendPlainText(f'Building {ladderFilePath}')
 		except FileExistsError:
 			pass
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')

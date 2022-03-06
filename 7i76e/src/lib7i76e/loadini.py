@@ -9,7 +9,7 @@ config.optionxform = str
 
 def openini(parent, configName = ''):
 	parent.tabWidget.setCurrentIndex(0)
-	parent.outputPTE.clear()
+	parent.machinePTE.clear()
 	if not configName:
 		if os.path.isdir(os.path.expanduser('~/linuxcnc/configs')):
 			configsDir = os.path.expanduser('~/linuxcnc/configs')
@@ -25,9 +25,9 @@ def openini(parent, configName = ''):
 				if 'PNCconf' in contents:
 					parent.errorMsgOk('Can not open a PNCconf ini file!', 'Incompatable File')
 					return
-			parent.outputPTE.appendPlainText(f'Loading {fileName[0]}')
+			parent.machinePTE.appendPlainText(f'Loading {fileName[0]}')
 		else:
-			parent.outputPTE.appendPlainText('Open File Cancled')
+			parent.machinePTE.appendPlainText('Open File Cancled')
 			iniFile = ''
 	else: # we passed a file name
 		configsDir = os.path.expanduser('~/linuxcnc/configs')
@@ -172,7 +172,7 @@ def loadini(parent):
 			else:
 				print(item[2])
 
-	parent.outputPTE.appendPlainText('INI file Loaded')
+	parent.machinePTE.appendPlainText('INI file Loaded')
 
 	if config.has_section('SSERIAL'):
 		card = config.get('SSERIAL', 'ssCardCB')
@@ -180,4 +180,4 @@ def loadini(parent):
 		if index > 0:
 			parent.ssCardCB.setCurrentIndex(index)
 		loadss.load(parent, config)
-	parent.outputPTE.appendPlainText('Smart Serial file Loaded')
+	parent.machinePTE.appendPlainText('Smart Serial file Loaded')

@@ -113,7 +113,7 @@ class MainWindow(QMainWindow):
 
 	def buildfiles(self):
 		if not checkconfig.checkit(self):
-			self.outputPTE.appendPlainText('Build Failed')
+			self.machinePTE.appendPlainText('Build Failed')
 			return
 		buildfiles.build(self)
 		buildini.build(self)

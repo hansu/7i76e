@@ -3,7 +3,7 @@ from datetime import datetime
 
 def build(parent):
 	halFilePath = os.path.join(parent.configPath, parent.configNameUnderscored + '.hal')
-	parent.outputPTE.appendPlainText(f'Building {halFilePath}')
+	parent.machinePTE.appendPlainText(f'Building {halFilePath}')
 
 	halContents = []
 	halContents = ['# This file was created with the 7i95 Configuration Tool on ']
@@ -126,4 +126,4 @@ def build(parent):
 		with open(halFilePath, 'w') as halFile:
 			halFile.writelines(halContents)
 	except OSError:
-		parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+		parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')

@@ -6,7 +6,7 @@ def build(parent):
 	if os.path.exists(filePath):
 		os.remove(filePath)
 	if parent.ssCardCB.currentData():
-		parent.outputPTE.appendPlainText(f'Building {filePath}')
+		parent.machinePTE.appendPlainText(f'Building {filePath}')
 		contents = []
 		contents = ['# This file was created with the 7i96 Wizard on ']
 		contents.append(datetime.now().strftime('%b %d %Y %H:%M:%S') + '\n')
@@ -90,4 +90,4 @@ def build(parent):
 			with open(filePath, 'w') as f:
 				f.writelines(contents)
 		except OSError:
-			parent.outputPTE.appendPlainText(f'OS error\n {traceback.print_exc()}')
+			parent.machinePTE.appendPlainText(f'OS error\n {traceback.print_exc()}')

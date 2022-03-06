@@ -261,7 +261,7 @@ QGroupBox::title {
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QPlainTextEdit" name="outputPTE"/>
+             <widget class="QPlainTextEdit" name="machinePTE"/>
             </item>
            </layout>
           </widget>

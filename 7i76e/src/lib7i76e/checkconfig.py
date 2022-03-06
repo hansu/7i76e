@@ -128,13 +128,13 @@ def checkit(parent):
 		tabError = False
 	# end of Axis Tab
 
-	parent.outputPTE.clear()
+	parent.machinePTE.clear()
 	if configErrors:
 		checkit.result = '\n'.join(configErrors)
-		parent.outputPTE.setPlainText(checkit.result)
+		parent.machinePTE.setPlainText(checkit.result)
 		return False
 	else:
-		parent.outputPTE.setPlainText('Configuration checked OK')
+		parent.machinePTE.setPlainText('Configuration checked OK')
 		return True
 	
 def isNumber(x):
