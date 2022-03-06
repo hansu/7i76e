@@ -46,6 +46,16 @@ def configNameChanged(parent, text):
 	else:
 		parent.pathLabel.setText('')
 
+def maxVelChanged(parent, text):
+	if text:
+		if isNumber(text):
+			val = float(text)
+			parent.maxVelMinLB.setText(F'{val * 60} units/min')
+		else:
+			parent.maxVelMinLB.setText('ERROR')
+	else:
+		parent.maxVelMinLB.setText('  units/min')
+
 def pidSetDefault(parent):
 	tab = parent.sender().objectName()[-1]
 	if not parent.linearUnitsCB.currentData():

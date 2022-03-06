@@ -69,6 +69,7 @@ class MainWindow(QMainWindow):
 
 	def setupConnections(self):
 		self.configName.textChanged[str].connect(partial(utilities.configNameChanged, self))
+		self.maxLinearVel.textChanged[str].connect(partial(utilities.maxVelChanged, self))
 		self.spindleTypeCB.currentIndexChanged.connect(partial(utilities.spindleTypeChanged, self))
 		self.ssCardCB.currentIndexChanged.connect(partial(sscards.build, self))
 		self.actionNew.triggered.connect(partial(utilities.fileNew, self))

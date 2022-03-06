@@ -75,6 +75,13 @@ QGroupBox::title {
            <property name="bottomMargin">
             <number>9</number>
            </property>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Coordinates</string>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
@@ -82,22 +89,15 @@ QGroupBox::title {
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_3">
+           <item row="4" column="1">
+            <widget class="QLabel" name="coordinatesLB">
+             <property name="frameShape">
+              <enum>QFrame::Box</enum>
+             </property>
              <property name="text">
-              <string>Linear Units</string>
+              <string/>
              </property>
             </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="configName">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Any combination of letters and digits&lt;br/&gt;including the dash and underscore.&lt;br/&gt;Spaces are replaced with underscore.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QComboBox" name="linearUnitsCB"/>
            </item>
            <item row="3" column="1">
             <widget class="QLineEdit" name="maxLinearVel"/>
@@ -109,6 +109,9 @@ QGroupBox::title {
              </property>
             </widget>
            </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="linearUnitsCB"/>
+           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label">
              <property name="text">
@@ -116,27 +119,43 @@ QGroupBox::title {
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Linear Units</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="maxVelMinLB">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Box</enum>
+             </property>
+             <property name="text">
+              <string>    units/min</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="2">
+            <widget class="QLineEdit" name="configName">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Any combination of letters and digits&lt;br/&gt;including the dash and underscore.&lt;br/&gt;Spaces are replaced with underscore.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
             <widget class="QLabel" name="pathLabel">
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_10">
-             <property name="text">
-              <string>Coordinates</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QLabel" name="coordinatesLB">
-             <property name="frameShape">
-              <enum>QFrame::Box</enum>
              </property>
              <property name="text">
               <string/>
