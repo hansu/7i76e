@@ -1,4 +1,4 @@
-import shutil
+import shutil, os
 
 def build(parent):
 	ipAddress = [
@@ -184,20 +184,11 @@ def build(parent):
 	for item in cpuSpeed:
 		parent.cpuSpeedCB.addItem(item[0], item[1])
 
-	firmware = [
-		['Select', False],
-		['7i76e 7i76x1 7i74x1D', '7i76e_7i76x1_7i74x1D.bit'],
-		['7i76e 7i76x1 7i74x1SSID', '7i76e_7i76x1_7i74x1SSID.bit'],
-		['7i76e 7i76x1 7i77x1D', '7i76e_7i76x1_7i77x1D.bit'],
-		['7i76e 7i76x1 7i85sx1D', '7i76e_7i76x1_7i85sx1D.bit'],
-		['7i76e 7i76x1 7i85x1_7i85sx1D', '7i76e_7i76x1_7i85x1_7i85sx1D.bit'],
-		['7i76e 7i76x1 7i85x1D', '7i76e_7i76x1_7i85x1D.bit'],
-		['7i76e 7i76x1 bstechx2d', '7i76e_7i76x1_bstechx2d.bit'],
-		['7i76e 7i76x1D', '7i76e_7i76x1D.bit'],
-		['7i76e 7i76x1pD', '7i76e_7i76x1pD.bit'],
-		['7i76e 7i76x3D', '7i76e_7i76x3D.bit'],
-		['7i76e JUSTIO', '7i76e_JUSTIO.bit'],
-		]
+	# firmware combobox
+	parent.firmwareCB.addItem('Select', False)
+	path = parent.firmware_path
+	files = sorted([entry.path for entry in os.scandir(path) if entry.is_file()])
+	for file in files:
+		if os.path.splitext(file)[1] == '.bit':
+			parent.firmwareCB.addItem(os.path.basename(file), file)
 
-	for item in firmware:
-		parent.firmwareCB.addItem(item[0], item[1])

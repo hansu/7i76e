@@ -50,10 +50,12 @@ class MainWindow(QMainWindow):
 		super(MainWindow, self).__init__()
 		if os.path.split(sys.argv[0])[0] == '/usr/bin':
 			self.lib_path = '/usr/lib/lib7i76e'
+			self.firmware_path = '/usr/lib/lib7i80'
 			uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
 		if os.path.split(sys.argv[0])[0] == '.':
 			srcPath = os.path.split(os.path.realpath(sys.argv[0]))[0]
 			self.lib_path = os.path.join(srcPath, 'lib7i76e')
+			self.firmware_path = os.path.join(srcPath, 'firmware')
 			uic.loadUi(os.path.join(srcPath, '7i76e.ui'), self)
 		self.version = VERSION
 		self.emcVersion = '1.1'
