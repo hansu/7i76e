@@ -10,7 +10,7 @@ config.optionxform = str
 def openini(parent, configName = ''):
 	parent.tabWidget.setCurrentIndex(0)
 	parent.machinePTE.clear()
-	if not configName:
+	if not configName: # open file dialog
 		if os.path.isdir(os.path.expanduser('~/linuxcnc/configs')):
 			configsDir = os.path.expanduser('~/linuxcnc/configs')
 		else:
@@ -19,16 +19,6 @@ def openini(parent, configName = ''):
 		caption="Select Configuration INI File", directory=configsDir,
 		filter='*.ini', options=QFileDialog.DontUseNativeDialog,)
 		iniFile = fileName[0]
-		if iniFile:
-			with open(iniFile) as f:
-				contents = f.read()
-				if 'PNCconf' in contents:
-					parent.errorMsgOk('Can not open a PNCconf ini file!', 'Incompatable File')
-					return
-			parent.machinePTE.appendPlainText(f'Loading {fileName[0]}')
-		else:
-			parent.machinePTE.appendPlainText('Open File Cancled')
-			iniFile = ''
 	else: # we passed a file name
 		configsDir = os.path.expanduser('~/linuxcnc/configs')
 		iniFile = os.path.join(configsDir, configName, configName + '.ini')
@@ -36,6 +26,16 @@ def openini(parent, configName = ''):
 			msg = f'Create and Save the Default File\n{iniFile}'
 			parent.errorMsgOk(msg, 'Not Found')
 			return
+	if iniFile:
+		with open(iniFile) as f:
+			contents = f.read()
+			if 'PNCconf' in contents:
+				parent.errorMsgOk('Can not open a PNCconf ini file!', 'Incompatable File')
+				return
+		parent.machinePTE.appendPlainText(f'Loading {iniFile[0]}')
+	else:
+		parent.machinePTE.appendPlainText('Open File Cancled')
+		iniFile = ''
 	if config.read(iniFile):
 		if config.has_option('7i76e', 'VERSION'):
 			iniVersion = config['7i76e']['VERSION']
