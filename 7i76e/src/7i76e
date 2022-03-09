@@ -11,7 +11,7 @@ from functools import partial
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox,
-	QDialog)
+	QDialog, qApp)
 from PyQt5.QtGui import QPixmap
 
 from lib7i76e import buildcombos
@@ -82,6 +82,7 @@ class MainWindow(QMainWindow):
 		self.actionSaveParameters.triggered.connect(partial(card.saveParameters, self))
 		self.actionSave.triggered.connect(self.buildfiles)
 		self.actionSaveAs.triggered.connect(partial(utilities.fileSaveAs, self))
+		self.actionExit.triggered.connect(qApp.quit)
 		self.actionCheck.triggered.connect(partial(checkconfig.checkit, self))
 		self.actionBuild.triggered.connect(self.buildfiles)
 		for i in range(self.card['joints']):
