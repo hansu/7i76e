@@ -7,6 +7,15 @@ Mesa 7i76e Configuration Tool
    :caption: Contents:
 
    install
+
+All the sections after this are not up to date and are a copy of the 7i96
+documentation.
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Out of Date Contents:
+
+
    machine
    display
    axis
