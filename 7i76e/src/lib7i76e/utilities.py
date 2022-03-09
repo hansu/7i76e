@@ -1,4 +1,5 @@
 import os, subprocess
+from datetime import datetime
 from PyQt5.QtWidgets import QMessageBox, QApplication
 
 def isNumber(s):
@@ -76,6 +77,21 @@ def pidSetDefault(parent):
 		maxError = '0.0127'
 	getattr(parent, 'maxError_' + tab).setText(maxError)
 	getattr(parent, 'deadband_' + tab).setText('0')
+
+def firmwareChanged(parent):
+	if parent.firmwareCB.currentData():
+		path = os.path.splitext(parent.firmwareCB.currentData())[0]
+		bitfile = os.path.join(path + '.pin')
+		if os.path.exists(bitfile):
+			with open(bitfile, 'r') as file:
+				data = file.read()
+			parent.machinePTE.clear()
+			parent.machinePTE.setPlainText(data)
+		else:
+			parent.machinePTE.clear()
+			parent.machinePTE.setPlainText(f'No bit file found for {parent.firmwareCB.currentText()}')
+	else:
+		parent.machinePTE.clear()
 
 def spindlePidDefault(parent):
 	if not parent.linearUnitsCB.currentData():
@@ -205,6 +221,18 @@ def spindleTypeChanged(parent):
 		parent.spindleInfo3Lbl.setText("")
 		parent.spindleInfo4Lbl.setText("")
 
+def backupFiles(parent):
+	print('backing up')
+	backupDir = os.path.join(parent.configPath, 'backups')
+	if not os.path.exists(backupDir):
+		os.mkdir(backupDir)
+	p1 = subprocess.Popen(['find',parent.configPath,'-maxdepth','1','-type','f','-print'], stdout=subprocess.PIPE)
+	backupFile = os.path.join(backupDir, f'{datetime.now():%m-%d-%y-%H:%M:%S}')
+	p2 = subprocess.Popen(['zip','-j',backupFile,'-@'], stdin=p1.stdout, stdout=subprocess.PIPE)
+	p1.stdout.close()
+	parent.machinePTE.appendPlainText('Backing up Confguration')
+	output = p2.communicate()[0]
+	parent.machinePTE.appendPlainText(output.decode())
 
 def fileNew(parent):
 	parent.errorMsgOk('Close the Tool,\n Then open', 'Info!')

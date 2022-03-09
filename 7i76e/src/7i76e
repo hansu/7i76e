@@ -110,6 +110,7 @@ class MainWindow(QMainWindow):
 		self.flashPB.clicked.connect(partial(card.flashCard, self, '7i76e'))
 		self.reloadPB.clicked.connect(partial(card.reloadCard, self, '7i76e'))
 		self.verifyPB.clicked.connect(partial(card.verifyCard, self, '7i76e'))
+		self.firmwareCB.currentIndexChanged.connect(partial(utilities.firmwareChanged, self))
 		self.pinsPB.clicked.connect(partial(card.getPins, self))
 		pixmap = QPixmap(os.path.join(self.lib_path, '7i76e.png'))
 		self.card7i76eLB.setPixmap(pixmap)
@@ -118,6 +119,8 @@ class MainWindow(QMainWindow):
 		if not checkconfig.checkit(self):
 			self.machinePTE.appendPlainText('Build Failed')
 			return
+		if self.backupCB.isChecked():
+			utilities.backupFiles(self)
 		buildfiles.build(self)
 		buildini.build(self)
 		buildhal.build(self)
