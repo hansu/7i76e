@@ -40,18 +40,18 @@ def openini(parent, configName = ''):
 		if config.has_option('7i76e', 'VERSION'):
 			iniVersion = config['7i76e']['VERSION']
 			if iniVersion == parent.version:
-				loadini(parent)
+				loadini(parent, iniFile)
 			else:
 				msg = (f'The ini file version is {iniVersion}\n'
 					f'The Configuration Tool version is {parent.version}\n'
 					'Try and open the ini?')
 				if parent.errorMsg(msg, 'Version Difference'):
-					loadini(parent)
+					loadini(parent, iniFile)
 		else:
 			msg = ('This ini file may have been built with an older version\n'
 				'Try and open?')
 			if parent.errorMsg(msg, 'No Version'):
-				loadini(parent)
+				loadini(parent, iniFile)
 
 def loadini(parent):
 	# Section, Item, Object Name
