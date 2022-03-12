@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pyuic5 7i76e.ui -o lib7i76e/ui_7i76e.py
+pylupdate5 lib7i76e/ui_7i76e.py  -ts lib7i76e/eng-de.ts
+pylupdate5 lib7i76e/ui_7i76e.py  -ts lib7i76e/eng-es.ts
+pylupdate5 lib7i76e/ui_7i76e.py  -ts lib7i76e/eng-fr.ts
+

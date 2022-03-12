@@ -15262,7 +15262,23 @@ The Smart Serial Card configuration will not load from the ini file at this time
     <addaction name="actionPCHelp"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionEnglish"/>
+     <addaction name="actionGerman"/>
+     <addaction name="actionFrench"/>
+     <addaction name="actionSpanish"/>
+    </widget>
+    <addaction name="menuLanguage"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -15359,6 +15375,26 @@ The Smart Serial Card configuration will not load from the ini file at this time
   <action name="actionOpen7i76e">
    <property name="text">
     <string>Open 7i76e</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionGerman">
+   <property name="text">
+    <string>Deutsch</string>
+   </property>
+  </action>
+  <action name="actionFrench">
+   <property name="text">
+    <string>Français</string>
+   </property>
+  </action>
+  <action name="actionSpanish">
+   <property name="text">
+    <string>Español</string>
    </property>
   </action>
  </widget>

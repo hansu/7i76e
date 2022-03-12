@@ -9,7 +9,7 @@ VERSION = '0.1.1'
 import sys, os
 from functools import partial
 
-from PyQt5 import uic
+from PyQt5 import QtCore, uic, QtWidgets
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QMessageBox,
 	QDialog, qApp)
 from PyQt5.QtGui import QPixmap
@@ -32,6 +32,7 @@ from lib7i76e import extcmd
 from lib7i76e import helptext
 from lib7i76e.help import Ui_Dialog as helpDialog
 from lib7i76e.about import Ui_about as aboutDialog
+from lib7i76e.ui_7i76e import Ui_mainWindow
 
 class VersionError(QMainWindow):
 	def __init__(self):
@@ -45,18 +46,20 @@ class VersionError(QMainWindow):
 		msgBox.exec()
 		sys.exit()
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_mainWindow):
 	def __init__(self):
-		super(MainWindow, self).__init__()
+		super().__init__()
+		self.setupUi(self) # needed to load Ui_MainWindow
+		self.trans = QtCore.QTranslator(self)
 		if os.path.split(sys.argv[0])[0] == '/usr/bin':
 			self.lib_path = '/usr/lib/lib7i76e'
 			self.firmware_path = '/usr/lib/lib7i76e'
-			uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
+			#uic.loadUi(os.path.join(self.lib_path, '7i76e.ui'), self)
 		if os.path.split(sys.argv[0])[0] == '.':
 			srcPath = os.path.split(os.path.realpath(sys.argv[0]))[0]
 			self.lib_path = os.path.join(srcPath, 'lib7i76e')
 			self.firmware_path = os.path.join(srcPath, 'firmware')
-			uic.loadUi(os.path.join(srcPath, '7i76e.ui'), self)
+			#uic.loadUi(os.path.join(srcPath, '7i76e.ui'), self)
 		self.version = VERSION
 		self.emcVersion = '1.1'
 		self.setWindowTitle(f'7i76e Configuration Tool Version {self.version}')
@@ -83,6 +86,11 @@ class MainWindow(QMainWindow):
 		self.actionSave.triggered.connect(self.buildfiles)
 		self.actionSaveAs.triggered.connect(partial(utilities.fileSaveAs, self))
 		self.actionExit.triggered.connect(qApp.quit)
+		self.actionEnglish.triggered.connect(self.change_language)
+		self.actionGerman.triggered.connect(self.change_language)
+		self.actionSpanish.triggered.connect(self.change_language)
+		self.actionFrench.triggered.connect(self.change_language)
+
 		self.actionCheck.triggered.connect(partial(checkconfig.checkit, self))
 		self.actionBuild.triggered.connect(self.buildfiles)
 		for i in range(self.card['joints']):
@@ -115,6 +123,26 @@ class MainWindow(QMainWindow):
 		self.pinsPB.clicked.connect(partial(card.getPins, self))
 		pixmap = QPixmap(os.path.join(self.lib_path, '7i76e.png'))
 		self.card7i76eLB.setPixmap(pixmap)
+
+	def change_language(self):
+		if self.sender().text() == 'English':
+			QtWidgets.QApplication.instance().removeTranslator(self.trans)
+			self.retranslateUi(self)
+
+		elif self.sender().text() == 'Deutsch':
+			self.trans.load(os.path.join(self.lib_path, 'eng-de'))
+			QtWidgets.QApplication.instance().installTranslator(self.trans)
+			self.retranslateUi(self)
+
+		elif self.sender().text() == 'Español':
+			print(self.trans.load(os.path.join(self.lib_path, 'eng-es')))
+			QtWidgets.QApplication.instance().installTranslator(self.trans)
+			self.retranslateUi(self)
+
+		elif self.sender().text() == 'Français':
+			print(self.trans.load(os.path.join(self.lib_path, 'eng-fr')))
+			QtWidgets.QApplication.instance().installTranslator(self.trans)
+			self.retranslateUi(self)
 
 	def buildfiles(self):
 		if not checkconfig.checkit(self):

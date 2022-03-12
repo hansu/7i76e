@@ -1,0 +1,5 @@
+#!/bin/bash
+
+lrelease lib7i76e/eng-de.ts lib7i76e/eng-de.qm
+lrelease lib7i76e/eng-es.ts lib7i76e/eng-es.qm
+lrelease lib7i76e/eng-fr.ts lib7i76e/eng-fr.qm
