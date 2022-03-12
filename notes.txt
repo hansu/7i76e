@@ -19,3 +19,11 @@ to build a deb from the top most directory
 dpkg-buildpackage -us -uc
 
 md5sum 7i76e_0.1.1_all.deb > md5sum.txt
+
+net spindle-vel-cmd-rpm => pid.s.command
+
+would need to be:
+
+net spindle-vel-cmd-rpm-abs => pid.s.command
+
+additional changes would be needed if the PID loop was used
