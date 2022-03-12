@@ -86,11 +86,10 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 		self.actionSave.triggered.connect(self.buildfiles)
 		self.actionSaveAs.triggered.connect(partial(utilities.fileSaveAs, self))
 		self.actionExit.triggered.connect(qApp.quit)
-		self.actionEnglish.triggered.connect(self.change_language)
-		self.actionGerman.triggered.connect(self.change_language)
-		self.actionSpanish.triggered.connect(self.change_language)
-		self.actionFrench.triggered.connect(self.change_language)
-
+		self.actionEnglish.triggered.connect(partial(self.change_language, None))
+		self.actionGerman.triggered.connect(partial(self.change_language, 'eng-de'))
+		self.actionSpanish.triggered.connect(partial(self.change_language, 'eng-es'))
+		self.actionFrench.triggered.connect(partial(self.change_language, 'eng-fr'))
 		self.actionCheck.triggered.connect(partial(checkconfig.checkit, self))
 		self.actionBuild.triggered.connect(self.buildfiles)
 		for i in range(self.card['joints']):
@@ -124,23 +123,13 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 		pixmap = QPixmap(os.path.join(self.lib_path, '7i76e.png'))
 		self.card7i76eLB.setPixmap(pixmap)
 
-	def change_language(self):
-		if self.sender().text() == 'English':
+	def change_language(self, tf = None):
+		#print(self.sender().text())
+		if not tf:
 			QtWidgets.QApplication.instance().removeTranslator(self.trans)
 			self.retranslateUi(self)
-
-		elif self.sender().text() == 'Deutsch':
-			self.trans.load(os.path.join(self.lib_path, 'eng-de'))
-			QtWidgets.QApplication.instance().installTranslator(self.trans)
-			self.retranslateUi(self)
-
-		elif self.sender().text() == 'Español':
-			print(self.trans.load(os.path.join(self.lib_path, 'eng-es')))
-			QtWidgets.QApplication.instance().installTranslator(self.trans)
-			self.retranslateUi(self)
-
-		elif self.sender().text() == 'Français':
-			print(self.trans.load(os.path.join(self.lib_path, 'eng-fr')))
+		else:
+			self.trans.load(os.path.join(self.lib_path, tf))
 			QtWidgets.QApplication.instance().installTranslator(self.trans)
 			self.retranslateUi(self)
 
