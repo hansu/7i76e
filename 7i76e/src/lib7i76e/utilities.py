@@ -222,7 +222,9 @@ def spindleTypeChanged(parent):
 		parent.spindleInfo4Lbl.setText("")
 
 def backupFiles(parent):
-	print('backing up')
+	if not os.path.exists(parent.configPath):
+		parent.machinePTE.setPlainText('Nothing to Back Up')
+		return
 	backupDir = os.path.join(parent.configPath, 'backups')
 	if not os.path.exists(backupDir):
 		os.mkdir(backupDir)
