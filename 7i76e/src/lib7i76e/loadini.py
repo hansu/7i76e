@@ -53,7 +53,7 @@ def openini(parent, configName = ''):
 			if parent.errorMsg(msg, 'No Version'):
 				loadini(parent, iniFile)
 
-def loadini(parent):
+def loadini(parent, iniFile):
 	# Section, Item, Object Name
 	iniList = []
 	#iniList.append(['EMC', 'VERSION', 'versionLE'])
