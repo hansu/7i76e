@@ -89,7 +89,7 @@ def firmwareChanged(parent):
 			parent.machinePTE.setPlainText(data)
 		else:
 			parent.machinePTE.clear()
-			parent.machinePTE.setPlainText(f'No bit file found for {parent.firmwareCB.currentText()}')
+			parent.machinePTE.setPlainText(f'No pin file found for {parent.firmwareCB.currentText()}')
 	else:
 		parent.machinePTE.clear()
 
