@@ -5,7 +5,6 @@ pins
 *.gz
 *.buildinfo
 *.changes
-7i76e/src/firmware
 7i76e/debian/7i76e
 7i76e/debian/7i76e.*
 7i76e/debian/.debhelper
