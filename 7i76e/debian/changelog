@@ -1,3 +1,9 @@
+7i76e (1.0.1) unstable; urgency=medium
+
+  * Fix SS cards and 7i73
+
+ -- John Thornton <jt@gnipsel.com>  Wed, 23 Mar 2022 07:00:37 -0500
+
 7i76e (1.0.0) unstable; urgency=medium
 
   * Add language translation
