@@ -35,7 +35,7 @@ class Ui_mainWindow(object):
 "QGroupBox::title {\n"
 "    subcontrol-origin: margin;\n"
 "    left: 7px;\n"
-"    padding: 0px 5px 0px 5px;\n"
+"    padding: 5px 5px 5px 5px;\n"
 "}")
         self.tabWidget.setObjectName("tabWidget")
         self.machine = QtWidgets.QWidget()
