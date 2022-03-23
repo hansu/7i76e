@@ -38,6 +38,14 @@ outputs = [{'Not Used':'Select'},
 	{'Digital Out':['Digital Out 0', 'Digital Out 1', 'Digital Out 2', 'Digital Out 3', ]}
 ]
 
+ain = [
+	['Select', False],
+	['Analog In 0', 'motion.analog-in-00'],
+	['Analog In 1', 'motion.analog-in-01'],
+	['Analog In 2', 'motion.analog-in-02'],
+	['Analog In 3', 'motion.analog-in-03'],
+]
+
 def build(parent):
 	for i in range(parent.card['inputs']):
 		button = getattr(parent, f'inputPB_{i}')
@@ -115,6 +123,54 @@ def build(parent):
 		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
 		add_menu(outputs, menu)
 		button.setMenu(menu)
+
+	# 7i73 I/O
+	for i in range(8):
+		getattr(parent, 'ss7i73keylbl_' + str(i)).setText(f'Output {i+10}')
+		button = getattr(parent, f'ss7i73key_{i}')
+		menu = QMenu()
+		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
+		add_menu(outputs, menu)
+		button.setMenu(menu)
+	for i in range(8,16):
+		getattr(parent, 'ss7i73keylbl_' + str(i)).setText(f'Input {i+8}')
+		button = getattr(parent, f'ss7i73key_{i}')
+		menu = QMenu()
+		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
+		add_menu(inputs, menu)
+		button.setMenu(menu)
+	for i in range(8):
+		getattr(parent, 'ss7i73lcdlbl_' + str(i)).setText(f'Output {i+2}')
+		button = getattr(parent, f'ss7i73lcd_{i}')
+		menu = QMenu()
+		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
+		add_menu(outputs, menu)
+		button.setMenu(menu)
+	for i in range(8,12):
+		getattr(parent, 'ss7i73lcdlbl_' + str(i)).setText(f'Output {i+10}')
+		button = getattr(parent, f'ss7i73lcd_{i}')
+		menu = QMenu()
+		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
+		add_menu(outputs, menu)
+		button.setMenu(menu)
+	for i in range(16):
+		button = getattr(parent, f'ss7i73in_{i}')
+		menu = QMenu()
+		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
+		add_menu(inputs, menu)
+		button.setMenu(menu)
+	for i in range(2):
+		button = getattr(parent, f'ss7i73out_{i}')
+		menu = QMenu()
+		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
+		add_menu(outputs, menu)
+		button.setMenu(menu)
+
+	# 7i87 Combo Boxes
+	for i in range(8):
+		for item in ain:
+			getattr(parent, 'ss7i87in_' + str(i)).addItem(item[0], item[1])
+
 
 def add_menu(data, menu_obj):
 	if isinstance(data, dict):

@@ -16,7 +16,6 @@ from PyQt5.QtGui import QPixmap
 
 from lib7i76e import buildcombos
 from lib7i76e import buildmenus
-from lib7i76e import sscards
 from lib7i76e import checkconfig
 from lib7i76e import loadini
 from lib7i76e import buildfiles
@@ -76,7 +75,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 		self.configName.textChanged[str].connect(partial(utilities.configNameChanged, self))
 		self.maxLinearVel.textChanged[str].connect(partial(utilities.maxVelChanged, self))
 		self.spindleTypeCB.currentIndexChanged.connect(partial(utilities.spindleTypeChanged, self))
-		self.ssCardCB.currentIndexChanged.connect(partial(sscards.build, self))
+		self.ssCardCB.currentIndexChanged.connect(partial(utilities.ssCardChanged, self))
 		self.actionNew.triggered.connect(partial(utilities.fileNew, self))
 		self.actionOpen.triggered.connect(partial(loadini.openini, self))
 		self.actionOpen7i76e.triggered.connect(partial(loadini.openini, self, '7i76e'))
@@ -122,6 +121,8 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 		self.pinsPB.clicked.connect(partial(card.getPins, self))
 		pixmap = QPixmap(os.path.join(self.lib_path, '7i76e.png'))
 		self.card7i76eLB.setPixmap(pixmap)
+		self.ss7i73_keypadCB.currentIndexChanged.connect(partial(utilities.ss7i73Changed, self))
+		self.ss7i73lcdCB.currentIndexChanged.connect(partial(utilities.ss7i73Changed, self))
 
 	def change_language(self, tf = None):
 		#print(self.sender().text())

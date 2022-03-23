@@ -224,63 +224,48 @@ def build(parent):
 		iniContents.append('# DO NOT change the sserial text\n')
 		iniContents.append(f'ssCardCB = {parent.ssCardCB.currentText()}\n')
 	if parent.ssCardCB.currentText() == '7i64':
-		# 24 ss7i64in_
-		# 24 ss7i64out_
 		for i in range(24):
 			iniContents.append(f'ss7i64in_{i} = {getattr(parent, f"ss7i64in_{i}").text()}\n')
 		for i in range(24):
 			iniContents.append(f'ss7i64out_{i} = {getattr(parent, f"ss7i64out_{i}").text()}\n')
 
 	elif parent.ssCardCB.currentText() == '7i69':
-		print('here')
-		# 24 ss7i69in_
-		# 24 ss7i69out_
 		for i in range(24):
-			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i69in_{i}").currentData()}\n')
+			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i69in_{i}").text()}\n')
 		for i in range(24):
-			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i69out_{i}").currentData()}\n')
+			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i69out_{i}").text()}\n')
 
 	elif parent.ssCardCB.currentText() == '7i70':
-		# 48 ss7i70in_
 		for i in range(48):
-			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i70in_{i}").currentData()}\n')
+			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i70in_{i}").text()}\n')
 
 	elif parent.ssCardCB.currentText() == '7i71':
-		# 48 ss7i71out_
 		for i in range(48):
-			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i71out_{i}").currentData()}\n')
+			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i71out_{i}").text()}\n')
 
 	elif parent.ssCardCB.currentText() == '7i72':
-		# 48 ss7i72out_
 		for i in range(48):
-			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i72out_{i}").currentData()}\n')
+			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i72out_{i}").text()}\n')
 
 	elif parent.ssCardCB.currentText() == '7i73':
-		# 16 ss7i73key_
-		# 12 ss7i73lcd_
-		# 16 ss7i73in_
-		# 2 ss7i73out_
 		for i in range(16):
-			iniContents.append(f'SS_KEY_{i} = {getattr(parent, f"ss7i73key_{i}").currentData()}\n')
+			iniContents.append(f'SS_KEY_{i} = {getattr(parent, f"ss7i73key_{i}").text()}\n')
 		for i in range(12):
-			iniContents.append(f'SS_LCD_{i} = {getattr(parent, f"ss7i73lcd_{i}").currentData()}\n')
+			iniContents.append(f'SS_LCD_{i} = {getattr(parent, f"ss7i73lcd_{i}").text()}\n')
 		for i in range(16):
-			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i73in_{i}").currentData()}\n')
+			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i73in_{i}").text()}\n')
 		for i in range(2):
-			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i73out_{i}").currentData()}\n')
+			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i73out_{i}").text()}\n')
 
 	elif parent.ssCardCB.currentText() == '7i84':
-		# 32 ss7i84in_
-		# 16 ss7i84out_
 		for i in range(32):
-			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i84in_{i}").currentData()}\n')
+			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i84in_{i}").text()}\n')
 		for i in range(16):
-			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i84out_{i}").currentData()}\n')
+			iniContents.append(f'SS_OUTPUT_{i} = {getattr(parent, f"ss7i84out_{i}").text()}\n')
 
 	elif parent.ssCardCB.currentText() == '7i87':
-		# 8 ss7i87in_
 		for i in range(8):
-			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i87in_{i}").currentData()}\n')
+			iniContents.append(f'SS_INPUT_{i} = {getattr(parent, f"ss7i87in_{i}").text()}\n')
 
 	try:
 		with open(iniFilePath, 'w') as iniFile:

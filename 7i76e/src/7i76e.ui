@@ -10935,10 +10935,10 @@ The Smart Serial Card configuration will not load from the ini file at this time
                       </widget>
                      </item>
                      <item row="5" column="0">
-                      <widget class="QComboBox" name="ss7i96lcdCB"/>
+                      <widget class="QComboBox" name="ss7i73lcdCB"/>
                      </item>
                      <item row="6" column="0">
-                      <widget class="QLabel" name="ss7i96w7Lbl">
+                      <widget class="QLabel" name="ss7i73w7Lbl">
                        <property name="frameShape">
                         <enum>QFrame::Box</enum>
                        </property>
@@ -10969,185 +10969,257 @@ The Smart Serial Card configuration will not load from the ini file at this time
                      <string>I/O P2</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_104">
-                     <item row="1" column="1">
-                      <widget class="QComboBox" name="ss7i73in_1"/>
-                     </item>
                      <item row="0" column="0">
                       <widget class="QLabel" name="label_793">
                        <property name="text">
-                        <string>In 0</string>
+                        <string>Input 0</string>
                        </property>
                       </widget>
                      </item>
                      <item row="2" column="0">
                       <widget class="QLabel" name="label_794">
                        <property name="text">
-                        <string>In 2</string>
+                        <string>Input 2</string>
                        </property>
                       </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QComboBox" name="ss7i73in_0"/>
-                     </item>
-                     <item row="3" column="1">
-                      <widget class="QComboBox" name="ss7i73in_3"/>
-                     </item>
-                     <item row="4" column="1">
-                      <widget class="QComboBox" name="ss7i73in_4"/>
-                     </item>
-                     <item row="13" column="1">
-                      <widget class="QComboBox" name="ss7i73in_13"/>
-                     </item>
-                     <item row="11" column="1">
-                      <widget class="QComboBox" name="ss7i73in_11"/>
-                     </item>
-                     <item row="5" column="1">
-                      <widget class="QComboBox" name="ss7i73in_5"/>
                      </item>
                      <item row="0" column="2">
                       <widget class="QLabel" name="label_795">
                        <property name="text">
-                        <string>Out 0</string>
+                        <string>Output 0</string>
                        </property>
                       </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <widget class="QComboBox" name="ss7i73in_2"/>
                      </item>
                      <item row="6" column="0">
                       <widget class="QLabel" name="label_796">
                        <property name="text">
-                        <string>In 6</string>
+                        <string>Input 6</string>
                        </property>
                       </widget>
                      </item>
                      <item row="13" column="0">
                       <widget class="QLabel" name="label_797">
                        <property name="text">
-                        <string>In 13</string>
+                        <string>Input 13</string>
                        </property>
                       </widget>
-                     </item>
-                     <item row="8" column="1">
-                      <widget class="QComboBox" name="ss7i73in_8"/>
                      </item>
                      <item row="8" column="0">
                       <widget class="QLabel" name="label_798">
                        <property name="text">
-                        <string>In 8</string>
+                        <string>Input 8</string>
                        </property>
                       </widget>
                      </item>
                      <item row="4" column="0">
                       <widget class="QLabel" name="label_799">
                        <property name="text">
-                        <string>In 4</string>
+                        <string>Input 4</string>
                        </property>
                       </widget>
-                     </item>
-                     <item row="7" column="1">
-                      <widget class="QComboBox" name="ss7i73in_7"/>
-                     </item>
-                     <item row="9" column="1">
-                      <widget class="QComboBox" name="ss7i73in_9"/>
-                     </item>
-                     <item row="6" column="1">
-                      <widget class="QComboBox" name="ss7i73in_6"/>
-                     </item>
-                     <item row="10" column="1">
-                      <widget class="QComboBox" name="ss7i73in_10"/>
-                     </item>
-                     <item row="14" column="1">
-                      <widget class="QComboBox" name="ss7i73in_14"/>
-                     </item>
-                     <item row="15" column="1">
-                      <widget class="QComboBox" name="ss7i73in_15"/>
                      </item>
                      <item row="5" column="0">
                       <widget class="QLabel" name="label_800">
                        <property name="text">
-                        <string>In 5</string>
+                        <string>Input 5</string>
                        </property>
                       </widget>
                      </item>
                      <item row="1" column="0">
                       <widget class="QLabel" name="label_801">
                        <property name="text">
-                        <string>In 1</string>
+                        <string>Input 1</string>
                        </property>
                       </widget>
                      </item>
                      <item row="11" column="0">
                       <widget class="QLabel" name="label_802">
                        <property name="text">
-                        <string>In 11</string>
+                        <string>Input 11</string>
                        </property>
                       </widget>
-                     </item>
-                     <item row="12" column="1">
-                      <widget class="QComboBox" name="ss7i73in_12"/>
                      </item>
                      <item row="7" column="0">
                       <widget class="QLabel" name="label_803">
                        <property name="text">
-                        <string>In 7</string>
+                        <string>Input 7</string>
                        </property>
                       </widget>
                      </item>
                      <item row="3" column="0">
                       <widget class="QLabel" name="label_804">
                        <property name="text">
-                        <string>In 3</string>
+                        <string>Input 3</string>
                        </property>
                       </widget>
                      </item>
                      <item row="9" column="0">
                       <widget class="QLabel" name="label_805">
                        <property name="text">
-                        <string>In 9</string>
+                        <string>Input 9</string>
                        </property>
                       </widget>
                      </item>
                      <item row="12" column="0">
                       <widget class="QLabel" name="label_806">
                        <property name="text">
-                        <string>In 12</string>
+                        <string>Input 12</string>
                        </property>
                       </widget>
                      </item>
                      <item row="10" column="0">
                       <widget class="QLabel" name="label_807">
                        <property name="text">
-                        <string>In 10</string>
+                        <string>Input 10</string>
                        </property>
                       </widget>
                      </item>
                      <item row="14" column="0">
                       <widget class="QLabel" name="label_808">
                        <property name="text">
-                        <string>In 14</string>
+                        <string>Input 14</string>
                        </property>
                       </widget>
                      </item>
                      <item row="15" column="0">
                       <widget class="QLabel" name="label_809">
                        <property name="text">
-                        <string>In 15</string>
+                        <string>Input 15</string>
                        </property>
                       </widget>
-                     </item>
-                     <item row="0" column="3">
-                      <widget class="QComboBox" name="ss7i73out_0"/>
                      </item>
                      <item row="1" column="2">
                       <widget class="QLabel" name="label_810">
                        <property name="text">
-                        <string>Out 1</string>
+                        <string>Output 1</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QPushButton" name="ss7i73in_0">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QPushButton" name="ss7i73in_1">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QPushButton" name="ss7i73in_2">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QPushButton" name="ss7i73in_3">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QPushButton" name="ss7i73in_4">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="1">
+                      <widget class="QPushButton" name="ss7i73in_5">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="1">
+                      <widget class="QPushButton" name="ss7i73in_6">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="1">
+                      <widget class="QPushButton" name="ss7i73in_7">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="8" column="1">
+                      <widget class="QPushButton" name="ss7i73in_8">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="9" column="1">
+                      <widget class="QPushButton" name="ss7i73in_9">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="10" column="1">
+                      <widget class="QPushButton" name="ss7i73in_10">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="11" column="1">
+                      <widget class="QPushButton" name="ss7i73in_11">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="12" column="1">
+                      <widget class="QPushButton" name="ss7i73in_12">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="13" column="1">
+                      <widget class="QPushButton" name="ss7i73in_13">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="14" column="1">
+                      <widget class="QPushButton" name="ss7i73in_14">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="15" column="1">
+                      <widget class="QPushButton" name="ss7i73in_15">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QPushButton" name="ss7i73out_0">
+                       <property name="text">
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="1" column="3">
-                      <widget class="QComboBox" name="ss7i73out_1"/>
+                      <widget class="QPushButton" name="ss7i73out_1">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </widget>
@@ -11158,63 +11230,10 @@ The Smart Serial Card configuration will not load from the ini file at this time
                      <string>Keypad-LCD P1</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_103">
-                     <item row="23" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_9"/>
-                     </item>
-                     <item row="16" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_2"/>
-                     </item>
-                     <item row="14" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_0">
-                       <property name="text">
-                        <string>Key 0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="14" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_0">
-                       <property name="text">
-                        <string>LCD 0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="14" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_0"/>
-                     </item>
-                     <item row="14" column="4">
-                      <widget class="QComboBox" name="ss7i73key_0"/>
-                     </item>
-                     <item row="15" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_1"/>
-                     </item>
-                     <item row="22" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_8"/>
-                     </item>
-                     <item row="24" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_10"/>
-                     </item>
                      <item row="18" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_4"/>
-                     </item>
-                     <item row="25" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_11"/>
-                     </item>
-                     <item row="20" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_6"/>
-                     </item>
-                     <item row="19" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_5"/>
-                     </item>
-                     <item row="17" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_3"/>
-                     </item>
-                     <item row="21" column="6">
-                      <widget class="QComboBox" name="ss7i73lcd_7"/>
-                     </item>
-                     <item row="15" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_1">
+                      <widget class="QLabel" name="ss7i73lcdlbl_4">
                        <property name="text">
-                        <string>Key 1</string>
+                        <string>LCD 4</string>
                        </property>
                       </widget>
                      </item>
@@ -11225,17 +11244,10 @@ The Smart Serial Card configuration will not load from the ini file at this time
                        </property>
                       </widget>
                      </item>
-                     <item row="17" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_3">
+                     <item row="27" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_13">
                        <property name="text">
-                        <string>Key 3</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="18" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_4">
-                       <property name="text">
-                        <string>Key 4</string>
+                        <string>Key 13</string>
                        </property>
                       </widget>
                      </item>
@@ -11246,10 +11258,10 @@ The Smart Serial Card configuration will not load from the ini file at this time
                        </property>
                       </widget>
                      </item>
-                     <item row="20" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_6">
+                     <item row="25" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_11">
                        <property name="text">
-                        <string>Key 6</string>
+                        <string>Key 11</string>
                        </property>
                       </widget>
                      </item>
@@ -11260,17 +11272,38 @@ The Smart Serial Card configuration will not load from the ini file at this time
                        </property>
                       </widget>
                      </item>
-                     <item row="22" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_8">
+                     <item row="17" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_3">
                        <property name="text">
-                        <string>Key 8</string>
+                        <string>Key 3</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="23" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_9">
+                     <item row="15" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_1">
                        <property name="text">
-                        <string>Key 9</string>
+                        <string>Key 1</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="22" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_8">
+                       <property name="text">
+                        <string>LCD 8</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="20" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_6">
+                       <property name="text">
+                        <string>LCD 6</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="18" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_4">
+                       <property name="text">
+                        <string>Key 4</string>
                        </property>
                       </widget>
                      </item>
@@ -11281,10 +11314,52 @@ The Smart Serial Card configuration will not load from the ini file at this time
                        </property>
                       </widget>
                      </item>
-                     <item row="25" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_11">
+                     <item row="28" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_14">
                        <property name="text">
-                        <string>Key 11</string>
+                        <string>Key 14</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="25" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_11">
+                       <property name="text">
+                        <string>LCD 11</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="20" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_6">
+                       <property name="text">
+                        <string>Key 6</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="19" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_5">
+                       <property name="text">
+                        <string>LCD 5</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="22" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_8">
+                       <property name="text">
+                        <string>Key 8</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="21" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_7">
+                       <property name="text">
+                        <string>LCD 7</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="17" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_3">
+                       <property name="text">
+                        <string>LCD 3</string>
                        </property>
                       </widget>
                      </item>
@@ -11295,17 +11370,52 @@ The Smart Serial Card configuration will not load from the ini file at this time
                        </property>
                       </widget>
                      </item>
-                     <item row="27" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_13">
+                     <item row="14" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_0">
                        <property name="text">
-                        <string>Key 13</string>
+                        <string>LCD 0</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="28" column="3">
-                      <widget class="QLabel" name="ss7i73keylbl_14">
+                     <item row="23" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_9">
                        <property name="text">
-                        <string>Key 14</string>
+                        <string>LCD 9</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="23" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_9">
+                       <property name="text">
+                        <string>Key 9</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="24" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_10">
+                       <property name="text">
+                        <string>LCD 10</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="14" column="3">
+                      <widget class="QLabel" name="ss7i73keylbl_0">
+                       <property name="text">
+                        <string>Key 0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="16" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_2">
+                       <property name="text">
+                        <string>LCD 2</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="15" column="6">
+                      <widget class="QLabel" name="ss7i73lcdlbl_1">
+                       <property name="text">
+                        <string>LCD 1</string>
                        </property>
                       </widget>
                      </item>
@@ -11316,127 +11426,201 @@ The Smart Serial Card configuration will not load from the ini file at this time
                        </property>
                       </widget>
                      </item>
-                     <item row="15" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_1">
+                     <item row="14" column="5">
+                      <widget class="QPushButton" name="ss7i73key_0">
                        <property name="text">
-                        <string>LCD 1</string>
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="15" column="5">
+                      <widget class="QPushButton" name="ss7i73key_1">
+                       <property name="text">
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="16" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_2">
+                      <widget class="QPushButton" name="ss7i73key_2">
                        <property name="text">
-                        <string>LCD 2</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="17" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_3">
+                      <widget class="QPushButton" name="ss7i73key_3">
                        <property name="text">
-                        <string>LCD 3</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="18" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_4">
+                      <widget class="QPushButton" name="ss7i73key_4">
                        <property name="text">
-                        <string>LCD 4</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="19" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_5">
+                      <widget class="QPushButton" name="ss7i73key_5">
                        <property name="text">
-                        <string>LCD 5</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="20" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_6">
+                      <widget class="QPushButton" name="ss7i73key_6">
                        <property name="text">
-                        <string>LCD 6</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="21" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_7">
+                      <widget class="QPushButton" name="ss7i73key_7">
                        <property name="text">
-                        <string>LCD 7</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="22" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_8">
+                      <widget class="QPushButton" name="ss7i73key_8">
                        <property name="text">
-                        <string>LCD 8</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="23" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_9">
+                      <widget class="QPushButton" name="ss7i73key_9">
                        <property name="text">
-                        <string>LCD 9</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="24" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_10">
+                      <widget class="QPushButton" name="ss7i73key_10">
                        <property name="text">
-                        <string>LCD 10</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
                      <item row="25" column="5">
-                      <widget class="QLabel" name="ss7i73lcdlbl_11">
+                      <widget class="QPushButton" name="ss7i73key_11">
                        <property name="text">
-                        <string>LCD 11</string>
+                        <string>Select</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="15" column="4">
-                      <widget class="QComboBox" name="ss7i73key_1"/>
+                     <item row="26" column="5">
+                      <widget class="QPushButton" name="ss7i73key_12">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="16" column="4">
-                      <widget class="QComboBox" name="ss7i73key_2"/>
+                     <item row="27" column="5">
+                      <widget class="QPushButton" name="ss7i73key_13">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="17" column="4">
-                      <widget class="QComboBox" name="ss7i73key_3"/>
+                     <item row="28" column="5">
+                      <widget class="QPushButton" name="ss7i73key_14">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="18" column="4">
-                      <widget class="QComboBox" name="ss7i73key_4"/>
+                     <item row="29" column="5">
+                      <widget class="QPushButton" name="ss7i73key_15">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="19" column="4">
-                      <widget class="QComboBox" name="ss7i73key_5"/>
+                     <item row="14" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_0">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="20" column="4">
-                      <widget class="QComboBox" name="ss7i73key_6"/>
+                     <item row="15" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_1">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="21" column="4">
-                      <widget class="QComboBox" name="ss7i73key_7"/>
+                     <item row="16" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_2">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="22" column="4">
-                      <widget class="QComboBox" name="ss7i73key_8"/>
+                     <item row="17" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_3">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="23" column="4">
-                      <widget class="QComboBox" name="ss7i73key_9"/>
+                     <item row="18" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_4">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="24" column="4">
-                      <widget class="QComboBox" name="ss7i73key_10"/>
+                     <item row="19" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_5">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="25" column="4">
-                      <widget class="QComboBox" name="ss7i73key_11"/>
+                     <item row="20" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_6">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="26" column="4">
-                      <widget class="QComboBox" name="ss7i73key_12"/>
+                     <item row="21" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_7">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="27" column="4">
-                      <widget class="QComboBox" name="ss7i73key_13"/>
+                     <item row="22" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_8">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="28" column="4">
-                      <widget class="QComboBox" name="ss7i73key_14"/>
+                     <item row="23" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_9">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
-                     <item row="29" column="4">
-                      <widget class="QComboBox" name="ss7i73key_15"/>
+                     <item row="24" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_10">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="25" column="7">
+                      <widget class="QPushButton" name="ss7i73lcd_11">
+                       <property name="text">
+                        <string>Select</string>
+                       </property>
+                      </widget>
                      </item>
                     </layout>
                    </widget>
