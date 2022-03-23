@@ -42,7 +42,7 @@ IP Address 10.10.10.10 is recommended to avoid conflicts on your LAN
 	10.10.10.10 W2 Down W3 Up
 	192.168.1.121 W2 Down W3 Down
 
-Maximum Linear Velocity is in User Units per second.
+Maximum Linear Velocity is in Selected Units per second.
 
 Firmware
 To read the current firmware select the IP Address first.
