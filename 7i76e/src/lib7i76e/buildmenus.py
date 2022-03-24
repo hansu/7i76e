@@ -38,12 +38,8 @@ outputs = [{'Not Used':'Select'},
 	{'Digital Out':['Digital Out 0', 'Digital Out 1', 'Digital Out 2', 'Digital Out 3', ]}
 ]
 
-ain = [
-	['Select', False],
-	['Analog In 0', 'motion.analog-in-00'],
-	['Analog In 1', 'motion.analog-in-01'],
-	['Analog In 2', 'motion.analog-in-02'],
-	['Analog In 3', 'motion.analog-in-03'],
+ain = [{'Not Used':'Select'},
+	{'Analog':['Analog In 0', 'Analog In 1', 'Analog In 2','Analog In 3']}
 ]
 
 def build(parent):
@@ -166,11 +162,13 @@ def build(parent):
 		add_menu(outputs, menu)
 		button.setMenu(menu)
 
-	# 7i87 Combo Boxes
+	# 7i87 inputs
 	for i in range(8):
-		for item in ain:
-			getattr(parent, 'ss7i87in_' + str(i)).addItem(item[0], item[1])
-
+		button = getattr(parent, f'ss7i87in_{i}')
+		menu = QMenu()
+		menu.triggered.connect(lambda action, button=button: button.setText(action.text()))
+		add_menu(ain, menu)
+		button.setMenu(menu)
 
 def add_menu(data, menu_obj):
 	if isinstance(data, dict):
