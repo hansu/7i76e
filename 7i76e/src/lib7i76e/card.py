@@ -13,47 +13,61 @@ def check_emc():
 	else:
 		return False
 
-def readCard(parent, card):
-	print(card)
+def getBoardPins(parent):
+	board = parent.board
 	if check_emc():
 		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to read the {card}', 'Error')
 		return
 	if check_ip(parent):
 		ipAddress = parent.ipAddressCB.currentText()
-		arguments = ["--device", card, "--addr", ipAddress, "--readhmid"]
+		arguments = ["--device", board, "--addr", ipAddress, "--print-pd"]
 		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 
-def flashCard(parent, card):
+def readBoard(parent):
+	board = parent.board
+	print(board)
 	if check_emc():
-		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to flash the {card}', 'Error')
+		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to read the {board}', 'Error')
+		return
+	if check_ip(parent):
+		ipAddress = parent.ipAddressCB.currentText()
+		arguments = ["--device", board, "--addr", ipAddress, "--readhmid"]
+		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
+
+def flashCard(parent):
+	board = parent.board
+	if check_emc():
+		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to flash the {board}', 'Error')
 		return
 	if check_ip(parent):
 		if parent.firmwareCB.currentData():
-			parent.statusbar.showMessage(f'Flashing the {card}...')
+			parent.statusbar.showMessage(f'Flashing the {board}...')
 			ipAddress = parent.ipAddressCB.currentText()
 			firmware = os.path.join(parent.lib_path, parent.firmwareCB.currentData())
-			arguments = ["--device", card, "--addr", ipAddress, "--write", firmware]
+			arguments = ["--device", board, "--addr", ipAddress, "--write", firmware]
 			parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 		else:
 			parent.errorMsgOk('A firmware must be selected', 'Error!')
 
-def reloadCard(parent, card):
+def reloadCard(parent):
+	board = parent.board
 	if check_emc():
-		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to reload the {card}', 'Error')
+		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to reload the {board}', 'Error')
 		return
 	if check_ip(parent):
 		ipAddress = parent.ipAddressCB.currentText()
-		arguments = ["--device", card, "--addr", ipAddress, "--reload"]
+		arguments = ["--device", board, "--addr", ipAddress, "--reload"]
 		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 
-def verifyCard(parent, card):
+def verifyCard(parent):
+	board = parent.board
 	if check_emc():
-		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to verify the {card}', 'Error')
+		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to verify the {board}', 'Error')
 		return
 	if check_ip(parent):
 		ipAddress = parent.ipAddressCB.currentText()
 		firmware = os.path.join(parent.lib_path, parent.firmwareCB.currentData())
-		arguments = ["--device", card, "--addr", ipAddress, "--verify", firmware]
+		arguments = ["--device", board, "--addr", ipAddress, "--verify", firmware]
 		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 
 def getPins(parent):

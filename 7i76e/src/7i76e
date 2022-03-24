@@ -63,6 +63,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 		self.emcVersion = '1.1'
 		self.setWindowTitle(f'7i76e Configuration Tool Version {self.version}')
 		self.card = {'type':'7i76e', 'joints': 5, 'inputs': 32, 'outputs': 16}
+		self.board = '7i76e'
 		buildmenus.build(self)
 		buildcombos.build(self)
 		utilities.checks(self)
@@ -113,11 +114,12 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 		self.nicPB.clicked.connect(partial(pcinfo.nicInfo, self))
 		self.calcNicPB.clicked.connect(partial(pcinfo.nicCalc, self))
 		self.readTmaxPB.clicked.connect(partial(pcinfo.readTmax, self))
-		self.readPB.clicked.connect(partial(card.readCard, self, '7i76e'))
-		self.flashPB.clicked.connect(partial(card.flashCard, self, '7i76e'))
-		self.reloadPB.clicked.connect(partial(card.reloadCard, self, '7i76e'))
-		self.verifyPB.clicked.connect(partial(card.verifyCard, self, '7i76e'))
+		self.readPB.clicked.connect(partial(card.readBoard, self))
+		self.flashPB.clicked.connect(partial(card.flashCard, self))
+		self.reloadPB.clicked.connect(partial(card.reloadCard, self))
+		self.verifyPB.clicked.connect(partial(card.verifyCard, self))
 		self.firmwareCB.currentIndexChanged.connect(partial(utilities.firmwareChanged, self))
+		self.boardPinsPB.clicked.connect(partial(card.getBoardPins, self))
 		self.pinsPB.clicked.connect(partial(card.getPins, self))
 		pixmap = QPixmap(os.path.join(self.lib_path, '7i76e.png'))
 		self.card7i76eLB.setPixmap(pixmap)
