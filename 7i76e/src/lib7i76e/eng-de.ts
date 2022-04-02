@@ -91,7 +91,7 @@
     <message>
         <location filename="ui_7i76e.py" line="7921"/>
         <source>Read HMID</source>
-        <translation type="unfinished">Lesen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="7922"/>
@@ -191,7 +191,7 @@
     <message>
         <location filename="ui_7i76e.py" line="8190"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mininum&lt;br/&gt;Limit&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Endschalter&lt;br/&gt;Minimum&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Endschalter&lt;br/&gt;Minimum&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8192"/>
@@ -439,17 +439,17 @@ max speed</source>
     <message>
         <location filename="ui_7i76e.py" line="8140"/>
         <source>Joint 3</source>
-        <translation type="unfinished">Gelenk 3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8188"/>
         <source>Joint 4</source>
-        <translation type="unfinished">Gelenk 4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8236"/>
         <source>Joint 5</source>
-        <translation type="unfinished">Gelenk 5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8249"/>
@@ -501,7 +501,7 @@ max speed</source>
         <source>For Spindle On/Off, 
 Spindle CW/CCW
 use Outputs</source>
-        <translation type="unfinished">Benutze Ausgänge für 
+        <translation>Benutze Ausgänge für 
 Spindel An/Aus und 
 Spindel Rechts/Links</translation>
     </message>
@@ -713,7 +713,7 @@ Spindel Rechts/Links</translation>
     <message>
         <location filename="ui_7i76e.py" line="8429"/>
         <source>Invert</source>
-        <translation type="unfinished">GPIO-Eingang</translation>
+        <translation>Invertieren</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8380"/>
@@ -770,7 +770,7 @@ will create a net with a signal name and you will have to add the input or outpu
 The 7i83 and 7i87 are not currently supported.
 
 The Smart Serial Card configuration will not load from the ini file at this time.</source>
-        <translation type="unfinished">Die Konfiguration der Smart Serial Card ist sehr neu.
+        <translation>Die Konfiguration der Smart Serial Card ist sehr neu.
 
 Derzeit erstellt die Smart Serial Card
 ein Netz mit einem Signalnamen und Sie müssen den Namen des Eingangs- oder Ausgangs-Pin-Namen hinzufügen oder einfache I/O-Verbindungen erstellen.
@@ -1155,7 +1155,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="8977"/>
         <source>Output 0</source>
-        <translation type="unfinished">Ausgabe {0?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8978"/>
@@ -1165,7 +1165,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="8979"/>
         <source>Input 13</source>
-        <translation type="unfinished">GPIO-Eingang {13?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8980"/>
@@ -1190,7 +1190,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="8984"/>
         <source>Input 11</source>
-        <translation type="unfinished">GPIO-Eingang {11?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8985"/>
@@ -1210,17 +1210,17 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="8988"/>
         <source>Input 12</source>
-        <translation type="unfinished">GPIO-Eingang {12?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8989"/>
         <source>Input 10</source>
-        <translation type="unfinished">GPIO-Eingang {10?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8990"/>
         <source>Input 14</source>
-        <translation type="unfinished">GPIO-Eingang {14?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="8991"/>
@@ -1230,7 +1230,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="8992"/>
         <source>Output 1</source>
-        <translation type="unfinished">Ausgabe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9011"/>
@@ -1520,7 +1520,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="9205"/>
         <source>ClassicLadder PLC</source>
-        <translation type="unfinished">ClassicLadder SPS</translation>
+        <translation>ClassicLadder SPS</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9207"/>
@@ -1915,7 +1915,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="9273"/>
         <source>PLC</source>
-        <translation type="unfinished">SPS</translation>
+        <translation>SPS</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9274"/>
@@ -1960,17 +1960,17 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="9325"/>
         <source>Direction 3 +</source>
-        <translation type="unfinished">Richtung 4 + {3 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9326"/>
         <source>Direction 3 -</source>
-        <translation type="unfinished">Richtung 4 - {3 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9327"/>
         <source>Step 3 +</source>
-        <translation type="unfinished">Schritt 4 + {3 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9328"/>
@@ -1990,57 +1990,57 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="9332"/>
         <source>Direction 2 -</source>
-        <translation type="unfinished">Richtung 4 - {2 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9333"/>
         <source>Step 2 +</source>
-        <translation type="unfinished">Schritt 4 + {2 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9334"/>
         <source>Step 2 -</source>
-        <translation type="unfinished">Schritt 4 - {2 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9337"/>
         <source>Direction 1 +</source>
-        <translation type="unfinished">Richtung 4 + {1 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9338"/>
         <source>Direction 1 -</source>
-        <translation type="unfinished">Richtung 4 - {1 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9339"/>
         <source>Step 1 +</source>
-        <translation type="unfinished">Schritt 4 + {1 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9340"/>
         <source>Step 1 -</source>
-        <translation type="unfinished">Schritt 4 - {1 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9343"/>
         <source>Direction 0 +</source>
-        <translation type="unfinished">Richtung 4 + {0 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9344"/>
         <source>Direction 0 -</source>
-        <translation type="unfinished">Richtung 4 - {0 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9345"/>
         <source>Step 0 +</source>
-        <translation type="unfinished">Schritt 4 + {0 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9346"/>
         <source>Step 0 -</source>
-        <translation type="unfinished">Schritt 4 - {0 ?}</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9372"/>
@@ -2292,7 +2292,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="9665"/>
         <source>Terminals 4-6</source>
-        <translation type="unfinished">Anschlussklemmen 4-6</translation>
+        <translation>Anschlussklemmen 4-6</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9666"/>
@@ -2332,7 +2332,7 @@ Die Konfiguration der Smart Serial Karte wird zurzeit nicht aus der ini-Datei ge
     <message>
         <location filename="ui_7i76e.py" line="9673"/>
         <source>Network Interface Card</source>
-        <translation type="unfinished">&amp;lt;html&amp;gt;&amp;lt;head/&amp;gt;&amp;lt;body&amp;gt;&amp;lt;p&amp;gt;Netzwerkkarte&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;</translation>
+        <translation>Netzwerkkarte</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9674"/>
@@ -2351,7 +2351,7 @@ sudo dmidecode | grep MHz</source>
 in units of servo thread period.
 If the Packet Time is greater than 50%
 try increasing the thread period.</source>
-        <translation type="unfinished">&amp;lt;html&amp;gt;&amp;lt;head/&amp;gt;&amp;lt;body&amp;gt;&amp;lt;p&amp;gt;Die 7i76e muss angeschlossen sein und LinuxCNC muss eine&amp;lt;br/&amp;gt;7i76e-Konfiguration verwenden, bevor Sie versuchen, tMax zu lesen.&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9693"/>
@@ -2442,12 +2442,12 @@ running a 7i76e configuration before trying to read tMax.</source>
     <message>
         <location filename="ui_7i76e.py" line="9698"/>
         <source>Help</source>
-        <translation type="unfinished">&amp;Hilfe</translation>
+        <translation>&amp;Hilfe</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9699"/>
         <source>Edit</source>
-        <translation type="unfinished">&amp;Bearbeiten</translation>
+        <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
         <location filename="ui_7i76e.py" line="9700"/>
