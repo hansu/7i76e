@@ -13,7 +13,7 @@ def check_emc():
 	else:
 		return False
 
-def getBoardPins(parent):
+def readpd(parent):
 	board = parent.board
 	if check_emc():
 		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to read the {card}', 'Error')
@@ -23,9 +23,8 @@ def getBoardPins(parent):
 		arguments = ["--device", board, "--addr", ipAddress, "--print-pd"]
 		parent.extcmd.job(cmd="mesaflash", args=arguments, dest=parent.machinePTE)
 
-def readBoard(parent):
+def readhmid(parent):
 	board = parent.board
-	print(board)
 	if check_emc():
 		parent.errorMsgOk(f'LinuxCNC must NOT be running\n to read the {board}', 'Error')
 		return
