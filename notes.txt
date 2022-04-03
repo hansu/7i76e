@@ -27,3 +27,6 @@ would need to be:
 net spindle-vel-cmd-rpm-abs => pid.s.command
 
 additional changes would be needed if the PID loop was used
+
+translated file > base file > new file
+lconvert -i eng-de-translated.ts eng-de-base.ts -o eng-de.ts
