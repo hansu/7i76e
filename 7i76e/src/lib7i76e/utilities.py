@@ -57,7 +57,8 @@ def checks(parent):
 			'https://github.com/LinuxCNC/mesaflash\n'
 			'for installation instructions.')
 		parent.machinePTE.appendPlainText(t)
-		parent.readPB.setEnabled(False)
+		parent.readpdPB.setEnabled(False)
+		parent.readhmidPB.setEnabled(False)
 		parent.flashPB.setEnabled(False)
 		parent.reloadPB.setEnabled(False)
 
